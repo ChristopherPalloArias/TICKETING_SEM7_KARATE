@@ -1,0 +1,26 @@
+{
+  "eventId": "#uuid",
+  "roomId": "#uuid",
+  "title": "#string",
+  "description": "#string",
+  "date": "#string",
+  "capacity": "#number",
+  "status": "#string",
+  "published": "#boolean",
+  "enableSeats": "#boolean",
+  "createdAt": "#string",
+  "updatedAt": "#string",
+  "tiers": [
+    {
+      "tierId": "#uuid",
+      "tierType": "#string",
+      "name": "#string",
+      "price": "#number",
+      "quota": "#number",
+      "reserved": "#number",
+      "available": "#number",
+      "status": "#string",
+      ("earlyBirdEndDate"): "##string"
+    }
+  ]
+}

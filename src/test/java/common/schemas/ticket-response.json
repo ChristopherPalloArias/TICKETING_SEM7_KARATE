@@ -1,0 +1,12 @@
+{
+  "ticketId": "#uuid",
+  "eventId": "#uuid",
+  "eventTitle": "#string",
+  "eventDate": "#string",
+  "tier": "#string",
+  "pricePaid": "#number",
+  "status": "#string",
+  "buyerEmail": "#string",
+  "reservationId": "#uuid",
+  "purchasedAt": "#string"
+}
