@@ -1,6 +1,6 @@
 ---
 id: SPEC-002
-status: APPROVED
+status: IMPLEMENTED
 feature: ticketing-karate-rejected-payment-flow
 created: 2026-04-06
 updated: 2026-04-06
@@ -11,7 +11,7 @@ related-specs: ["SPEC-001"]
 
 # Spec: Ticketing MVP — Karate Rejected Payment Flow
 
-> **Estado:** `APPROVED`
+> **Estado:** `IMPLEMENTED`
 > **Ciclo de vida:** DRAFT → APPROVED → IN_PROGRESS → IMPLEMENTED → DEPRECATED
 > **Relacionado con:** `SPEC-001` (Approved Purchase Flow)
 
@@ -189,23 +189,30 @@ Los siguientes endpoints se reutilizan exactamente como parte del setup ya proba
 #### POST /api/v1/reservations/{reservationId}/payments
 
 * **Descripción:** Procesa un pago rechazado para una reservación pendiente.
-* **Auth requerida:** Sí (`X-User-Id` del propietario de la reservación)
+* **Auth requerida:** Sí (`X-User-Id` del dueño de la reservación)
 * **Path Params:** `reservationId`
-* **Request Body:**
+* **Request Body**:
 
   ```json
   {
-    "amount": "number > 0",
+    "amount": 100.00,
     "paymentMethod": "MOCK",
     "status": "DECLINED"
   }
   ```
-* **Response:** **Definida por runtime real**
 
-  * No asumir misma forma del flujo aprobado
-  * No asumir presencia de `ticketId`
-  * No asumir objeto `ticket`
-  * La validación debe construirse según la respuesta observada al ejecutar el backend
+* **Response 400**:
+
+  ```json
+  {
+    "error": "#string",
+    "reservationId": "#uuid",
+    "status": "PAYMENT_FAILED",
+    "timestamp": "#string"
+  }
+  ```
+
+* **Notas:** El backend no confirma la compra ni genera ticket exitoso. La reservación queda en estado `PAYMENT_FAILED` y permanece activa temporalmente hasta que actúe el mecanismo de expiración/liberación.
 
 ### Diferencias clave respecto al flujo aprobado
 
@@ -308,3 +315,4 @@ El flujo sigue siendo secuencial y reutiliza el setup del approved flow:
 | ------- | ---------- | -------------- | ------------------------------------------------------------------------------------------------- |
 | 1.0     | 2026-04-06 | spec-generator | Creación spec inicial DRAFT                                                                       |
 | 1.1     | 2026-04-06 | qa-architect   | Alineación con el setup aprobado, limpieza de lenguaje funcional y aprobación para implementación |
+| 1.2     | 2026-04-06 | qa-architect   | Contrato runtime real de pago rechazado confirmado: HTTP 400 con `error`, `reservationId`, `status = PAYMENT_FAILED` y `timestamp`. Feature ejecutado con éxito. |

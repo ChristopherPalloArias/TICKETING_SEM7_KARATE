@@ -1,0 +1,6 @@
+{
+  "reservationId": "#uuid",
+  "status": "#string",
+  "message": "#string",
+  "timestamp": "#string"
+}
