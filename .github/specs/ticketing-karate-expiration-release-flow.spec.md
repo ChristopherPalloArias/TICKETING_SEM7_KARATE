@@ -1,6 +1,6 @@
 ---
 id: SPEC-003
-status: APPROVED
+status: IMPLEMENTED
 feature: ticketing-karate-expiration-release-flow
 created: 2026-04-06
 updated: 2026-04-06
@@ -364,5 +364,4 @@ Flujo recomendado mínimo:
 | ------- | ---------- | -------------- | --------------------------------------------------------------------------------------------- |
 | 1.0     | 2026-04-06 | spec-generator | Creación spec inicial DRAFT                                                                   |
 | 1.1     | 2026-04-06 | qa-architect   | Limpieza de supuestos, alineación con HU-04/HU-05 y aprobación para implementación progresiva |
-
-```
+| 1.2 | 2026-04-06 | qa-architect | Implementación completada de Path B con validación SQL concluyente: `PAYMENT_FAILED` → `EXPIRED`, restauración de `tier.quota` y nueva reservación exitosa de Buyer 2. |
