@@ -1,0 +1,8 @@
+{
+  "roomId": "",
+  "title": "Karate Test Event",
+  "description": "Test event for purchase approved flow",
+  "date": "2026-12-31T20:00:00Z",
+  "capacity": 50,
+  "enableSeats": false
+}

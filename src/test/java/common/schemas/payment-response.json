@@ -1,0 +1,18 @@
+{
+  "reservationId": "#uuid",
+  "status": "CONFIRMED",
+  "ticketId": "#uuid",
+  "message": "#string",
+  "ticket": {
+    "id": "#uuid",
+    "eventId": "#uuid",
+    "eventTitle": "#string",
+    "eventDate": "#string",
+    "tierTypeName": "#string",
+    "price": "#number",
+    "status": "#string",
+    "buyerEmail": "#string",
+    "reservationId": "#uuid"
+  },
+  "timestamp": "#string"
+}

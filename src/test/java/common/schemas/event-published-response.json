@@ -1,0 +1,11 @@
+{
+  "id": "#uuid",
+  "roomId": "#uuid",
+  "title": "#string",
+  "description": "#string",
+  "date": "#string",
+  "capacity": "#number",
+  "status": "PUBLISHED",
+  "createdAt": "#string",
+  "updatedAt": "#string"
+}

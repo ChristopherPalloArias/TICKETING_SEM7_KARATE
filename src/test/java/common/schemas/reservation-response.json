@@ -1,0 +1,11 @@
+{
+  "id": "#uuid",
+  "eventId": "#uuid",
+  "tierId": "#uuid",
+  "buyerId": "#uuid",
+  "buyerEmail": "#string",
+  "status": "PENDING",
+  "createdAt": "#string",
+  "updatedAt": "#string",
+  "validUntilAt": "#string"
+}

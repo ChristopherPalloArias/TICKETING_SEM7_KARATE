@@ -39,12 +39,12 @@ This challenge represents the core transactional value of the MVP:
 # Endpoints in Scope
 | ID | Method | Endpoint | Purpose | Auth Required | Priority | Notes |
 |---|---|---|---|---|---|---|
-| REQ-01 | POST | `/api/v1/rooms` | Create a valid room for event setup | Yes | High | Setup step |
-| REQ-02 | POST | `/api/v1/events` | Create a valid event in DRAFT state | Yes | High | Setup step |
-| REQ-03 | POST | `/api/v1/events/{eventId}/tiers` | Configure a valid tier for the event | Yes | High | Setup step |
-| REQ-04 | PATCH | `/api/v1/events/{eventId}/publish` | Publish the event so it becomes sellable | Yes | High | Setup step |
-| REQ-05 | POST | `/api/v1/reservations` | Create a buyer reservation | Yes | Critical | Main business action |
-| REQ-06 | POST | `/api/v1/reservations/{reservationId}/payments` | Process approved mock payment | Yes | Critical | Main business action |
+| REQ-01 | POST | `/api/v1/rooms` | Creation of theater event (Setup Room) | Yes | High | Setup step |
+| REQ-02 | POST | `/api/v1/events` | Creation of theater event (Setup Event) | Yes | High | Setup step |
+| REQ-03 | POST | `/api/v1/events/{eventId}/tiers` | Tier and price configuration per event | Yes | High | Setup step |
+| REQ-04 | PATCH | `/api/v1/events/{eventId}/publish` | Creation of theater event (Publish) | Yes | High | Setup step |
+| REQ-05 | POST | `/api/v1/reservations` | Reservation and ticket purchase with simulated payment | Yes | Critical | Main business action |
+| REQ-06 | POST | `/api/v1/reservations/{reservationId}/payments` | Reservation and ticket purchase with simulated payment | Yes | Critical | Main business action |
 
 # Endpoint Details
 
@@ -67,7 +67,7 @@ This challenge represents the core transactional value of the MVP:
 - **Path Params:** None
 - **Query Params:** None
 - **Request Body:** Real `EventCreateRequest` contract detected from code. Must include only valid fields from implementation.
-- **Success Response:** Event creation response with generated `eventId` and initial state equivalent to `DRAFT`.
+- **Success Response:** Event creation response with generated `eventId`. (Technical note: the event is created with the internal state `DRAFT`).
 - **Error Response:** Validation or business errors such as capacity exceeding room capacity, duplicated event, invalid date, or forbidden access.
 - **Key Assertions:** Event ID must not be null. Event must be created in draft-like initial state. Room association must be valid.
 - **Schema Expectations:** Fuzzy match for generated technical values, strict match for core business input.
@@ -88,7 +88,7 @@ This challenge represents the core transactional value of the MVP:
 - **Cleanup Impact:** None for the first version.
 
 ## REQ-04 PATCH `/api/v1/events/{eventId}/publish`
-- **Purpose:** Transition the event from draft state to published state.
+- **Purpose:** Publish the event so it becomes sellable.
 - **Headers:** Administrative context header required, expected as `X-Role: ADMIN`.
 - **Path Params:** `eventId`
 - **Query Params:** None
@@ -141,7 +141,7 @@ This challenge represents the core transactional value of the MVP:
 # Functional Expectations
 The automation must prove the full happy path of approved purchase with setup by API:
 1. A room is created successfully.
-2. An event is created successfully in draft state.
+2. An event is created successfully.
 3. A valid GENERAL tier is configured.
 4. The event is published.
 5. A reservation is created successfully with buyer email and controlled `X-User-Id`.

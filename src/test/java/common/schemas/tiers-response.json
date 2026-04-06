@@ -1,0 +1,11 @@
+{
+  "tiers": [
+    {
+      "id": "#uuid",
+      "tierType": "GENERAL",
+      "price": "#number",
+      "quota": "#number",
+      "createdAt": "#string"
+    }
+  ]
+}
