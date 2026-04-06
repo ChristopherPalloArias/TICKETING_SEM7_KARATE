@@ -9,9 +9,9 @@ Feature: Ticketing MVP - Ticket Visibility and Access Control
     * def UUID = Java.type('java.util.UUID')
     * def buyerId1 = UUID.randomUUID() + ''
     * def buyerId2 = UUID.randomUUID() + ''
-    * def buyerEmail1 = 'buyer1-' + java.lang.System.currentTimeMillis() + '@karate-test.com'
-    * def buyerEmail2 = 'buyer2-' + java.lang.System.currentTimeMillis() + '@karate-test.com'
-    * def eventTitle = 'Karate Ticket Test Event ' + java.lang.System.currentTimeMillis()
+    * def buyerEmail1 = 'buyer1-' + UUID.randomUUID() + '@karate-test.com'
+    * def buyerEmail2 = 'buyer2-' + UUID.randomUUID() + '@karate-test.com'
+    * def eventTitle = 'Karate Ticket Test Event ' + UUID.randomUUID()
     * def futureDate = '2026-12-15T20:00:00'
 
   Scenario: Scenario 1 - Ticket Visible for Owner (Happy Path)
