@@ -1,199 +1,145 @@
 ---
 id: SPEC-003
-status: DRAFT
+status: APPROVED
 feature: ticketing-karate-expiration-release-flow
 created: 2026-04-06
 updated: 2026-04-06
 author: spec-generator
-version: "1.0"
+version: "1.1"
 related-specs: ["SPEC-001", "SPEC-002"]
 ---
 
 # Spec: Ticketing MVP — Karate Expiration and Automatic Release Flow
 
-> **Estado:** `DRAFT` → aprobar con `status: APPROVED` antes de iniciar implementación.
+> **Estado:** `APPROVED`
 > **Ciclo de vida:** DRAFT → APPROVED → IN_PROGRESS → IMPLEMENTED → DEPRECATED
-> **Relacionado con**: SPEC-001 (Approved), SPEC-002 (Rejected)
+> **Relacionado con:** `SPEC-001` (Approved Purchase Flow), `SPEC-002` (Rejected Payment Flow)
 
 ---
 
 ## 1. REQUERIMIENTOS
 
 ### Descripción
-Automatización Karate del ciclo de vida de expiración y liberación automática de inventario en el MVP de Ticketing. Valida que el sistema libera correctamente la disponibilidad cuando una reservación no se completa exitosamente (por expiración o pago rechazado), previniendo que el inventario permanezca bloqueado. Este feature es crítico para la integridad de negocio del MVP.
+Automatización Karate del flujo de expiración y liberación automática de inventario en el MVP de Ticketing. Este feature debe demostrar que el sistema libera correctamente la disponibilidad cuando una reservación no se completa exitosamente y evita que el inventario quede bloqueado de forma indefinida.
 
 ### Requerimiento de Negocio
-Este feature consiste en implementar una automatización DSL de Karate para validar el ciclo de vida de expiración y liberación automática de inventario en la compra de tickets. La solución debe demostrar que:
+Este feature valida una de las reglas de negocio más críticas del MVP: si una reservación no culmina en una compra confirmada, el inventario debe volver a quedar disponible para otros compradores.
 
-1. Cuando una reservación no se completa exitosamente (por timeout o pago rechazado)
-2. El mecanismo de fondo automáticamente libera la disponibilidad bloqueada
-3. El inventario vuelve a estar disponible para nuevos compradores
+La automatización debe demostrar que:
+1. se crea una reservación válida,
+2. esa reservación entra en un ciclo no exitoso,
+3. el mecanismo automático del backend procesa su liberación,
+4. y la disponibilidad vuelve a quedar utilizable para un nuevo comprador.
 
-Este challenge es crítico para el MVP porque valida una de las reglas de negocio más importantes: prevenir que se bloquee inventario permanentemente cuando un comprador no completa el pago.
+### Alcance funcional de esta spec
+Este feature cubre la lógica correspondiente a:
+- **HU-04: Reserva y compra de entrada con pago simulado**
+- **HU-05: Liberación automática por fallo de pago o expiración**
 
-**Rutas de negocio soportadas**:
-- **Path A**: Expiración sin pago exitoso → liberación automática
-- **Path B**: Pago rechazado → liberación automática
-- Ambas rutas deben resultar en inventario restaurado y disponible
+### Caminos funcionales permitidos
+Se permite validar uno o ambos de estos caminos, según lo que resulte más estable contra el runtime real:
 
----
+- **Path A — Expiración sin pago exitoso**
+- **Path B — Pago rechazado seguido de liberación automática**
 
-### Historias de Usuario
-
-#### HU-01: Crear Setup de Evento (Reutilizable)
-
-```
-Como:        Administrador del sistema
-Quiero:      Crear un evento publicado con inventario controlado
-Para:        Usar como baseline para validar expiración y liberación
-
-Prioridad:   Alta
-Estimación:  S
-Dependencias: Ninguna
-Capa:        API / Automatización
-```
-
-#### Criterios de Aceptación — HU-01
-
-**Happy Path**
-```gherkin
-CRITERIO-1.1: Crear setup completo (room + event + tier + publish)
-  Dado que:    existe un ambiente local/Docker con endpoints disponibles
-  Cuando:      ejecutamos setup administrativo
-  Entonces:    obtenemos evento PUBLISHED con inventario controlado (cuota: 40, capacidad: 50)
-```
+La implementación puede empezar por el path más estable y extenderse después al otro.
 
 ---
 
-#### HU-02: Crear Reservación para Validar Bloqueo
+### Historias de Usuario cubiertas
 
-```
+#### HU-04: Reserva y compra de entrada con pago simulado
+
+```text id="s4o91d"
 Como:        Comprador del sistema
-Quiero:      Crear una reservación que será expirada o rechazada
-Para:        Demostrar que el inventario se bloquea inicialmente
-
-Prioridad:   Alta
-Estimación:  S
-Dependencias: HU-01
-Capa:        API / Automatización
-```
-
-#### Criterios de Aceptación — HU-02
-
-**Happy Path**
-```gherkin
-CRITERIO-2.1: Crear reservación y validar bloqueo inicial
-  Dado que:    evento está PUBLISHED con 40 tickets disponibles
-  Cuando:      comprador A crea una reservación
-  Entonces:    obtenemos reservación en PENDING y disponibilidad baja a 39 (1 bloqueado)
-```
-
----
-
-#### HU-03: Ejercer Path A — Expiración sin Pago
-
-```
-Como:        Sistema de Ticketing
-Quiero:      Permitir que una reservación expire por timeout sin pago exitoso
-Para:        Demostrar que se libera automáticamente la disponibilidad
-
-Prioridad:   Crítica
-Estimación:  L
-Dependencias: HU-02
-Capa:        API / Automatización / Background
-```
-
-#### Criterios de Aceptación — HU-03
-
-**Negative Path (Expiration Behavior)**
-```gherkin
-CRITERIO-3.1: Reservación expira y mecanismo automático la libera
-  Dado que:    reservación existe en PENDING con validityWindow expirado
-  Cuando:      mecanismo automático procesa expiración
-  Entonces:    reservación cambia de estado, disponibilidad es restaurada a 40
-```
-
----
-
-#### HU-04: Ejercer Path B — Pago Rechazado y Liberación
-
-```
-Como:        Sistema de Ticketing
-Quiero:      Procesar rechazo de pago y liberar automáticamente la disponibilidad
-Para:        Demostrar que la liberación ocurre después de fallo de pago
-
-Prioridad:   Crítica
-Estimación:  M
-Dependencias: HU-02
-Capa:        API / Automatización / Background
-```
+Quiero:      Crear una reservación válida sobre un evento disponible
+Para:        Iniciar el ciclo que luego permitirá validar expiración o liberación
+````
 
 #### Criterios de Aceptación — HU-04
 
-**Negative Path (Payment Rejection + Auto Release)**
-```gherkin
-CRITERIO-4.1: Pago rechazado, reservación fallida, inventario liberado
-  Dado que:    reservación existe en PENDING
-  Cuando:      enviamos pago con status DECLINED
-  Entonces:    pago rechazado, mecanismo libera automáticamente la reservación
-               y disponibilidad es restaurada a 40
+**Happy Path de preparación**
+
+```gherkin id="z8s83a"
+CRITERIO-4.1: Crear reservación exitosamente para iniciar el ciclo
+  Dado que:    existe un evento publicado con tier válido y disponibilidad utilizable
+  Cuando:      enviamos POST /api/v1/reservations con X-User-Id, eventId, tierId y buyerEmail válidos
+  Entonces:    recibimos respuesta 201 con reservación en estado PENDING y ventana de validez poblada
 ```
 
 ---
 
-#### HU-05: Validar Restauración de Disponibilidad
+#### HU-05: Liberación automática por fallo de pago o expiración
 
-```
-Como:        Comprador B del sistema
-Quiero:      Crear una nueva reservación después que la anterior fue liberada
-Para:        Demostrar que el inventario está realmente disponible para nuevos compradores
-
-Prioridad:   Crítica
-Estimación:  S
-Dependencias: HU-03 o HU-04 (una liberación debe haber ocurrido)
-Capa:        API / Automatización
+```text id="0vm2x1"
+Como:        Organizador del evento
+Quiero:      Que las entradas bloqueadas por reservas no exitosas se liberen automáticamente
+Para:        Evitar que el inventario quede retenido de forma indebida y pueda volver a comprarse
 ```
 
 #### Criterios de Aceptación — HU-05
 
-**Happy Path (Restoration Verification)**
-```gherkin
-CRITERIO-5.1: Nuevo comprador puede crear reservación después de liberación
-  Dado que:    inventario fue liberado (HU-03 o HU-04)
-  Cuando:      comprador B intenta crear reservación
-  Entonces:    reservación se crea exitosamente (inventario disponible)
+**Path A — Expiración**
+
+```gherkin id="r0d7e4"
+CRITERIO-5.1: La reservación expira y la disponibilidad se libera
+  Dado que:    existe una reservación en estado PENDING cuyo tiempo de validez ya fue superado
+  Cuando:      el mecanismo automático del backend procesa la expiración
+  Entonces:    la reservación deja de comportarse como una venta activa
+  Y            la disponibilidad vuelve a quedar utilizable para otro comprador
+```
+
+**Path B — Pago rechazado + liberación**
+
+```gherkin id="sfg95k"
+CRITERIO-5.2: El pago rechazado no confirma la compra y la disponibilidad se libera posteriormente
+  Dado que:    existe una reservación válida en estado PENDING
+  Cuando:      enviamos un pago con status DECLINED y luego actúa el mecanismo automático del backend
+  Entonces:    la compra no queda confirmada
+  Y            la disponibilidad vuelve a quedar utilizable para otro comprador
+```
+
+**Verificación final de liberación**
+
+```gherkin id="z9b30c"
+CRITERIO-5.3: Un nuevo comprador puede reservar después de la liberación
+  Dado que:    una reservación previa ya fue liberada por expiración o por fallo de pago
+  Cuando:      un comprador distinto intenta crear una nueva reservación sobre el mismo inventario
+  Entonces:    la nueva reservación se crea exitosamente
 ```
 
 ---
 
-### Reglas de Negocio (Expiración y Liberación)
+### Reglas de Negocio
 
-1. **Bloqueo Inicial**: Una reservación creada bloquea inmediatamente el inventario (cuota).
-2. **Validez Temporal**: La reservación tiene una ventana de validez (`validUntilAt`) después de la cual se puede expirar.
-3. **Pago Rechazado = Estado Falló**: Un pago con `status: DECLINED` pone la reservación en estado de fallo.
-4. **Liberación Automática**: El mecanismo automático (scheduler/background) libera la reservación fallida/expirada.
-5. **Disponibilidad Restaurada**: Cuando se libera, la cuota bloqueada vuelve a estar disponible para nuevos compradores.
-6. **No Acumulación de Bloques**: Una vez liberada, la reservación no vuelve a bloquear inventory.
+1. **Bloqueo inicial:** Una reservación válida bloquea disponibilidad al momento de su creación.
+2. **Validez temporal:** Una reservación posee una ventana de validez (`validUntilAt`) que delimita su vigencia.
+3. **Pago rechazado:** Un pago con `status = DECLINED` no confirma la compra.
+4. **Liberación automática:** El backend debe liberar automáticamente la disponibilidad de una reservación no exitosa.
+5. **Disponibilidad restaurada:** Una vez liberada la reservación, otro comprador debe poder reservar nuevamente.
+6. **No asumir estados internos no confirmados:** La implementación no debe asumir estados como `RELEASED` si no están confirmados por runtime real.
+7. **Validación realista:** Si la liberación no puede demostrarse completamente por HTTP, se permite validación por SQL como soporte técnico.
 
 ---
 
 ## 2. DISEÑO API
 
-### API Endpoints (Setup — Reutilización)
+### Endpoints de setup reutilizados
 
-#### POST /api/v1/rooms (HU-01)
-- **Descripción**: Crear sala para evento
-- **Auth requerida**: Sí (`X-Role: ADMIN`)
-- **Request Body**: `{ "name": "string", "maxCapacity": 50 }`
-- **Response 201**: Room con id no nulo
-- **Notas**: Idéntico a flows aprobado/rechazado
+Los siguientes endpoints se reutilizan desde los flujos ya implementados:
 
----
+#### POST /api/v1/rooms
 
-#### POST /api/v1/events (HU-01)
-- **Descripción**: Crear evento DRAFT
-- **Auth requerida**: Sí (`X-Role: ADMIN`)
-- **Request Body**:
+* **Descripción:** Crear sala para el evento
+* **Auth requerida:** Sí (`X-Role: ADMIN` y cualquier header adicional confirmado por runtime)
+* **Response esperada:** 201 con identificador no nulo
+
+#### POST /api/v1/events
+
+* **Descripción:** Crear evento base
+* **Auth requerida:** Sí (`X-Role: ADMIN` y cualquier header adicional confirmado por runtime)
+* **Request Body:**
+
   ```json
   {
     "roomId": "uuid",
@@ -204,238 +150,219 @@ CRITERIO-5.1: Nuevo comprador puede crear reservación después de liberación
     "enableSeats": false
   }
   ```
-- **Response 201**: Event con status `DRAFT`
-- **Notas**: Idéntico a flows previos
+* **Response esperada:** 201 con evento válido
+
+#### POST /api/v1/events/{eventId}/tiers
+
+* **Descripción:** Configurar tier GENERAL
+* **Auth requerida:** Sí (`X-Role: ADMIN`)
+* **Request Body:**
+
+  ```json
+  [
+    {
+      "tierType": "GENERAL",
+      "price": 100.00,
+      "quota": 40
+    }
+  ]
+  ```
+* **Response esperada:** 201 con tier válido
+
+#### PATCH /api/v1/events/{eventId}/publish
+
+* **Descripción:** Publicar evento
+* **Auth requerida:** Sí (`X-Role: ADMIN`)
+* **Response esperada:** 200 con evento publicado
 
 ---
 
-#### POST /api/v1/events/{eventId}/tiers (HU-01)
-- **Descripción**: Configurar tier GENERAL
-- **Auth requerida**: Sí (`X-Role: ADMIN`)
-- **Request Body**: `[{ "tierType": "GENERAL", "price": 100, "quota": 40 }]`
-- **Response 201**: Array de tiers con IDs
-- **Notas**: Idéntico, quota: 40 es crítico para validar liberación
+### Endpoints del flujo de reservación
+
+#### POST /api/v1/reservations
+
+* **Descripción:** Crear reservación inicial
+* **Auth requerida:** Sí (`X-User-Id`)
+* **Request Body:**
+
+  ```json
+  {
+    "eventId": "uuid",
+    "tierId": "uuid",
+    "buyerEmail": "string"
+  }
+  ```
+* **Response esperada:**
+
+  ```json
+  {
+    "id": "#uuid",
+    "eventId": "#uuid",
+    "tierId": "#uuid",
+    "buyerId": "#uuid",
+    "status": "PENDING",
+    "createdAt": "#string",
+    "updatedAt": "#string",
+    "validUntilAt": "#string"
+  }
+  ```
+
+#### POST /api/v1/reservations/{reservationId}/payments
+
+* **Descripción:** Procesar pago rechazado cuando se use Path B
+* **Auth requerida:** Sí (`X-User-Id`)
+* **Request Body:**
+
+  ```json
+  {
+    "amount": 100.00,
+    "paymentMethod": "MOCK",
+    "status": "DECLINED"
+  }
+  ```
+* **Contrato real conocido desde SPEC-002:**
+
+  * **HTTP:** `400`
+  * **Body:**
+
+    ```json
+    {
+      "error": "#string",
+      "reservationId": "#uuid",
+      "status": "PAYMENT_FAILED",
+      "timestamp": "#string"
+    }
+    ```
 
 ---
 
-#### PATCH /api/v1/events/{eventId}/publish (HU-01)
-- **Descripción**: Publicar evento
-- **Auth requerida**: Sí (`X-Role: ADMIN`)
-- **Response 200**: Event con status `PUBLISHED`
-- **Notas**: Idéntico a flows previos
+### Verificación de liberación
+
+#### Validación por HTTP
+
+Si existe un endpoint real y utilizable para observar disponibilidad o estado, puede usarse para validar:
+
+* que la reservación dejó de comportarse como activa,
+* o que la disponibilidad volvió a quedar accesible.
+
+#### Validación por nueva reservación
+
+La prueba preferida para validar liberación es:
+
+1. crear una primera reservación,
+2. dejar que ocurra expiración o liberación,
+3. intentar crear una segunda reservación con otro comprador,
+4. confirmar que la segunda reservación sí se crea.
+
+#### Validación por SQL
+
+Se permite SQL **solo si** el backend no expone una forma suficiente y estable de probar la liberación por HTTP.
+SQL puede usarse para validar:
+
+* estado final de la reservación,
+* efecto sobre disponibilidad,
+* o consistencia del inventario restaurado.
 
 ---
 
-#### POST /api/v1/reservations (HU-02)
-- **Descripción**: Crear reservación (bloquea inventario)
-- **Auth requerida**: Sí (`X-User-Id`)
-- **Request Body**: `{ "eventId": "uuid", "tierId": "uuid", "buyerEmail": "string" }`
-- **Response 201**: Reservation con status `PENDING`, `validUntilAt` poblado
-- **Critical**: La reservación bloquea cuota inmediatamente
-- **Notas**: Idéntico, pero aquí observamos el bloqueo
+### Nota técnica
+
+Este feature depende de comportamiento asincrónico real del backend.
+No se deben inventar:
+
+* triggers manuales del scheduler,
+* endpoints de administración del tiempo,
+* endpoints de availability si no existen,
+* ni estados finales internos no confirmados por runtime.
 
 ---
 
-#### POST /api/v1/reservations/{reservationId}/payments (Optional Path B)
-- **Descripción**: Procesar pago rechazado (para Path B)
-- **Auth requerida**: Sí (`X-User-Id`)
-- **Request Body**: `{ "amount": 100, "paymentMethod": "MOCK", "status": "DECLINED" }`
-- **Response**: Rechazo (contrato ya descubierto en SPEC-002)
-- **Notas**: Solo para Path B; reutiliza contrato de rejected-payment
+## 3. ESTRATEGIA DE IMPLEMENTACIÓN
+
+### Estrategia recomendada
+
+Implementar primero **un solo path estable**.
+
+Orden recomendado:
+
+1. Reutilizar setup del approved flow
+2. Crear una reservación
+3. Elegir uno de los dos caminos:
+
+   * expiración, o
+   * pago rechazado + liberación
+4. Validar liberación con el método más confiable:
+
+   * preferentemente por segunda reservación exitosa,
+   * o por HTTP observacional,
+   * o por SQL si hace falta
+
+### Prioridad recomendada
+
+1. **Path B — Pago rechazado + liberación**
+
+   * ya tienes el contrato del rechazo
+   * reaprovecha el flujo rechazado implementado
+2. **Path A — Expiración**
+
+   * más costoso por tiempo y scheduler
 
 ---
 
-### Endpoints Críticos para Validación de Liberación
+## 4. LISTA DE TAREAS
 
-#### GET /api/v1/events/{eventId}/availability (TBD)
-- **Descripción**: Obtener disponibilidad actual del evento
-- **Auth requerida**: No (o `X-User-Id`)
-- **Response**: Información de disponibilidad/cuota actual
-- **Critical**: Puede no existir; debe descubrirse en runtime
-- **Alternativa**: Validar por SQL a tabla de reservaciones/availability
+### Fase 0: Descubrimiento mínimo
 
----
+* [ ] Confirmar si existe endpoint usable para consultar disponibilidad o estado
+* [ ] Confirmar si basta una segunda reservación exitosa como prueba de liberación
+* [ ] Confirmar si SQL será necesario
 
-#### GET /api/v1/reservations/{reservationId} (TBD)
-- **Descripción**: Obtener estado actual de reservación
-- **Auth requerida**: Sí (`X-User-Id`)
-- **Response**: Estado de reservación, puede incluir flag de liberación
-- **Notas**: Puede usarse para validar transición a estado liberado
+### Fase 1: Implementación base
 
----
+* [ ] Reutilizar setup ya estable de sala, evento, tier y publish
+* [ ] Crear reservación inicial
+* [ ] Implementar Path B o Path A, empezando por el más estable
+* [ ] Esperar el tiempo o el ciclo real que requiera el backend
+* [ ] Validar liberación con el mecanismo real disponible
 
-### Estado de Reservación (Ciclo de Vida)
+### Fase 2: Validación
 
-```
-PENDING
-  ↓
-  ├─→ [Expiración ocurre] → EXPIRED → [Auto-release] → RELEASED
-  │
-  └─→ [Pago enviado]
-       ├─→ APPROVED → CONFIRMED (Path exitoso)
-       └─→ DECLINED → FAILED → [Auto-release] → RELEASED
-```
+* [ ] Confirmar que la primera reservación no permanece como venta efectiva
+* [ ] Confirmar que la disponibilidad vuelve a quedar utilizable
+* [ ] Confirmar que un comprador distinto puede volver a reservar
+
+### Fase 3: Cierre
+
+* [ ] Crear `ExpirationReleaseFlowTest.java`
+* [ ] Guardar evidencia de ejecución
+* [ ] Actualizar la spec a `IMPLEMENTED` cuando el flujo pase
 
 ---
 
-### Validación de Disponibilidad (Estrategia Mixta)
+## 5. RIESGOS IDENTIFICADOS
 
-Debido a que el mecanismo de liberación es asincrónico, se requiere validación en múltiples capas:
-
-1. **HTTP Validation**: Estado de reservación visible via GET
-2. **State Validation**: Transición de status observable
-3. **Availability Validation**: Cuota/disponibilidad restaurada por HTTP o SQL
-4. **SQL Validation** (Last Resort): Validar directamente en base de datos si HTTP insuficiente
-
----
-
-### Notas de Implementación
-
-> Este feature es significativamente más complejo que approved/rejected flows porque:
->
-> 1. **Mecanismo Asincrónico**: La liberación ocurre en background (scheduler), no en respuesta sincrónica
-> 2. **Timing**: Requiere esperas controladas (waits) para permitir que mecanismo actúe
-> 3. **Disponibilidad de Endpoints**: No hay garantía de endpoint directo para validar disponibilidad
-> 4. **SQL Permitido**: Se permite SQL si HTTP/runtime no puede probar liberación
->
-> **Estrategia de Implementación**:
-> 1. Ejecutar setup y crear reservación
-> 2. Esperar que mecanismo actúe (esperar validUntilAt, o procesar pago rechazado)
-> 3. Validar cambio de estado por HTTP o SQL
-> 4. Validar restauración de disponibilidad por HTTP o SQL
-> 5. Validar que comprador nuevo puede reservar (prueba final de liberación)
+| Riesgo                                                    | Probabilidad | Impacto | Mitigación                                                  |
+| --------------------------------------------------------- | -----------: | ------: | ----------------------------------------------------------- |
+| El scheduler tiene tiempos poco prácticos para prueba     |         Alta |    Alto | Empezar por el path más estable y documentar tiempos reales |
+| No existe endpoint claro de observación de disponibilidad |        Media |    Alto | Validar por segunda reservación o SQL                       |
+| El backend usa estados internos distintos a los supuestos |        Media |    Alto | Validar contra runtime real                                 |
+| La prueba se vuelve lenta o frágil por asincronía         |         Alta |   Medio | Mantener alcance pequeño y validar con evidencia concreta   |
 
 ---
 
-## 3. LISTA DE TAREAS
+## 6. DEPENDENCIAS INTERNAS
 
-> Checklist accionable para la automatización en Karate.
+Flujo recomendado mínimo:
 
-### Fase 0: Descubrimiento (Crítico antes de implementación)
-- [ ] **Ejecutar contra runtime real**:
-  - [ ] ¿Existe endpoint GET /api/v1/events/{eventId}/availability?
-  - [ ] ¿Existe endpoint GET /api/v1/reservations/{reservationId}?
-  - [ ] ¿Cuál es el mecanismo de expiración? (scheduler, RabbitMQ, otra)
-  - [ ] ¿Cuál es el cadence del scheduler? (cada X segundos)
-  - [ ] ¿A qué estado transiciona una reservación expirada?
-  - [ ] ¿A qué estado transiciona una reservación rechazada?
-  - [ ] ¿Se restaura disponibilidad automáticamente?
-  - [ ] ¿SQL es necesario para validar estado?
-
-### Fase 1: Implementación Karate (Basada en Descubrimiento)
-
-#### Reutilización de Assets
-- [ ] Reutilizar todos los payloads y schemas de flows aprobado/rechazado:
-  - `room-create-request.json`
-  - `event-create-request.json`
-  - `tiers-create-request.json` (CRÍTICO: quota 40)
-  - `reservation-create-request.json`
-  - `payment-declined-request.json` (si Path B)
-
-#### Nuevos Assets
-- [ ] Crear `src/test/java/common/payloads/availability-check-request.json` (si existe endpoint)
-- [ ] Crear schema para respuesta de disponibilidad (si existe endpoint)
-- [ ] Crear schema para reservación con estado de liberación
-
-#### Feature Karate
-- [ ] Crear `src/test/java/api/expiration-release-flow/expiration-release-flow.feature`
-  
-  **Scenario: Path A — Expiration Without Payment**
-  - [ ] HU-01: Setup (room, event, tier, publish)
-  - [ ] HU-02: Crear reservación (buyerId: buyer1, observar bloqueo)
-  - [ ] Esperar mecanismo de expiración (wait basado en validUntilAt o scheduler cadence)
-  - [ ] Validar que reservación cambió de estado (PENDING → EXPIRED o RELEASED)
-  - [ ] Validar que disponibilidad fue restaurada
-  - [ ] HU-05: Crear segunda reservación (buyerId: buyer2, validar que es posible)
-  
-  **Scenario: Path B — Rejected Payment + Auto Release**
-  - [ ] HU-01: Setup (room, event, tier, publish)
-  - [ ] HU-02: Crear reservación (buyerId: buyer1)
-  - [ ] HU-04: Procesar pago rechazado
-  - [ ] Esperar mecanismo de liberación (wait breve o inmediato)
-  - [ ] Validar que reservación cambió de estado (PENDING/FAILED → RELEASED)
-  - [ ] Validar que disponibilidad fue restaurada
-  - [ ] HU-05: Crear segunda reservación (buyerId: buyer2)
-
-#### Helper Features (SQL si es necesario)
-- [ ] Crear `src/test/java/common/sql/check-reservation-state.feature` (si SQL es necesario)
-  - Query: `SELECT status FROM reservations WHERE id = ?`
-  - Extraer status y comparar contra expected state
-
-#### Test Runner
-- [ ] Crear `src/test/java/runners/ExpirationReleaseFlowTest.java`
-
-### Fase 2: Validación y Ajuste de Timing
-
-- [ ] Ejecutar feature localmente
-- [ ] Documentar **tiempos reales**:
-  - [ ] Tiempo entre crear reservación y liberación (para optimizar waits)
-  - [ ] Cadence del scheduler (si es visible)
-  - [ ] HTTP endpoint usado para validar estado
-- [ ] Ajustar waits en feature basado en observación real
-- [ ] Validar que ambos paths funcionan
-
-### Fase 3: Documentación
-
-- [ ] Crear `src/test/java/api/expiration-release-flow/README.md`
-  - Explicar ambos paths
-  - Documentar waits/timing
-  - Notas sobre SQL si fue usado
-  - Troubleshooting
-- [ ] Actualizar spec con hallazgos de descubrimiento
-
-### Fase 4: Cierre
-
-- [ ] Commit con results de descubrimiento
-- [ ] Actualizar estado spec: `status: APPROVED` (cuando esté listo)
-
----
-
-### Riesgos Identificados
-
-| Riesgo | Probabilidad | Impacto | Mitigación |
-|--------|-------------|---------|-----------|
-| Scheduler timing impredecible | ALTA | ALTO | Usar waits conservadores, logging, reintentos |
-| No existe endpoint de disponibilidad | MEDIA | ALTO | SQL fallback permitido |
-| Mecanismo asincrónico falla silenciosamente | MEDIA | CRITICO | Validar por múltiples métodos (HTTP + SQL) |
-| Reservación no se libera correctamente | BAJA | CRITICO | Logging detallado, validación exhaustiva |
-| Test es demasiado lento | ALTA | MEDIO | Optimizar waits, considerar mocks si es necesario |
-
----
-
-### Dependencias Internas
-
-**Path A (Expiration)**:
-```
-HU-01 (Setup) → HU-02 (Reservation) → [Wait/Scheduler] → HU-03 (Expiración) → HU-05 (Verification)
-```
-
-**Path B (Rejected Payment)**:
-```
-HU-01 (Setup) → HU-02 (Reservation) → HU-04 (Payment Rejected) → [Auto-release] → HU-05 (Verification)
-```
-
-Se recomienda implementar ambos paths en la misma feature con `@skip` condicional o en scenarios separados.
-
----
-
-## 4. MATRIZ DE VALIDACIÓN
-
-### Validación Exhaustiva de Liberación
-
-| Punto de Validación | Método | Prioridad | Notas |
-|---|---|---|---|
-| Reservación bloqueó inicialmente | HTTP GET /api/v1/reservations/{id} o SQL | ALTA | Observar timestamp de creación |
-| Mecanismo ejecutó (expiración/liberación) | Observar cambio de estado en reservación | CRITICA | HTTP o SQL |
-| Disponibilidad fue restaurada | HTTP GET /availability o SQL COUNT quota | CRITICA | Preferir HTTP, fallback SQL |
-| Nuevo comprador puede reservar | HTTP POST /api/v1/reservations (buyerId diferente) | CRITICA | Prueba final de restauración |
-| No hay residuos/bloqueos huérfanos | SQL si necesario | MEDIA | Garantizar limpieza |
+`Setup API → Reservación inicial → Rechazo o expiración → Liberación automática → Segunda reservación o validación equivalente`
 
 ---
 
 ## Aprobación y Cambios
 
-| Versión | Fecha | Autor | Cambios |
-|---------|-------|-------|---------|
-| 1.0 | 2026-04-06 | spec-generator | Creación spec inicial DRAFT, reconociendo complejidad asincrónica |
+| Versión | Fecha      | Autor          | Cambios                                                                                       |
+| ------- | ---------- | -------------- | --------------------------------------------------------------------------------------------- |
+| 1.0     | 2026-04-06 | spec-generator | Creación spec inicial DRAFT                                                                   |
+| 1.1     | 2026-04-06 | qa-architect   | Limpieza de supuestos, alineación con HU-04/HU-05 y aprobación para implementación progresiva |
 
+```
