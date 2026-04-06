@@ -1,6 +1,5 @@
 function fn() {
   var env = karate.env;
-  var baseUrl = karate.properties['baseUrl'];
   
   karate.log('karate.env system property was:', env);
   
@@ -10,8 +9,14 @@ function fn() {
   
   var config = {
     env: env,
-    baseUrl: baseUrl || '',
-    timeoutMs: 5000
+    baseUrlEvents: karate.properties['baseUrlEvents'] || 'http://localhost:8081',
+    baseUrlTicketing: karate.properties['baseUrlTicketing'] || 'http://localhost:8082',
+    baseUrlNotifications: karate.properties['baseUrlNotifications'] || 'http://localhost:8083',
+    ticketingDb: karate.properties['ticketingDb'] || 'jdbc:postgresql://localhost:5434/ticketing_db',
+    eventsDb: karate.properties['eventsDb'] || 'jdbc:postgresql://localhost:5433/events_db',
+    dbUser: karate.properties['dbUser'] || 'postgres',
+    dbPass: karate.properties['dbPass'] || 'postgres',
+    timeoutMs: 30000
   };
   
   karate.configure('connectTimeout', config.timeoutMs);

@@ -44,10 +44,8 @@ Feature: Ticketing MVP - Event Validation Negative Paths
       }
       """
     When method post
-    Then status !201
-    * print 'Request rejected - capacity exceeds maxCapacity (✅ expected error)'
-    # Runtime validation: IF response has error field, it will be captured in status code
-    # We do NOT assume specific error message or structure
+    Then status 400
+    * print 'Request rejected 400 - capacity exceeds maxCapacity (expected)'
 
 
   Scenario: Scenario 2 - Missing required field: date
@@ -84,10 +82,8 @@ Feature: Ticketing MVP - Event Validation Negative Paths
       }
       """
     When method post
-    Then status !201
-    * print 'Request rejected - date field missing (✅ expected error)'
-    # Note: If your backend requires validating the exact error message,
-    # add assertions here after confirming structure with actual response
+    Then status 400
+    * print 'Request rejected 400 - date field missing (expected)'
 
 
   Scenario: Scenario 3 - Missing multiple required fields (title + date)
@@ -123,8 +119,5 @@ Feature: Ticketing MVP - Event Validation Negative Paths
       }
       """
     When method post
-    Then status !201
-    * print 'Request rejected - multiple required fields missing (✅ expected error)'
-    # Note: If your backend provides detailed validation errors per field,
-    # update this scenario to validate response.errors or response.validationErrors
-    # per the actual contract once confirmed
+    Then status 400
+    * print 'Request rejected 400 - multiple required fields missing (expected)'

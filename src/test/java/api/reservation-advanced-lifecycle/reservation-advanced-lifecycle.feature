@@ -215,7 +215,7 @@ Feature: Ticketing MVP - Reservation Advanced Lifecycle
       }
       """
     When method post
-    Then status !200
+    Then status 400
     * print 'Payment rejected on expired reservation (✅ expected behavior)'
     * print '✅ Scenario 2 PASS: Payment on expired reservation rejected'
 
