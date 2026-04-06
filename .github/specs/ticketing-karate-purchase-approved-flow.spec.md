@@ -1,6 +1,6 @@
 ---
 id: SPEC-001
-status: APPROVED
+status: IMPLEMENTED
 feature: ticketing-karate-purchase-approved-flow
 created: 2026-04-06
 updated: 2026-04-06
