@@ -208,7 +208,7 @@ Feature: Ticketing MVP - Expiration and Automatic Release Flow (Path B with SQL 
     * print 'CONCLUSION: Automatic release mechanism working correctly'
     * print '=========================================='
 
-  Scenario: Early Bird Tier Expiration via SQL - isAvailable false after validUntil passes (TC-006 / TC-011)
+  Scenario: Scenario 2 - Early Bird Tier Expiration via Time Travel (TC-006 / TC-011)
 
     # Setup: Create Room
     Given url baseUrlEvents + '/api/v1/rooms'
@@ -248,8 +248,8 @@ Feature: Ticketing MVP - Expiration and Automatic Release Flow (Path B with SQL 
     Given url baseUrlEvents + '/api/v1/events/' + eventId + '/tiers'
     And header X-Role = 'ADMIN'
     And header X-User-Id = '00000000-0000-0000-0000-000000000001'
-    * def validFrom = '2026-12-01T00:00:00'
-    * def validUntil = '2026-12-10T00:00:00'
+    * def validFrom = java.time.LocalDateTime.now(java.time.ZoneOffset.UTC).plusDays(1).toString()
+    * def validUntil = java.time.LocalDateTime.now(java.time.ZoneOffset.UTC).plusDays(5).toString()
     And request
       """
       [
@@ -274,13 +274,12 @@ Feature: Ticketing MVP - Expiration and Automatic Release Flow (Path B with SQL 
     When method patch
     Then status 200
 
-    # Act: Force Tier Expiration
-    * print 'Forcing EB Tier Expiration via SQL'
-    * def forceResult = call read('classpath:common/sql/db-helper.feature@forceTierExpiration') { tierId: '#(tierId)' }
-
-    # Espere el ciclo del scheduler (as requested by user, even though tiers are evaluated dynamically)
-    * print 'Waiting for scheduler cycle...'
-    * java.lang.Thread.sleep(75000)
+    # Act: Force Tier Expiration via Testability Time Travel (advance clock by 6 days = 8640 minutes)
+    * print 'Forcing EB Tier Expiration smoothly using Testability Time Travel...'
+    Given url baseUrlEvents + '/api/v1/testability/clock/advance'
+    And param minutes = 8640
+    When method post
+    Then status 200
 
     # Check: Verify isAvailable is false
     Given url baseUrlEvents + '/api/v1/events/' + eventId
@@ -288,5 +287,11 @@ Feature: Ticketing MVP - Expiration and Automatic Release Flow (Path B with SQL 
     Then status 200
     * def ebTier = response.availableTiers[0]
     * match ebTier.isAvailable == false
+    * match ebTier.reason == 'EXPIRED'
 
-    * print 'TC-006 and TC-011: Early Bird Tier Expiration verified correctly'
+    # Cleanup: Reset SystemClock
+    Given url baseUrlEvents + '/api/v1/testability/clock/reset'
+    When method post
+    Then status 200
+
+    * print 'TC-006 and TC-011: Early Bird Tier Expiration verified correctly without DB hacks'

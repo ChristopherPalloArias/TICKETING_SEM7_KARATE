@@ -99,15 +99,25 @@ Feature: Ticketing MVP - Reservation Advanced Lifecycle
     * print 'After reservation 1: quota=' + tierAfterRes.quota
     * assert tierAfterRes.quota == 9
 
-    # Force expiration using SQL helper (time travel)
-    * def sqlResult = karate.call('classpath:common/sql/db-helper.feature@forceExpiration', { reservationId: reservationId1 })
-    * print 'Reserved forced to expiration via SQL'
-    * print 'Waiting 65s for background scheduler...'
-    * java.lang.Thread.sleep(65000)
+    # Force expiration smoothly via Time Travel API
+    * print 'Forzando expiración limpia via Time Travel...'
+    Given url baseUrlTicketing + '/api/v1/testability/clock/advance'
+    And param minutes = 15
+    When method post
+    Then status 200
 
-    # Verify reservation status changed to EXPIRED
-    * def sqlResult = karate.call('classpath:common/sql/db-helper.feature@checkReservationStatus', { reservationId: reservationId1, expectedStatus: 'EXPIRED' })
-    * print 'Reservation 1 confirmed expired in DB'
+    Given url baseUrlTicketing + '/api/v1/testability/jobs/expiration/trigger'
+    When method post
+    Then status 200
+    * print 'CRONJOB de expiración desencadenado exitosamente!'
+
+    # Verify reservation status changed to EXPIRED via API
+    Given url baseUrlTicketing + '/api/v1/reservations/' + reservationId1
+    And header X-User-Id = buyerId1
+    When method get
+    Then status 200
+    * match response.status == 'EXPIRED'
+    * print 'Reservation 1 confirmed expired via API'
 
     # Verify tier quota is restored (should be back to 10: quota released)
     * java.lang.Thread.sleep(2000)
@@ -117,6 +127,11 @@ Feature: Ticketing MVP - Reservation Advanced Lifecycle
     * def tierAfterExpiration = response.tiers[0]
     * print 'After expiration: quota=' + tierAfterExpiration.quota
     * assert tierAfterExpiration.quota == 10
+
+    # Cleanup Clock
+    Given url baseUrlTicketing + '/api/v1/testability/clock/reset'
+    When method post
+    Then status 200
     * print '✅ Scenario 1 PASS: Pure expiration released quota (quota back to 10)'
 
 
@@ -196,14 +211,21 @@ Feature: Ticketing MVP - Reservation Advanced Lifecycle
     * def reservationId2 = response.id
     * print 'Reservation created:', reservationId2
 
-    # Force expiration
-    * def sqlResult = karate.call('classpath:common/sql/db-helper.feature@forceExpiration', { reservationId: reservationId2 })
-    * print 'Reservation forced to expiration'
-    * print 'Waiting 65s for background scheduler...'
-    * java.lang.Thread.sleep(65000)
+    # Force expiration via API
+    Given url baseUrlTicketing + '/api/v1/testability/clock/advance'
+    And param minutes = 15
+    When method post
+    Then status 200
 
-    # Verify it's expired
-    * def sqlResult = karate.call('classpath:common/sql/db-helper.feature@checkReservationStatus', { reservationId: reservationId2, expectedStatus: 'EXPIRED' })
+    Given url baseUrlTicketing + '/api/v1/testability/jobs/expiration/trigger'
+    When method post
+    Then status 200
+
+    Given url baseUrlTicketing + '/api/v1/reservations/' + reservationId2
+    And header X-User-Id = buyerId2
+    When method get
+    Then status 200
+    * match response.status == 'EXPIRED'
 
     # HU-05 Negative: Attempt payment on expired reservation (should fail)
     Given url baseUrlTicketing + '/api/v1/reservations/' + reservationId2 + '/payments'
@@ -219,6 +241,11 @@ Feature: Ticketing MVP - Reservation Advanced Lifecycle
     When method post
     Then status 400
     * print 'Payment rejected on expired reservation (✅ expected behavior)'
+
+    # Cleanup Clock
+    Given url baseUrlTicketing + '/api/v1/testability/clock/reset'
+    When method post
+    Then status 200
     * print '✅ Scenario 2 PASS: Payment on expired reservation rejected'
 
 
@@ -694,33 +721,50 @@ Feature: Ticketing MVP - Reservation Advanced Lifecycle
     When method post
     Then status 200
 
-    # Force resA to expire
+    # Force resA to expire directly by DB helper (bypassing normal flow) to simulate an orphaned reservation
     * def sqlResult = karate.call('classpath:common/sql/db-helper.feature@forceExpiration', { reservationId: resA })
 
-    # resC stays PENDING (no payment). Simulate time timeout by forcing it:
-    * def sqlResult = karate.call('classpath:common/sql/db-helper.feature@forceExpiration', { reservationId: resC })
+    # resC stays PENDING naturally. We simulate passing of time (e.g. 25 minutes)
+    Given url baseUrlTicketing + '/api/v1/testability/clock/advance'
+    And param minutes = 25
+    When method post
+    Then status 200
 
-    # Wait for scheduler window
-    * print 'Waiting for scheduler window (90 seconds)...'
-    * java.lang.Thread.sleep(90000)
+    # Act: Trigger Backup Schedule Explicitly
+    * print 'Triggering Backup Job Manually via Testability Endpoint to clean up lingering objects...'
+    Given url baseUrlTicketing + '/api/v1/testability/jobs/expiration/trigger'
+    When method post
+    Then status 200
 
-    # Verify states after scheduler:
-    # - resA: EXPIRED (forced, should be cleaned)
+    # Verify states directly via API:
+    # - resA: EXPIRED (cleaned by backup job)
     # - resB: CONFIRMED (protected)
-    # - resC: EXPIRED (time-based expiration)
+    # - resC: EXPIRED (time-based expiration cleaned by job)
 
-    * def sqlResult = karate.call('classpath:common/sql/db-helper.feature@checkReservationStatus', { reservationId: resA, expectedStatus: 'EXPIRED' })
-    * print 'resA: EXPIRED (expected)'
+    Given url baseUrlTicketing + '/api/v1/reservations/' + resA
+    And header X-User-Id = buyerA
+    When method get
+    Then status 200
+    * match response.status == 'EXPIRED'
+    * print 'resA: Purged by backup job (EXPIRED)'
 
-    * def sqlResult = karate.call('classpath:common/sql/db-helper.feature@checkReservationStatus', { reservationId: resB, expectedStatus: 'CONFIRMED' })
+    Given url baseUrlTicketing + '/api/v1/reservations/' + resB
+    And header X-User-Id = buyerB
+    When method get
+    Then status 200
+    * match response.status == 'CONFIRMED'
     * print 'resB: CONFIRMED (protected)'
 
-    * def sqlResult = karate.call('classpath:common/sql/db-helper.feature@checkReservationStatus', { reservationId: resC, expectedStatus: 'EXPIRED' })
-    * print 'resC: EXPIRED (time-based)'
+    Given url baseUrlTicketing + '/api/v1/reservations/' + resC
+    And header X-User-Id = buyerC
+    When method get
+    Then status 200
+    * match response.status == 'EXPIRED'
+    * print 'resC: Purged by backup job (EXPIRED)'
 
-    # If backup job exists and exposes an endpoint, validate it was triggered
-    # Example: GET /api/v1/admin/scheduler-status (hypothetical)
-    # For now, we document the expected behavior and rely on SQL validation
+    # Cleanup Clock
+    Given url baseUrlTicketing + '/api/v1/testability/clock/reset'
+    When method post
+    Then status 200
 
-    * print '✅ Scenario 5 PASS: Backup job cleanup behavior validated (SQL states confirmed)'
-    * print 'Note: If backend exposes backup job endpoint (e.g., /admin/scheduler-status), update this scenario'
+    * print '✅ TC-019 Scenario 5 PASS: Backup job correctly regularized lingering pending reservations'
