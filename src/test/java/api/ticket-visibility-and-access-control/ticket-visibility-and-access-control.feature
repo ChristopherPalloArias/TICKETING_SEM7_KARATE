@@ -9,11 +9,14 @@ Feature: Ticketing MVP - Ticket Visibility and Access Control
     * def UUID = Java.type('java.util.UUID')
     * def buyerId1 = UUID.randomUUID() + ''
     * def buyerId2 = UUID.randomUUID() + ''
+    * def buyerId3 = UUID.randomUUID() + ''
     * def buyerEmail1 = 'buyer1-' + UUID.randomUUID() + '@karate-test.com'
     * def buyerEmail2 = 'buyer2-' + UUID.randomUUID() + '@karate-test.com'
+    * def buyerEmail3 = 'buyer3-' + UUID.randomUUID() + '@karate-test.com'
     * def eventTitle = 'Karate Ticket Test Event ' + UUID.randomUUID()
     * def futureDate = '2026-12-15T20:00:00'
 
+  # Covers TC-023 y TC-024
   Scenario: Scenario 1 - Ticket Visible for Owner (Happy Path)
 
     # Setup: Create Room
@@ -127,6 +130,7 @@ Feature: Ticketing MVP - Ticket Visibility and Access Control
     * match response.reservationId == reservationId
     * print 'Ticket retrieved successfully for owner:', ticketId
 
+  # Extra Técnico / Variación de TC-025 - Validación por rechazo inmediato
   Scenario: Scenario 2 - No Ticket on Declined Payment (Negative Path)
 
     # Setup: Create Room
@@ -225,6 +229,7 @@ Feature: Ticketing MVP - Ticket Visibility and Access Control
     * assert !hasTicketId
     * print 'Payment declined, no ticket generated (as expected)'
 
+  # Covers TC-027
   Scenario: Scenario 3 - Access Control (Buyer B Cannot Access Buyer A Ticket)
 
     # Setup: Create Room
@@ -327,3 +332,103 @@ Feature: Ticketing MVP - Ticket Visibility and Access Control
     When method get
     Then status 403
     * print 'Buyer 2 access denied (403) - ticket belongs to Buyer 1'
+
+  # Covers TC-025 - Ausencia de ticket tras expirar
+  Scenario: Scenario 4 - No ticket shown for buyer when reservation expires without payment
+
+    # Setup: Create Room
+    Given url baseUrlEvents + '/api/v1/rooms'
+    And header X-Role = 'ADMIN'
+    And header X-User-Id = '00000000-0000-0000-0000-000000000001'
+    And request
+      """
+      {
+        "name": "Karate Test Room - Expired Ticket Check",
+        "maxCapacity": 100
+      }
+      """
+    When method post
+    Then status 201
+    * def roomId = response.id ? response.id : response.roomId
+
+    # Setup: Create Draft Event
+    Given url baseUrlEvents + '/api/v1/events'
+    And header X-Role = 'ADMIN'
+    And header X-User-Id = '00000000-0000-0000-0000-000000000001'
+    And request
+      """
+      {
+        "roomId": "#(roomId)",
+        "title": "#(eventTitle + ' Expiration')",
+        "description": "Test no ticket generated when expired",
+        "date": "#(futureDate)",
+        "capacity": 50,
+        "enableSeats": false
+      }
+      """
+    When method post
+    Then status 201
+    * def eventId = response.id ? response.id : response.eventId
+
+    # Setup: Configure Tier
+    Given url baseUrlEvents + '/api/v1/events/' + eventId + '/tiers'
+    And header X-Role = 'ADMIN'
+    And request
+      """
+      [
+        {
+          "tierType": "GENERAL",
+          "price": 100,
+          "quota": 40
+        }
+      ]
+      """
+    When method post
+    Then status 201
+    * def tierBlock = response.tiers ? response.tiers[0] : response[0]
+    * def tierId = tierBlock.id ? tierBlock.id : tierBlock.tierId
+
+    # Setup: Publish Event
+    Given url baseUrlEvents + '/api/v1/events/' + eventId + '/publish'
+    And header X-Role = 'ADMIN'
+    When method patch
+    Then status 200
+
+    # Path B: Create Reservation for Buyer 3
+    Given url baseUrlTicketing + '/api/v1/reservations'
+    And header X-User-Id = buyerId3
+    And request
+      """
+      {
+        "eventId": "#(eventId)",
+        "tierId": "#(tierId)",
+        "buyerEmail": "#(buyerEmail3)"
+      }
+      """
+    When method post
+    Then status 201
+    * def reservationId = response.id
+    * print 'Reservation created for Buyer 3 (PENDING):', reservationId
+
+    # Path B: Force expiration using SQL mechanism to avoid 10 min hard sleep
+    * print 'Forcing expiration via DB timeout mechanism...'
+    * def sqlResult = karate.call('classpath:common/sql/db-helper.feature@forceExpiration', { reservationId: reservationId })
+    * print 'Waiting 65s for backend scheduler to clean up...'
+    * java.lang.Thread.sleep(65000)
+
+    # Path B: Check reservation is truly expired
+    * def checkResult = karate.call('classpath:common/sql/db-helper.feature@checkReservationStatus', { reservationId: reservationId, expectedStatus: 'EXPIRED' })
+    * print 'Reservation successfully expired in backend.'
+
+    # Act: Buyer 3 fetches their tickets
+    Given url baseUrlTicketing + '/api/v1/tickets'
+    And param buyerId = buyerId3
+    And header X-User-Id = buyerId3
+    When method get
+    Then status 200
+    * print 'Tickets retrieved for Buyer 3:', response
+
+    # Assertion: Buyer 3 should have NO tickets associated (empty content array)
+    * match response.content == []
+    * match response.totalElements == 0
+    * print 'Verified: Buyer 3 has no tickets. TC-025 passed!'
