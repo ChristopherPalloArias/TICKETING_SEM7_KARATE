@@ -207,3 +207,86 @@ Feature: Ticketing MVP - Expiration and Automatic Release Flow (Path B with SQL 
     * print ''
     * print 'CONCLUSION: Automatic release mechanism working correctly'
     * print '=========================================='
+
+  Scenario: Early Bird Tier Expiration via SQL - isAvailable false after validUntil passes (TC-006 / TC-011)
+
+    # Setup: Create Room
+    Given url baseUrlEvents + '/api/v1/rooms'
+    And header X-Role = 'ADMIN'
+    And header X-User-Id = '00000000-0000-0000-0000-000000000001'
+    And request
+      """
+      {
+        "name": "EB Expiration Room",
+        "maxCapacity": 100
+      }
+      """
+    When method post
+    Then status 201
+    * def roomId = response.id ? response.id : response.roomId
+
+    # Setup: Create Event
+    Given url baseUrlEvents + '/api/v1/events'
+    And header X-Role = 'ADMIN'
+    And header X-User-Id = '00000000-0000-0000-0000-000000000001'
+    And request
+      """
+      {
+        "roomId": "#(roomId)",
+        "title": "#(eventTitle + ' EB')",
+        "description": "Test event for EB expiration",
+        "date": "#(futureDate)",
+        "capacity": 50,
+        "enableSeats": false
+      }
+      """
+    When method post
+    Then status 201
+    * def eventId = response.id ? response.id : response.eventId
+
+    # Setup: Configure EB Tier
+    Given url baseUrlEvents + '/api/v1/events/' + eventId + '/tiers'
+    And header X-Role = 'ADMIN'
+    And header X-User-Id = '00000000-0000-0000-0000-000000000001'
+    * def validFrom = '2026-12-01T00:00:00'
+    * def validUntil = '2026-12-10T00:00:00'
+    And request
+      """
+      [
+        {
+          "tierType": "EARLY_BIRD",
+          "price": 100,
+          "quota": 40,
+          "validFrom": "#(validFrom)",
+          "validUntil": "#(validUntil)"
+        }
+      ]
+      """
+    When method post
+    Then status 201
+    * def tierBlock = response.tiers ? response.tiers[0] : response[0]
+    * def tierId = tierBlock.id ? tierBlock.id : tierBlock.tierId
+
+    # Setup: Publish Event
+    Given url baseUrlEvents + '/api/v1/events/' + eventId + '/publish'
+    And header X-Role = 'ADMIN'
+    And header X-User-Id = '00000000-0000-0000-0000-000000000001'
+    When method patch
+    Then status 200
+
+    # Act: Force Tier Expiration
+    * print 'Forcing EB Tier Expiration via SQL'
+    * def forceResult = call read('classpath:common/sql/db-helper.feature@forceTierExpiration') { tierId: '#(tierId)' }
+
+    # Espere el ciclo del scheduler (as requested by user, even though tiers are evaluated dynamically)
+    * print 'Waiting for scheduler cycle...'
+    * java.lang.Thread.sleep(75000)
+
+    # Check: Verify isAvailable is false
+    Given url baseUrlEvents + '/api/v1/events/' + eventId
+    When method get
+    Then status 200
+    * def ebTier = response.availableTiers[0]
+    * match ebTier.isAvailable == false
+
+    * print 'TC-006 and TC-011: Early Bird Tier Expiration verified correctly'

@@ -354,6 +354,112 @@ Feature: Ticketing MVP - Reservation Advanced Lifecycle
     * assert tierFinal.quota == 0
     * print '✅ Scenario 3 PASS: Concurrency handled correctly, no overbooking'
 
+  Scenario: Scenario 3b - Real Concurrency on Last Available Slot (TC-015)
+
+    # Setup: Create room
+    Given url baseUrlEvents + '/api/v1/rooms'
+    And header X-Role = 'ADMIN'
+    And header X-User-Id = '00000000-0000-0000-0000-000000000001'
+    And request
+      """
+      {
+        "name": "Real Concurrency Test Room",
+        "maxCapacity": 100
+      }
+      """
+    When method post
+    Then status 201
+    * def roomId = response.id ? response.id : response.roomId
+
+    * def scenario3bTitle = eventTitle + ' - Real Conc Test'
+    Given url baseUrlEvents + '/api/v1/events'
+    And header X-Role = 'ADMIN'
+    And header X-User-Id = '00000000-0000-0000-0000-000000000001'
+    And request
+      """
+      {
+        "roomId": "#(roomId)",
+        "title": "#(scenario3bTitle)",
+        "description": "Test real concurrency on last slot",
+        "date": "#(futureDate)",
+        "capacity": 1,
+        "enableSeats": false
+      }
+      """
+    When method post
+    Then status 201
+    * def eventId = response.id ? response.id : response.eventId
+
+    # Setup: Create tier with exact quota=1
+    Given url baseUrlEvents + '/api/v1/events/' + eventId + '/tiers'
+    And header X-Role = 'ADMIN'
+    And header X-User-Id = '00000000-0000-0000-0000-000000000001'
+    And request
+      """
+      [
+        {
+          "tierType": "GENERAL",
+          "price": 70.00,
+          "quota": 1
+        }
+      ]
+      """
+    When method post
+    Then status 201
+    * def tierBlock = response.tiers ? response.tiers[0] : response[0]
+    * def tierId = tierBlock.id ? tierBlock.id : tierBlock.tierId
+
+    # Publish
+    Given url baseUrlEvents + '/api/v1/events/' + eventId + '/publish'
+    And header X-Role = 'ADMIN'
+    And header X-User-Id = '00000000-0000-0000-0000-000000000001'
+    When method patch
+    Then status 200
+
+    # Act: Launch two concurrent requests using java.util.concurrent and HttpClient
+    * def HttpClient = Java.type('java.net.http.HttpClient')
+    * def HttpRequest = Java.type('java.net.http.HttpRequest')
+    * def HttpResponse = Java.type('java.net.http.HttpResponse')
+    * def URI = Java.type('java.net.URI')
+    * def BodyPublishers = Java.type('java.net.http.HttpRequest.BodyPublishers')
+    * def BodyHandlers = Java.type('java.net.http.HttpResponse.BodyHandlers')
+    * def CompletableFuture = Java.type('java.util.concurrent.CompletableFuture')
+
+    * def buyer1C = UUID.randomUUID() + ''
+    * def buyer2C = UUID.randomUUID() + ''
+
+    * def body1 = '{"eventId":"' + eventId + '","tierId":"' + tierId + '","buyerEmail":"c1-' + buyer1C.substring(0,8) + '@test.com"}'
+    * def body2 = '{"eventId":"' + eventId + '","tierId":"' + tierId + '","buyerEmail":"c2-' + buyer2C.substring(0,8) + '@test.com"}'
+
+    * def client = HttpClient.newHttpClient()
+    * def req1 = HttpRequest.newBuilder().uri(new URI(baseUrlTicketing + '/api/v1/reservations')).header('Content-Type', 'application/json').header('X-User-Id', buyer1C).POST(BodyPublishers.ofString(body1)).build()
+    * def req2 = HttpRequest.newBuilder().uri(new URI(baseUrlTicketing + '/api/v1/reservations')).header('Content-Type', 'application/json').header('X-User-Id', buyer2C).POST(BodyPublishers.ofString(body2)).build()
+
+    * def future1 = client.sendAsync(req1, BodyHandlers.ofString())
+    * def future2 = client.sendAsync(req2, BodyHandlers.ofString())
+    * CompletableFuture.allOf(future1, future2).join()
+
+    * def resp1 = future1.get()
+    * def resp2 = future2.get()
+    * def code1 = parseInt(resp1.statusCode() + '')
+    * def code2 = parseInt(resp2.statusCode() + '')
+    * print 'Request 1 returned:', code1
+    * print 'Request 2 returned:', code2
+
+    * assert (code1 == 201 && (code2 == 409 || code2 == 400)) || (code2 == 201 && (code1 == 409 || code1 == 400))
+
+    # Determine winner
+    * def winner = code1 == 201 ? 'Buyer 1' : 'Buyer 2'
+    * def loser = code1 != 201 ? 'Buyer 1' : 'Buyer 2'
+    * print 'Concurrency winner:', winner, '| loser:', loser
+
+    # Verify tier is exhausted
+    Given url baseUrlEvents + '/api/v1/events/' + eventId + '/tiers'
+    When method get
+    Then status 200
+    * assert response.tiers[0].quota == 0
+    * print '✅ TC-015 Scenario 3b PASS: Real concurrency handled correctly'
+
 
   Scenario: Scenario 4 - Confirmed Purchase Must Not Be Released by Scheduler
 

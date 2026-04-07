@@ -72,3 +72,16 @@ Feature: Database Helper - SQL Queries for Validation
     * eval if (actualQuota != expectedQuota) karate.fail('Expected quota ' + expectedQuota + ' but found ' + actualQuota)
 
     * def response = { actualQuota: actualQuota, updatedAt: updatedAt, passed: true }
+
+  @forceTierExpiration
+  Scenario: Force Tier Expiration (Time Travel)
+    * def sql = "UPDATE tier SET valid_from = NOW() AT TIME ZONE 'UTC' - INTERVAL '3 days', valid_until = NOW() AT TIME ZONE 'UTC' - INTERVAL '2 days' WHERE id = ?::uuid"
+    * def conn = DriverManager.getConnection(dbEventsUrl, dbEventsUser, dbEventsPass)
+    * def pstmt = conn.prepareStatement(sql)
+    * pstmt.setObject(1, tierId)
+    * def rows = pstmt.executeUpdate()
+    * pstmt.close()
+    * conn.close()
+    * print 'SQL Result: Forced expiration for tierId=' + tierId + ', Rows updated=' + rows
+    * eval if (rows != 1) karate.fail('Expected exactly 1 tier row to be updated, but updated ' + rows)
+    * def response = { rowsUpdated: rows, passed: true }

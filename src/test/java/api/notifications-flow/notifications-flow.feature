@@ -89,13 +89,14 @@ Feature: Ticketing MVP - Notifications Flow
     * match response.status == 'CONFIRMED'
     * print 'Payment approved - checking notification for buyer:', buyerId
 
-    # Short wait for async notification processing
-    * java.lang.Thread.sleep(5000)
+    # Wait for async notification processing with retry (up to 15 seconds)
+    * configure retry = { count: 5, interval: 3000 }
 
     # Validate Notification via GET /api/v1/notifications/buyer/{buyerId}
     # Runtime: notifications service at 8083 returns paginated response
     Given url baseUrlNotifications + '/api/v1/notifications/buyer/' + buyerId
     And header X-User-Id = buyerId
+    And retry until response.totalElements >= 1
     When method get
     Then status 200
     * print 'Notification response totalElements:', response.totalElements
@@ -184,12 +185,13 @@ Feature: Ticketing MVP - Notifications Flow
     * match response.status == 'PAYMENT_FAILED'
     * print 'Payment rejected - checking PAYMENT_FAILED notification for buyer:', buyerId
 
-    # Short wait for async notification processing
-    * java.lang.Thread.sleep(5000)
+    # Wait for async notification processing with retry (up to 15 seconds)
+    * configure retry = { count: 5, interval: 3000 }
 
     # Validate Notification via GET /api/v1/notifications/buyer/{buyerId}
     Given url baseUrlNotifications + '/api/v1/notifications/buyer/' + buyerId
     And header X-User-Id = buyerId
+    And retry until response.totalElements >= 1
     When method get
     Then status 200
     * print 'Notification response totalElements:', response.totalElements
@@ -220,3 +222,92 @@ Feature: Ticketing MVP - Notifications Flow
     * match response.page == '#number'
     * match response.size == '#number'
     * print 'Scenario 3 PASS: Notification endpoint available and returns correct paginated contract'
+
+  Scenario: Scenario 4 - Notification After Reservation Expiration (RESERVATION_EXPIRED)
+
+    * def tag = UUID.randomUUID() + ''
+    * def buyerId = UUID.randomUUID() + ''
+    * def buyerEmail = 'buyer-s4-' + tag + '@karate-test.com'
+    * def eventTitle = 'Notif S4 ' + tag
+
+    # Setup: Create Room
+    Given url baseUrlEvents + '/api/v1/rooms'
+    And header X-Role = 'ADMIN'
+    And header X-User-Id = '00000000-0000-0000-0000-000000000001'
+    And request { name: 'Notifications Room S4', maxCapacity: 100 }
+    When method post
+    Then status 201
+    * def roomId = response.id
+
+    # Setup: Create Draft Event
+    Given url baseUrlEvents + '/api/v1/events'
+    And header X-Role = 'ADMIN'
+    And header X-User-Id = '00000000-0000-0000-0000-000000000001'
+    And request
+      """
+      {
+        "roomId": "#(roomId)",
+        "title": "#(eventTitle)",
+        "description": "Test event for expired reservation notification",
+        "date": "#(futureDate)",
+        "capacity": 50,
+        "enableSeats": false
+      }
+      """
+    When method post
+    Then status 201
+    * def eventId = response.id
+
+    # Setup: Configure Tier
+    Given url baseUrlEvents + '/api/v1/events/' + eventId + '/tiers'
+    And header X-Role = 'ADMIN'
+    And header X-User-Id = '00000000-0000-0000-0000-000000000001'
+    And request
+      """
+      [{ "tierType": "GENERAL", "price": 100, "quota": 40 }]
+      """
+    When method post
+    Then status 201
+    * def tierId = response.tiers[0].id
+
+    # Setup: Publish Event
+    Given url baseUrlEvents + '/api/v1/events/' + eventId + '/publish'
+    And header X-Role = 'ADMIN'
+    And header X-User-Id = '00000000-0000-0000-0000-000000000001'
+    When method patch
+    Then status 200
+
+    # Create Reservation (without payment)
+    Given url baseUrlTicketing + '/api/v1/reservations'
+    And header X-User-Id = buyerId
+    And request
+      """
+      { "eventId": "#(eventId)", "tierId": "#(tierId)", "buyerEmail": "#(buyerEmail)" }
+      """
+    When method post
+    Then status 201
+    * def reservationId = response.id
+
+    # Force expiration via SQL
+    * print 'Forcing expiration via SQL...'
+    * def sqlResult = call read('classpath:common/sql/db-helper.feature@forceExpiration') { reservationId: '#(reservationId)' }
+
+    # Wait for scheduler cycle
+    * print 'Waiting 75 seconds for scheduler to process expiration and send notification...'
+    * java.lang.Thread.sleep(75000)
+
+    # Validate Notification
+    Given url baseUrlNotifications + '/api/v1/notifications/buyer/' + buyerId
+    And header X-User-Id = buyerId
+    When method get
+    Then status 200
+    * print 'Notification response totalElements:', response.totalElements
+    * assert response.totalElements >= 1
+    * def notifications = response.content
+    * def expiredNotifs = $notifications[?(@.type == 'RESERVATION_EXPIRED')]
+    * assert expiredNotifs.length > 0
+    * def notif = expiredNotifs[0]
+    * match notif.type == 'RESERVATION_EXPIRED'
+    * match notif.status == 'PROCESSED'
+    * match notif.buyerId == buyerId
+    * print 'Scenario 4 PASS: RESERVATION_EXPIRED notification confirmed'
