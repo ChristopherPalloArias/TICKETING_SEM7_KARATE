@@ -1,0 +1,52 @@
+name: Deploy Karate Report to GitHub Pages
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout del código
+        uses: actions/checkout@v4
+
+      - name: Preparar carpeta para Pages
+        run: |
+          # Solo procedemos si el usuario commiteó los reportes en 'docs/karate-reports'
+          if [ -d "docs/karate-reports" ]; then
+            mkdir -p public
+            cp -r docs/karate-reports/* public/
+            # Renombramos el reporte general a index.html para visualización limpia:
+            if [ -f "public/karate-summary.html" ]; then
+              mv public/karate-summary.html public/index.html
+            fi
+          else
+            echo "Directorio docs/karate-reports no encontrado. Asegúrate de añadirlo al commit."
+            exit 1
+          fi
+
+      - name: Configurar GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Subir artifact de Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './public'
+
+      - name: Desplegar a GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

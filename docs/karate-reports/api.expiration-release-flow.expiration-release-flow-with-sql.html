@@ -1,0 +1,7158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <link rel="stylesheet" href="res/bootstrap.min.css" type="text/css"/>
+    <link rel="stylesheet" href="res/karate-report.css" type="text/css"/>
+    <link rel="shortcut icon" href="favicon.ico"/>
+    <script type="text/javascript" src="res/jquery.min.js"></script>
+    <script type="text/javascript" src="res/jquery.tablesorter.min.js"></script>
+    <script type="text/javascript" src="res/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="res/bootstrap.min.js"></script>
+    <script type="text/javascript" src="res/karate-report.js"></script>
+    <script type="text/javascript" src="res/Resemble.js"></script>
+    <script>
+!function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.async=!0,p.src=s.api_host+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+posthog.init('phc_M6fKk3dSX9HjglkqPSybauGas45NINb7EgsPGU8N9g1',{
+  api_host:'https://app.posthog.com',
+  persistence:'localStorage',
+  autocapture:false,
+  capture_pageview:false,
+  api_transport:'sendBeacon',
+  loaded: function(posthog) { 
+    posthog.capture("report_feature",{distinct_id:"862e7b77-bfe2-4953-9d25-cc7fc325a2a1",karate_version:"1.5.0",karate_meta:null});
+  }
+});
+</script>
+
+    <title>api.expiration-release-flow.expiration-release-flow-with-sql</title>
+  </head>
+  <body>
+    <div id="root-container">
+      <div id="leftnav">
+        
+        <div>
+  <div class="nav-logo">
+    <a href="https://karatelabs.io">
+      <img src="karate-labs-logo-ring.svg" alt="Karate Labs"/>
+    </a>
+    <div class="nav-count">
+      <div id="nav-pass" class="bg-success">2</div>
+      <div id="nav-fail" class="bg-danger">0</div>
+    </div>
+  </div>
+  <div id="nav-env">
+    <div></div>
+  </div>
+  <div id="nav-type">
+    <div>Scenarios</div>
+  </div>
+  <div id="nav-date">
+    <div>2026-04-07 10:51:53 p. m.</div>
+  </div>
+</div>
+
+        <div class="nav-container">
+          <div class="nav-item passed">
+            <a href="#[1:18]"><span>[1:18]</span> <span>Path B - Rejected Payment, Automatic Release, and SQL Validation</span></a>
+          </div>
+          <div class="nav-item passed">
+            <a href="#[2:211]"><span>[2:211]</span> <span>Scenario 2 - Early Bird Tier Expiration via Time Travel (TC-006 / TC-011)</span></a>
+          </div>
+        </div>
+      </div>
+      <div id="content">
+        <div class="page-heading alert alert-primary">
+          <a href="karate-summary.html">Summary</a><span class="feature-label">|</span>
+          <a href="karate-tags.html">Tags</a><span class="feature-label">|</span>
+          <span class="feature-label">Feature:</span>
+          <span class="feature-path">api/expiration-release-flow/expiration-release-flow-with-sql.feature</span><span class="feature-label">|</span>
+          <span class="feature-name">Ticketing MVP - Expiration and Automatic Release Flow (Path B with SQL Validation)</span>
+          <span class="feature-description">As a Ticketing MVP automation
+  I want to execute the complete flow with rejected payment, automatic release, and SQL validation
+  So that I can conclusively verify that blocked inventory is released and available for new buyers</span>
+        </div>
+        <div class="scenario">
+          <div class="scenario-heading" id="[1:18]">
+            <div class="heading-container">
+              <div class="scenario-tags">
+                
+              </div>
+              <div class="scenario-keyword">
+                Scenario: <span>[1:18]</span>
+                <span class="scenario-name">Path B - Rejected Payment, Automatic Release, and SQL Validation</span>
+                <span></span>
+              </div>
+            </div>
+            <div class="scenario-time passed">
+              <span>ms:</span>&nbsp;<span>75469</span>
+            </div>
+          </div>
+          <div class="step-row">
+            <div class="step-container" id="[1:18]bg">
+              <div class="step-ref bg-step">&gt;&gt;</div>
+              <div class="step-cell passed">Background:</div>
+            </div>
+            <div class="time-cell passed"></div>
+          </div>
+          <div data-parent="[1:18]bg"><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.7">
+      <div class="step-ref bg-step">7</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def baseUrlEvents = karate.properties[&#39;baseUrlEvents&#39;] || &#39;http://localhost:8081&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+  <div class="preformatted" data-parent="0.7">22:50:38.151 karate.env system property was: null 
+</div>   
+
+  
+
+</div>
+</div>
+          <div data-parent="[1:18]bg"><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.8">
+      <div class="step-ref bg-step">8</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def baseUrlTicketing = karate.properties[&#39;baseUrlTicketing&#39;] || &#39;http://localhost:8082&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div data-parent="[1:18]bg"><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.9">
+      <div class="step-ref bg-step">9</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def UUID = Java.type(&#39;java.util.UUID&#39;)</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div data-parent="[1:18]bg"><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.10">
+      <div class="step-ref bg-step">10</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def buyer1Id = UUID.randomUUID() + &#39;&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div data-parent="[1:18]bg"><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.11">
+      <div class="step-ref bg-step">11</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def buyer2Id = UUID.randomUUID() + &#39;&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div data-parent="[1:18]bg"><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.12">
+      <div class="step-ref bg-step">12</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def buyer1Email = &#39;buyer1-&#39; + java.lang.System.currentTimeMillis() + &#39;@karate-test.com&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">1</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div data-parent="[1:18]bg"><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.13">
+      <div class="step-ref bg-step">13</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def buyer2Email = &#39;buyer2-&#39; + java.lang.System.currentTimeMillis() + &#39;@karate-test.com&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div data-parent="[1:18]bg"><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.14">
+      <div class="step-ref bg-step">14</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def eventTitle = &#39;Karate Release Event &#39; + java.lang.System.currentTimeMillis()</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div data-parent="[1:18]bg"><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.15">
+      <div class="step-ref bg-step">15</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def futureDate = &#39;2026-12-15T20:00:00&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div data-parent="[1:18]bg"><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.16">
+      <div class="step-ref bg-step">16</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def adminUserId = &#39;00000000-0000-0000-0000-000000000001&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  <div class="step-row">
+    <div class="step-container">
+      <div class="step-ref passed"></div>
+      
+      <div class="step-cell comment"># ========================================</div>
+    </div>
+    <div class="time-cell comment"></div>            
+  </div>
+
+  <div class="step-row">
+    <div class="step-container">
+      <div class="step-ref passed"></div>
+      
+      <div class="step-cell comment"># SETUP PHASE</div>
+    </div>
+    <div class="time-cell comment"></div>            
+  </div>
+
+  <div class="step-row">
+    <div class="step-container">
+      <div class="step-ref passed"></div>
+      
+      <div class="step-cell comment"># ========================================</div>
+    </div>
+    <div class="time-cell comment"></div>            
+  </div>
+
+  <div class="step-row">
+    <div class="step-container">
+      <div class="step-ref passed"></div>
+      
+      <div class="step-cell comment"># Setup: Create Room</div>
+    </div>
+    <div class="time-cell comment"></div>            
+  </div>
+
+  <div class="step-row">
+    <div class="step-container" id="0.25">
+      <div class="step-ref passed">25</div>
+      
+      <div class="step-cell passed">
+        <span>Given</span>&nbsp;<span>url baseUrlEvents + &#39;/api/v1/rooms&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.26">
+      <div class="step-ref passed">26</div>
+      
+      <div class="step-cell passed">
+        <span>And</span>&nbsp;<span>header X-Role = &#39;ADMIN&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.27">
+      <div class="step-ref passed">27</div>
+      
+      <div class="step-cell passed">
+        <span>And</span>&nbsp;<span>header X-User-Id = adminUserId</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.28">
+      <div class="step-ref passed">28</div>
+      
+      <div class="step-cell passed">
+        <span>And</span>&nbsp;<span>request</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  <div class="preformatted" data-parent="0.28">{
+  &quot;name&quot;: &quot;Karate Release Flow Room&quot;,
+  &quot;maxCapacity&quot;: 50
+}</div>
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.35">
+      <div class="step-ref passed">35</div>
+      
+      <div class="step-cell passed">
+        <span>When</span>&nbsp;<span>method post</span>
+      </div>
+    </div>
+    <div class="time-cell passed">11</div>
+  </div>
+
+   
+  
+  
+
+  
+
+  <div class="preformatted" data-parent="0.35">22:50:38.157 request:
+1 &gt; POST http://localhost:8081/api/v1/rooms
+1 &gt; X-Role: ADMIN
+1 &gt; X-User-Id: 00000000-0000-0000-0000-000000000001
+1 &gt; Content-Type: application/json; charset=UTF-8
+1 &gt; Content-Length: 52
+1 &gt; Host: localhost:8081
+1 &gt; Connection: Keep-Alive
+1 &gt; User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.17)
+1 &gt; Accept-Encoding: gzip,deflate
+{&quot;name&quot;:&quot;Karate Release Flow Room&quot;,&quot;maxCapacity&quot;:50}
+
+22:50:38.167 response time in milliseconds: 10
+1 &lt; 201
+1 &lt; Content-Type: application/json
+1 &lt; Transfer-Encoding: chunked
+1 &lt; Date: Wed, 08 Apr 2026 03:50:37 GMT
+1 &lt; Keep-Alive: timeout=60
+1 &lt; Connection: keep-alive
+{&quot;id&quot;:&quot;93a36f70-1072-46ec-a673-207597ad8ed8&quot;,&quot;name&quot;:&quot;Karate Release Flow Room&quot;,&quot;maxCapacity&quot;:50,&quot;created_at&quot;:&quot;2026-04-08T03:50:38.159439052&quot;,&quot;updated_at&quot;:&quot;2026-04-08T03:50:38.159453866&quot;}
+
+</div>   
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.36">
+      <div class="step-ref passed">36</div>
+      
+      <div class="step-cell passed">
+        <span>Then</span>&nbsp;<span>status 201</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.37">
+      <div class="step-ref passed">37</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def roomId = response.id ? response.id : response.roomId</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.38">
+      <div class="step-ref passed">38</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>match roomId == &#39;#uuid&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.39">
+      <div class="step-ref passed">39</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>print &#39;[SETUP] Room created:&#39;, roomId</span>
+      </div>
+    </div>
+    <div class="time-cell passed">1</div>
+  </div>
+
+   
+  
+  
+
+  
+
+  <div class="preformatted" data-parent="0.39">22:50:38.168 [print] [SETUP] Room created: 93a36f70-1072-46ec-a673-207597ad8ed8 
+</div>   
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  <div class="step-row">
+    <div class="step-container">
+      <div class="step-ref passed"></div>
+      
+      <div class="step-cell comment"># Setup: Create Event in DRAFT</div>
+    </div>
+    <div class="time-cell comment"></div>            
+  </div>
+
+  <div class="step-row">
+    <div class="step-container" id="0.42">
+      <div class="step-ref passed">42</div>
+      
+      <div class="step-cell passed">
+        <span>Given</span>&nbsp;<span>url baseUrlEvents + &#39;/api/v1/events&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.43">
+      <div class="step-ref passed">43</div>
+      
+      <div class="step-cell passed">
+        <span>And</span>&nbsp;<span>header X-Role = &#39;ADMIN&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.44">
+      <div class="step-ref passed">44</div>
+      
+      <div class="step-cell passed">
+        <span>And</span>&nbsp;<span>header X-User-Id = adminUserId</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.45">
+      <div class="step-ref passed">45</div>
+      
+      <div class="step-cell passed">
+        <span>And</span>&nbsp;<span>request</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  <div class="preformatted" data-parent="0.45">{
+  &quot;roomId&quot;: &quot;#(roomId)&quot;,
+  &quot;title&quot;: &quot;#(eventTitle)&quot;,
+  &quot;description&quot;: &quot;Test event for expiration and release flow&quot;,
+  &quot;date&quot;: &quot;#(futureDate)&quot;,
+  &quot;capacity&quot;: 50,
+  &quot;enableSeats&quot;: false
+}</div>
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.56">
+      <div class="step-ref passed">56</div>
+      
+      <div class="step-cell passed">
+        <span>When</span>&nbsp;<span>method post</span>
+      </div>
+    </div>
+    <div class="time-cell passed">14</div>
+  </div>
+
+   
+  
+  
+
+  
+
+  <div class="preformatted" data-parent="0.56">22:50:38.170 request:
+2 &gt; POST http://localhost:8081/api/v1/events
+2 &gt; X-Role: ADMIN
+2 &gt; X-User-Id: 00000000-0000-0000-0000-000000000001
+2 &gt; Content-Type: application/json; charset=UTF-8
+2 &gt; Content-Length: 216
+2 &gt; Host: localhost:8081
+2 &gt; Connection: Keep-Alive
+2 &gt; User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.17)
+2 &gt; Accept-Encoding: gzip,deflate
+{&quot;roomId&quot;:&quot;93a36f70-1072-46ec-a673-207597ad8ed8&quot;,&quot;title&quot;:&quot;Karate Release Event 1775620238155&quot;,&quot;description&quot;:&quot;Test event for expiration and release flow&quot;,&quot;date&quot;:&quot;2026-12-15T20:00:00&quot;,&quot;capacity&quot;:50,&quot;enableSeats&quot;:false}
+
+22:50:38.183 response time in milliseconds: 13
+2 &lt; 201
+2 &lt; Content-Type: application/json
+2 &lt; Transfer-Encoding: chunked
+2 &lt; Date: Wed, 08 Apr 2026 03:50:37 GMT
+2 &lt; Keep-Alive: timeout=60
+2 &lt; Connection: keep-alive
+{&quot;id&quot;:&quot;fd6335c5-9850-4ff0-b208-25c7ad3ae626&quot;,&quot;roomId&quot;:&quot;93a36f70-1072-46ec-a673-207597ad8ed8&quot;,&quot;title&quot;:&quot;Karate Release Event 1775620238155&quot;,&quot;description&quot;:&quot;Test event for expiration and release flow&quot;,&quot;date&quot;:&quot;2026-12-15T20:00:00&quot;,&quot;capacity&quot;:50,&quot;status&quot;:&quot;DRAFT&quot;,&quot;createdAt&quot;:&quot;2026-04-08T03:50:38.176419533&quot;,&quot;updatedAt&quot;:&quot;2026-04-08T03:50:38.176433733&quot;,&quot;createdBy&quot;:&quot;00000000-0000-0000-0000-000000000001&quot;,&quot;imageUrl&quot;:null,&quot;subtitle&quot;:null,&quot;location&quot;:null,&quot;director&quot;:null,&quot;castMembers&quot;:null,&quot;duration&quot;:null,&quot;tag&quot;:null,&quot;isLimited&quot;:false,&quot;isFeatured&quot;:false,&quot;enableSeats&quot;:false,&quot;author&quot;:null}
+
+</div>   
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.57">
+      <div class="step-ref passed">57</div>
+      
+      <div class="step-cell passed">
+        <span>Then</span>&nbsp;<span>status 201</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.58">
+      <div class="step-ref passed">58</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def eventId = response.id ? response.id : response.eventId</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.59">
+      <div class="step-ref passed">59</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>match eventId == &#39;#uuid&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.60">
+      <div class="step-ref passed">60</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>match response.status == &#39;DRAFT&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.61">
+      <div class="step-ref passed">61</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>print &#39;[SETUP] Event created in DRAFT:&#39;, eventId</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+  <div class="preformatted" data-parent="0.61">22:50:38.185 [print] [SETUP] Event created in DRAFT: fd6335c5-9850-4ff0-b208-25c7ad3ae626 
+</div>   
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  <div class="step-row">
+    <div class="step-container">
+      <div class="step-ref passed"></div>
+      
+      <div class="step-cell comment"># Setup: Configure Tier with quota=40</div>
+    </div>
+    <div class="time-cell comment"></div>            
+  </div>
+
+  <div class="step-row">
+    <div class="step-container" id="0.64">
+      <div class="step-ref passed">64</div>
+      
+      <div class="step-cell passed">
+        <span>Given</span>&nbsp;<span>url baseUrlEvents + &#39;/api/v1/events/&#39; + eventId + &#39;/tiers&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.65">
+      <div class="step-ref passed">65</div>
+      
+      <div class="step-cell passed">
+        <span>And</span>&nbsp;<span>header X-Role = &#39;ADMIN&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.66">
+      <div class="step-ref passed">66</div>
+      
+      <div class="step-cell passed">
+        <span>And</span>&nbsp;<span>request</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  <div class="preformatted" data-parent="0.66">[
+  {
+    &quot;tierType&quot;: &quot;GENERAL&quot;,
+    &quot;price&quot;: 100,
+    &quot;quota&quot;: 40
+  }
+]</div>
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.76">
+      <div class="step-ref passed">76</div>
+      
+      <div class="step-cell passed">
+        <span>When</span>&nbsp;<span>method post</span>
+      </div>
+    </div>
+    <div class="time-cell passed">14</div>
+  </div>
+
+   
+  
+  
+
+  
+
+  <div class="preformatted" data-parent="0.76">22:50:38.186 request:
+3 &gt; POST http://localhost:8081/api/v1/events/fd6335c5-9850-4ff0-b208-25c7ad3ae626/tiers
+3 &gt; X-Role: ADMIN
+3 &gt; Content-Type: application/json; charset=UTF-8
+3 &gt; Content-Length: 47
+3 &gt; Host: localhost:8081
+3 &gt; Connection: Keep-Alive
+3 &gt; User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.17)
+3 &gt; Accept-Encoding: gzip,deflate
+[{&quot;tierType&quot;:&quot;GENERAL&quot;,&quot;price&quot;:100,&quot;quota&quot;:40}]
+
+22:50:38.199 response time in milliseconds: 13
+3 &lt; 201
+3 &lt; Content-Type: application/json
+3 &lt; Transfer-Encoding: chunked
+3 &lt; Date: Wed, 08 Apr 2026 03:50:37 GMT
+3 &lt; Keep-Alive: timeout=60
+3 &lt; Connection: keep-alive
+{&quot;eventId&quot;:&quot;fd6335c5-9850-4ff0-b208-25c7ad3ae626&quot;,&quot;tiers&quot;:[{&quot;id&quot;:&quot;1f71b49f-d4db-45a7-a72c-3b82b4259630&quot;,&quot;tierType&quot;:&quot;GENERAL&quot;,&quot;price&quot;:100,&quot;quota&quot;:40,&quot;validFrom&quot;:null,&quot;validUntil&quot;:null,&quot;createdAt&quot;:&quot;2026-04-08T03:50:38.192292147&quot;,&quot;updatedAt&quot;:&quot;2026-04-08T03:50:38.192313593&quot;}]}
+
+</div>   
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.77">
+      <div class="step-ref passed">77</div>
+      
+      <div class="step-cell passed">
+        <span>Then</span>&nbsp;<span>status 201</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.78">
+      <div class="step-ref passed">78</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def tierBlock = response.tiers ? response.tiers[0] : response[0]</span>
+      </div>
+    </div>
+    <div class="time-cell passed">1</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.79">
+      <div class="step-ref passed">79</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def tierId = tierBlock.id ? tierBlock.id : tierBlock.tierId</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.80">
+      <div class="step-ref passed">80</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>match tierId == &#39;#uuid&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.81">
+      <div class="step-ref passed">81</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>match tierBlock.tierType == &#39;GENERAL&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.82">
+      <div class="step-ref passed">82</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>match tierBlock.quota == 40</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.83">
+      <div class="step-ref passed">83</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>print &#39;[SETUP] Tier configured with quota 40:&#39;, tierId</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+  <div class="preformatted" data-parent="0.83">22:50:38.201 [print] [SETUP] Tier configured with quota 40: 1f71b49f-d4db-45a7-a72c-3b82b4259630 
+</div>   
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  <div class="step-row">
+    <div class="step-container">
+      <div class="step-ref passed"></div>
+      
+      <div class="step-cell comment"># Setup: Publish Event</div>
+    </div>
+    <div class="time-cell comment"></div>            
+  </div>
+
+  <div class="step-row">
+    <div class="step-container" id="0.86">
+      <div class="step-ref passed">86</div>
+      
+      <div class="step-cell passed">
+        <span>Given</span>&nbsp;<span>url baseUrlEvents + &#39;/api/v1/events/&#39; + eventId + &#39;/publish&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.87">
+      <div class="step-ref passed">87</div>
+      
+      <div class="step-cell passed">
+        <span>And</span>&nbsp;<span>header X-Role = &#39;ADMIN&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.88">
+      <div class="step-ref passed">88</div>
+      
+      <div class="step-cell passed">
+        <span>And</span>&nbsp;<span>header X-User-Id = adminUserId</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.89">
+      <div class="step-ref passed">89</div>
+      
+      <div class="step-cell passed">
+        <span>When</span>&nbsp;<span>method patch</span>
+      </div>
+    </div>
+    <div class="time-cell passed">13</div>
+  </div>
+
+   
+  
+  
+
+  
+
+  <div class="preformatted" data-parent="0.89">22:50:38.202 request:
+4 &gt; PATCH http://localhost:8081/api/v1/events/fd6335c5-9850-4ff0-b208-25c7ad3ae626/publish
+4 &gt; X-Role: ADMIN
+4 &gt; X-User-Id: 00000000-0000-0000-0000-000000000001
+4 &gt; Host: localhost:8081
+4 &gt; Connection: Keep-Alive
+4 &gt; User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.17)
+4 &gt; Accept-Encoding: gzip,deflate
+
+
+22:50:38.215 response time in milliseconds: 12
+4 &lt; 200
+4 &lt; Content-Type: application/json
+4 &lt; Transfer-Encoding: chunked
+4 &lt; Date: Wed, 08 Apr 2026 03:50:37 GMT
+4 &lt; Keep-Alive: timeout=60
+4 &lt; Connection: keep-alive
+{&quot;id&quot;:&quot;fd6335c5-9850-4ff0-b208-25c7ad3ae626&quot;,&quot;roomId&quot;:&quot;93a36f70-1072-46ec-a673-207597ad8ed8&quot;,&quot;title&quot;:&quot;Karate Release Event 1775620238155&quot;,&quot;description&quot;:&quot;Test event for expiration and release flow&quot;,&quot;date&quot;:&quot;2026-12-15T20:00:00&quot;,&quot;capacity&quot;:50,&quot;status&quot;:&quot;PUBLISHED&quot;,&quot;createdAt&quot;:&quot;2026-04-08T03:50:38.17642&quot;,&quot;updatedAt&quot;:&quot;2026-04-08T03:50:38.207261619&quot;,&quot;createdBy&quot;:&quot;00000000-0000-0000-0000-000000000001&quot;,&quot;imageUrl&quot;:null,&quot;subtitle&quot;:null,&quot;location&quot;:null,&quot;director&quot;:null,&quot;castMembers&quot;:null,&quot;duration&quot;:null,&quot;tag&quot;:null,&quot;isLimited&quot;:false,&quot;isFeatured&quot;:false,&quot;enableSeats&quot;:false,&quot;author&quot;:null}
+
+</div>   
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.90">
+      <div class="step-ref passed">90</div>
+      
+      <div class="step-cell passed">
+        <span>Then</span>&nbsp;<span>status 200</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.91">
+      <div class="step-ref passed">91</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>match response.status == &#39;PUBLISHED&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.92">
+      <div class="step-ref passed">92</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>print &#39;[SETUP] Event published&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+  <div class="preformatted" data-parent="0.92">22:50:38.215 [print] [SETUP] Event published 
+</div>   
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  <div class="step-row">
+    <div class="step-container">
+      <div class="step-ref passed"></div>
+      
+      <div class="step-cell comment"># ========================================</div>
+    </div>
+    <div class="time-cell comment"></div>            
+  </div>
+
+  <div class="step-row">
+    <div class="step-container">
+      <div class="step-ref passed"></div>
+      
+      <div class="step-cell comment"># PATH B PHASE 1: Buyer 1 creates reservation</div>
+    </div>
+    <div class="time-cell comment"></div>            
+  </div>
+
+  <div class="step-row">
+    <div class="step-container">
+      <div class="step-ref passed"></div>
+      
+      <div class="step-cell comment"># ========================================</div>
+    </div>
+    <div class="time-cell comment"></div>            
+  </div>
+
+  <div class="step-row">
+    <div class="step-container" id="0.98">
+      <div class="step-ref passed">98</div>
+      
+      <div class="step-cell passed">
+        <span>Given</span>&nbsp;<span>url baseUrlTicketing + &#39;/api/v1/reservations&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.99">
+      <div class="step-ref passed">99</div>
+      
+      <div class="step-cell passed">
+        <span>And</span>&nbsp;<span>header X-User-Id = buyer1Id</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.100">
+      <div class="step-ref passed">100</div>
+      
+      <div class="step-cell passed">
+        <span>And</span>&nbsp;<span>request</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  <div class="preformatted" data-parent="0.100">{
+  &quot;eventId&quot;: &quot;#(eventId)&quot;,
+  &quot;tierId&quot;: &quot;#(tierId)&quot;,
+  &quot;buyerEmail&quot;: &quot;#(buyer1Email)&quot;
+}</div>
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.108">
+      <div class="step-ref passed">108</div>
+      
+      <div class="step-cell passed">
+        <span>When</span>&nbsp;<span>method post</span>
+      </div>
+    </div>
+    <div class="time-cell passed">37</div>
+  </div>
+
+   
+  
+  
+
+  
+
+  <div class="preformatted" data-parent="0.108">22:50:38.217 request:
+5 &gt; POST http://localhost:8082/api/v1/reservations
+5 &gt; X-User-Id: 636bc5cc-cef0-4d41-a3ab-31221f06d970
+5 &gt; Content-Type: application/json; charset=UTF-8
+5 &gt; Content-Length: 150
+5 &gt; Host: localhost:8082
+5 &gt; Connection: Keep-Alive
+5 &gt; User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.17)
+5 &gt; Accept-Encoding: gzip,deflate
+{&quot;eventId&quot;:&quot;fd6335c5-9850-4ff0-b208-25c7ad3ae626&quot;,&quot;tierId&quot;:&quot;1f71b49f-d4db-45a7-a72c-3b82b4259630&quot;,&quot;buyerEmail&quot;:&quot;buyer1-1775620238154@karate-test.com&quot;}
+
+22:50:38.252 response time in milliseconds: 35
+5 &lt; 201
+5 &lt; Content-Type: application/json
+5 &lt; Transfer-Encoding: chunked
+5 &lt; Date: Wed, 08 Apr 2026 03:50:37 GMT
+5 &lt; Keep-Alive: timeout=60
+5 &lt; Connection: keep-alive
+{&quot;id&quot;:&quot;2c2cbf10-e9ef-46ec-bccd-cf1a1ad387c3&quot;,&quot;eventId&quot;:&quot;fd6335c5-9850-4ff0-b208-25c7ad3ae626&quot;,&quot;tierId&quot;:&quot;1f71b49f-d4db-45a7-a72c-3b82b4259630&quot;,&quot;buyerId&quot;:&quot;636bc5cc-cef0-4d41-a3ab-31221f06d970&quot;,&quot;status&quot;:&quot;PENDING&quot;,&quot;createdAt&quot;:&quot;2026-04-08T03:50:38.244734007&quot;,&quot;updatedAt&quot;:&quot;2026-04-08T03:50:38.244734007&quot;,&quot;validUntilAt&quot;:&quot;2026-04-08T04:00:38.244734007&quot;}
+
+</div>   
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.109">
+      <div class="step-ref passed">109</div>
+      
+      <div class="step-cell passed">
+        <span>Then</span>&nbsp;<span>status 201</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.110">
+      <div class="step-ref passed">110</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def reservation1Id = response.id</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.111">
+      <div class="step-ref passed">111</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>match response.status == &#39;PENDING&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.112">
+      <div class="step-ref passed">112</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>match response.buyerId == buyer1Id</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.113">
+      <div class="step-ref passed">113</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>print &#39;[PATH B-1] Buyer 1 reservation created (PENDING, inventory blocked):&#39;, reservation1Id</span>
+      </div>
+    </div>
+    <div class="time-cell passed">1</div>
+  </div>
+
+   
+  
+  
+
+  
+
+  <div class="preformatted" data-parent="0.113">22:50:38.254 [print] [PATH B-1] Buyer 1 reservation created (PENDING, inventory blocked): 2c2cbf10-e9ef-46ec-bccd-cf1a1ad387c3 
+</div>   
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  <div class="step-row">
+    <div class="step-container">
+      <div class="step-ref passed"></div>
+      
+      <div class="step-cell comment"># ========================================</div>
+    </div>
+    <div class="time-cell comment"></div>            
+  </div>
+
+  <div class="step-row">
+    <div class="step-container">
+      <div class="step-ref passed"></div>
+      
+      <div class="step-cell comment"># PATH B PHASE 2: Buyer 1 payment DECLINED</div>
+    </div>
+    <div class="time-cell comment"></div>            
+  </div>
+
+  <div class="step-row">
+    <div class="step-container">
+      <div class="step-ref passed"></div>
+      
+      <div class="step-cell comment"># ========================================</div>
+    </div>
+    <div class="time-cell comment"></div>            
+  </div>
+
+  <div class="step-row">
+    <div class="step-container" id="0.119">
+      <div class="step-ref passed">119</div>
+      
+      <div class="step-cell passed">
+        <span>Given</span>&nbsp;<span>url baseUrlTicketing + &#39;/api/v1/reservations/&#39; + reservation1Id + &#39;/payments&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.120">
+      <div class="step-ref passed">120</div>
+      
+      <div class="step-cell passed">
+        <span>And</span>&nbsp;<span>header X-User-Id = buyer1Id</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.121">
+      <div class="step-ref passed">121</div>
+      
+      <div class="step-cell passed">
+        <span>And</span>&nbsp;<span>request</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  <div class="preformatted" data-parent="0.121">{
+  &quot;amount&quot;: 100,
+  &quot;paymentMethod&quot;: &quot;MOCK&quot;,
+  &quot;status&quot;: &quot;DECLINED&quot;
+}</div>
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.129">
+      <div class="step-ref passed">129</div>
+      
+      <div class="step-cell passed">
+        <span>When</span>&nbsp;<span>method post</span>
+      </div>
+    </div>
+    <div class="time-cell passed">41</div>
+  </div>
+
+   
+  
+  
+
+  
+
+  <div class="preformatted" data-parent="0.129">22:50:38.256 request:
+6 &gt; POST http://localhost:8082/api/v1/reservations/2c2cbf10-e9ef-46ec-bccd-cf1a1ad387c3/payments
+6 &gt; X-User-Id: 636bc5cc-cef0-4d41-a3ab-31221f06d970
+6 &gt; Content-Type: application/json; charset=UTF-8
+6 &gt; Content-Length: 57
+6 &gt; Host: localhost:8082
+6 &gt; Connection: Keep-Alive
+6 &gt; User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.17)
+6 &gt; Accept-Encoding: gzip,deflate
+{&quot;amount&quot;:100,&quot;paymentMethod&quot;:&quot;MOCK&quot;,&quot;status&quot;:&quot;DECLINED&quot;}
+
+22:50:38.296 response time in milliseconds: 40
+6 &lt; 400
+6 &lt; Content-Type: application/json
+6 &lt; Transfer-Encoding: chunked
+6 &lt; Date: Wed, 08 Apr 2026 03:50:37 GMT
+6 &lt; Connection: close
+{&quot;reservationId&quot;:&quot;2c2cbf10-e9ef-46ec-bccd-cf1a1ad387c3&quot;,&quot;error&quot;:&quot;Payment declined. Your reservation remains active for 10 minutes&quot;,&quot;status&quot;:&quot;PAYMENT_FAILED&quot;,&quot;timestamp&quot;:&quot;2026-04-08T03:50:38.293628478&quot;}
+
+</div>   
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.130">
+      <div class="step-ref passed">130</div>
+      
+      <div class="step-cell passed">
+        <span>Then</span>&nbsp;<span>status 400</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.131">
+      <div class="step-ref passed">131</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>match response == { error: &#39;#string&#39;, reservationId: &#39;#uuid&#39;, status: &#39;PAYMENT_FAILED&#39;, timestamp: &#39;#string&#39; }</span>
+      </div>
+    </div>
+    <div class="time-cell passed">1</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.132">
+      <div class="step-ref passed">132</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>match response.reservationId == reservation1Id</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.133">
+      <div class="step-ref passed">133</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>print &#39;[PATH B-2] Payment rejected. Status:&#39;, response.status, &#39;Timestamp:&#39;, response.timestamp</span>
+      </div>
+    </div>
+    <div class="time-cell passed">1</div>
+  </div>
+
+   
+  
+  
+
+  
+
+  <div class="preformatted" data-parent="0.133">22:50:38.298 [print] [PATH B-2] Payment rejected. Status: PAYMENT_FAILED Timestamp: 2026-04-08T03:50:38.293628478 
+</div>   
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  <div class="step-row">
+    <div class="step-container">
+      <div class="step-ref passed"></div>
+      
+      <div class="step-cell comment"># ========================================</div>
+    </div>
+    <div class="time-cell comment"></div>            
+  </div>
+
+  <div class="step-row">
+    <div class="step-container">
+      <div class="step-ref passed"></div>
+      
+      <div class="step-cell comment"># PATH B PHASE 3: FORCE EXPIRATION &amp; WAIT</div>
+    </div>
+    <div class="time-cell comment"></div>            
+  </div>
+
+  <div class="step-row">
+    <div class="step-container">
+      <div class="step-ref passed"></div>
+      
+      <div class="step-cell comment"># ========================================</div>
+    </div>
+    <div class="time-cell comment"></div>            
+  </div>
+
+  <div class="step-row">
+    <div class="step-container" id="0.139">
+      <div class="step-ref passed">139</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>print &#39;[PATH B-3] Forcing expiration by moving valid_until_at to the past via SQL...&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+  <div class="preformatted" data-parent="0.139">22:50:38.298 [print] [PATH B-3] Forcing expiration by moving valid_until_at to the past via SQL... 
+</div>   
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.140">
+      <div class="step-ref passed">140</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def forceResult = call read(&#39;classpath:common/sql/db-helper.feature@forceExpiration&#39;) { reservationId: &#39;#(reservation1Id)&#39; }</span>
+      </div>
+    </div>
+    <div class="time-cell passed">196</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  <div>
+        
+    <div class="step-row">
+      <div class="step-container" id="0.140.0.call">
+        <div class="step-ref passed">&gt;&gt;</div>
+        <div class="step-indent"></div>
+        <div class="step-cell passed">common.sql.db-helper</div>
+      </div>
+      <div class="time-cell passed">185</div>
+    </div>
+    <div>
+      <div><div>
+  
+
+  
+
+  <div class="step-row" data-parent="0.140.0.call">
+    <div class="step-container" id="0.140.0.call.0.5">
+      <div class="step-ref passed">5</div>
+      <div class="step-indent"></div>
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def dbTicketingUrl = karate.properties[&#39;dbTicketingUrl&#39;] || &#39;jdbc:postgresql://localhost:5434/ticketing_db&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">1</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+      <div><div>
+  
+
+  
+
+  <div class="step-row" data-parent="0.140.0.call">
+    <div class="step-container" id="0.140.0.call.0.6">
+      <div class="step-ref passed">6</div>
+      <div class="step-indent"></div>
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def dbTicketingUser = karate.properties[&#39;dbTicketingUser&#39;] || &#39;postgres&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+      <div><div>
+  
+
+  
+
+  <div class="step-row" data-parent="0.140.0.call">
+    <div class="step-container" id="0.140.0.call.0.7">
+      <div class="step-ref passed">7</div>
+      <div class="step-indent"></div>
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def dbTicketingPass = karate.properties[&#39;dbTicketingPass&#39;] || &#39;postgres&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+      <div><div>
+  
+
+  
+
+  <div class="step-row" data-parent="0.140.0.call">
+    <div class="step-container" id="0.140.0.call.0.9">
+      <div class="step-ref passed">9</div>
+      <div class="step-indent"></div>
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def dbEventsUrl = karate.properties[&#39;dbEventsUrl&#39;] || &#39;jdbc:postgresql://localhost:5433/events_db&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+      <div><div>
+  
+
+  
+
+  <div class="step-row" data-parent="0.140.0.call">
+    <div class="step-container" id="0.140.0.call.0.10">
+      <div class="step-ref passed">10</div>
+      <div class="step-indent"></div>
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def dbEventsUser = karate.properties[&#39;dbEventsUser&#39;] || &#39;postgres&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+      <div><div>
+  
+
+  
+
+  <div class="step-row" data-parent="0.140.0.call">
+    <div class="step-container" id="0.140.0.call.0.11">
+      <div class="step-ref passed">11</div>
+      <div class="step-indent"></div>
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def dbEventsPass = karate.properties[&#39;dbEventsPass&#39;] || &#39;postgres&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+      <div><div>
+  
+
+  
+
+  <div class="step-row" data-parent="0.140.0.call">
+    <div class="step-container" id="0.140.0.call.0.13">
+      <div class="step-ref passed">13</div>
+      <div class="step-indent"></div>
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def JClass = Java.type(&#39;java.lang.Class&#39;)</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+      <div><div>
+  
+
+  
+
+  <div class="step-row" data-parent="0.140.0.call">
+    <div class="step-container" id="0.140.0.call.0.14">
+      <div class="step-ref passed">14</div>
+      <div class="step-indent"></div>
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def DriverManager = Java.type(&#39;java.sql.DriverManager&#39;)</span>
+      </div>
+    </div>
+    <div class="time-cell passed">1</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+      <div><div>
+  
+
+  
+
+  <div class="step-row" data-parent="0.140.0.call">
+    <div class="step-container" id="0.140.0.call.0.15">
+      <div class="step-ref passed">15</div>
+      <div class="step-indent"></div>
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>JClass.forName(&#39;org.postgresql.Driver&#39;)</span>
+      </div>
+    </div>
+    <div class="time-cell passed">10</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+      <div><div>
+  
+
+  
+
+  <div class="step-row" data-parent="0.140.0.call">
+    <div class="step-container" id="0.140.0.call.0.19">
+      <div class="step-ref passed">19</div>
+      <div class="step-indent"></div>
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def sql = &quot;UPDATE reservation SET valid_until_at = NOW() AT TIME ZONE &#39;UTC&#39; - INTERVAL &#39;2 days&#39; WHERE id = ?::uuid&quot;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+      <div><div>
+  
+
+  
+
+  <div class="step-row" data-parent="0.140.0.call">
+    <div class="step-container" id="0.140.0.call.0.20">
+      <div class="step-ref passed">20</div>
+      <div class="step-indent"></div>
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def conn = DriverManager.getConnection(dbTicketingUrl, dbTicketingUser, dbTicketingPass)</span>
+      </div>
+    </div>
+    <div class="time-cell passed">144</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+      <div><div>
+  
+
+  
+
+  <div class="step-row" data-parent="0.140.0.call">
+    <div class="step-container" id="0.140.0.call.0.21">
+      <div class="step-ref passed">21</div>
+      <div class="step-indent"></div>
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def pstmt = conn.prepareStatement(sql)</span>
+      </div>
+    </div>
+    <div class="time-cell passed">8</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+      <div><div>
+  
+
+  
+
+  <div class="step-row" data-parent="0.140.0.call">
+    <div class="step-container" id="0.140.0.call.0.22">
+      <div class="step-ref passed">22</div>
+      <div class="step-indent"></div>
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>pstmt.setObject(1, reservationId)</span>
+      </div>
+    </div>
+    <div class="time-cell passed">4</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+      <div><div>
+  
+
+  
+
+  <div class="step-row" data-parent="0.140.0.call">
+    <div class="step-container" id="0.140.0.call.0.23">
+      <div class="step-ref passed">23</div>
+      <div class="step-indent"></div>
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def rows = pstmt.executeUpdate()</span>
+      </div>
+    </div>
+    <div class="time-cell passed">10</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+      <div><div>
+  
+
+  
+
+  <div class="step-row" data-parent="0.140.0.call">
+    <div class="step-container" id="0.140.0.call.0.24">
+      <div class="step-ref passed">24</div>
+      <div class="step-indent"></div>
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>pstmt.close()</span>
+      </div>
+    </div>
+    <div class="time-cell passed">1</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+      <div><div>
+  
+
+  
+
+  <div class="step-row" data-parent="0.140.0.call">
+    <div class="step-container" id="0.140.0.call.0.25">
+      <div class="step-ref passed">25</div>
+      <div class="step-indent"></div>
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>conn.close()</span>
+      </div>
+    </div>
+    <div class="time-cell passed">1</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+      <div><div>
+  
+
+  
+
+  <div class="step-row" data-parent="0.140.0.call">
+    <div class="step-container" id="0.140.0.call.0.26">
+      <div class="step-ref passed">26</div>
+      <div class="step-indent"></div>
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>print &#39;SQL Result: Forced expiration for reservationId=&#39; + reservationId + &#39;, Rows updated=&#39; + rows</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+  <div class="preformatted" data-parent="0.140.0.call.0.26">22:50:38.490 [print] SQL Result: Forced expiration for reservationId=2c2cbf10-e9ef-46ec-bccd-cf1a1ad387c3, Rows updated=1 
+</div>   
+
+  
+
+</div>
+</div>
+      <div><div>
+  
+
+  
+
+  <div class="step-row" data-parent="0.140.0.call">
+    <div class="step-container" id="0.140.0.call.0.27">
+      <div class="step-ref passed">27</div>
+      <div class="step-indent"></div>
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>eval if (rows != 1) karate.fail(&#39;Expected exactly 1 reservation row to be updated, but updated &#39; + rows)</span>
+      </div>
+    </div>
+    <div class="time-cell passed">3</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+      <div><div>
+  
+
+  
+
+  <div class="step-row" data-parent="0.140.0.call">
+    <div class="step-container" id="0.140.0.call.0.28">
+      <div class="step-ref passed">28</div>
+      <div class="step-indent"></div>
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def response = { rowsUpdated: rows, passed: true }</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+    </div>    
+  </div>
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.141">
+      <div class="step-ref passed">141</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>match forceResult.rows == 1</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.143">
+      <div class="step-ref passed">143</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def waitTimeMs = 75000</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.144">
+      <div class="step-ref passed">144</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>print &#39;[PATH B-3] Waiting for scheduler to sweep expired reservations (60s cycle + buffer)...&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+  <div class="preformatted" data-parent="0.144">22:50:38.495 [print] [PATH B-3] Waiting for scheduler to sweep expired reservations (60s cycle + buffer)... 
+</div>   
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.145">
+      <div class="step-ref passed">145</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>java.lang.Thread.sleep(waitTimeMs)</span>
+      </div>
+    </div>
+    <div class="time-cell passed">75002</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.146">
+      <div class="step-ref passed">146</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>print &#39;[PATH B-3] Wait complete.&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">1</div>
+  </div>
+
+   
+  
+  
+
+  
+
+  <div class="preformatted" data-parent="0.146">22:51:53.498 [print] [PATH B-3] Wait complete. 
+</div>   
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  <div class="step-row">
+    <div class="step-container">
+      <div class="step-ref passed"></div>
+      
+      <div class="step-cell comment"># ========================================</div>
+    </div>
+    <div class="time-cell comment"></div>            
+  </div>
+
+  <div class="step-row">
+    <div class="step-container">
+      <div class="step-ref passed"></div>
+      
+      <div class="step-cell comment"># PATH B PHASE 4: SQL VALIDATION - Reservation status</div>
+    </div>
+    <div class="time-cell comment"></div>            
+  </div>
+
+  <div class="step-row">
+    <div class="step-container">
+      <div class="step-ref passed"></div>
+      
+      <div class="step-cell comment"># ========================================</div>
+    </div>
+    <div class="time-cell comment"></div>            
+  </div>
+
+  <div class="step-row">
+    <div class="step-container" id="0.152">
+      <div class="step-ref passed">152</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>print &#39;[SQL-1] Querying ticketing_db for reservation status...&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">1</div>
+  </div>
+
+   
+  
+  
+
+  
+
+  <div class="preformatted" data-parent="0.152">22:51:53.499 [print] [SQL-1] Querying ticketing_db for reservation status... 
+</div>   
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.153">
+      <div class="step-ref passed">153</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def reservationStatusResult = call read(&#39;classpath:common/sql/db-helper.feature@checkReservationStatus&#39;) { reservationId: &#39;#(reservation1Id)&#39;, expectedStatus: &#39;EXPIRED&#39; }</span>
+      </div>
+    </div>
+    <div class="time-cell passed">50</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  <div>
+        
+    <div class="step-row">
+      <div class="step-container" id="0.153.0.call">
+        <div class="step-ref passed">&gt;&gt;</div>
+        <div class="step-indent"></div>
+        <div class="step-cell passed">common.sql.db-helper</div>
+      </div>
+      <div class="time-cell passed">40</div>
+    </div>
+    <div>
+      <div><div>
+  
+
+  
+
+  <div class="step-row" data-parent="0.153.0.call">
+    <div class="step-container" id="0.153.0.call.0.5">
+      <div class="step-ref passed">5</div>
+      <div class="step-indent"></div>
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def dbTicketingUrl = karate.properties[&#39;dbTicketingUrl&#39;] || &#39;jdbc:postgresql://localhost:5434/ticketing_db&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+      <div><div>
+  
+
+  
+
+  <div class="step-row" data-parent="0.153.0.call">
+    <div class="step-container" id="0.153.0.call.0.6">
+      <div class="step-ref passed">6</div>
+      <div class="step-indent"></div>
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def dbTicketingUser = karate.properties[&#39;dbTicketingUser&#39;] || &#39;postgres&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+      <div><div>
+  
+
+  
+
+  <div class="step-row" data-parent="0.153.0.call">
+    <div class="step-container" id="0.153.0.call.0.7">
+      <div class="step-ref passed">7</div>
+      <div class="step-indent"></div>
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def dbTicketingPass = karate.properties[&#39;dbTicketingPass&#39;] || &#39;postgres&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+      <div><div>
+  
+
+  
+
+  <div class="step-row" data-parent="0.153.0.call">
+    <div class="step-container" id="0.153.0.call.0.9">
+      <div class="step-ref passed">9</div>
+      <div class="step-indent"></div>
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def dbEventsUrl = karate.properties[&#39;dbEventsUrl&#39;] || &#39;jdbc:postgresql://localhost:5433/events_db&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+      <div><div>
+  
+
+  
+
+  <div class="step-row" data-parent="0.153.0.call">
+    <div class="step-container" id="0.153.0.call.0.10">
+      <div class="step-ref passed">10</div>
+      <div class="step-indent"></div>
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def dbEventsUser = karate.properties[&#39;dbEventsUser&#39;] || &#39;postgres&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+      <div><div>
+  
+
+  
+
+  <div class="step-row" data-parent="0.153.0.call">
+    <div class="step-container" id="0.153.0.call.0.11">
+      <div class="step-ref passed">11</div>
+      <div class="step-indent"></div>
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def dbEventsPass = karate.properties[&#39;dbEventsPass&#39;] || &#39;postgres&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+      <div><div>
+  
+
+  
+
+  <div class="step-row" data-parent="0.153.0.call">
+    <div class="step-container" id="0.153.0.call.0.13">
+      <div class="step-ref passed">13</div>
+      <div class="step-indent"></div>
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def JClass = Java.type(&#39;java.lang.Class&#39;)</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+      <div><div>
+  
+
+  
+
+  <div class="step-row" data-parent="0.153.0.call">
+    <div class="step-container" id="0.153.0.call.0.14">
+      <div class="step-ref passed">14</div>
+      <div class="step-indent"></div>
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def DriverManager = Java.type(&#39;java.sql.DriverManager&#39;)</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+      <div><div>
+  
+
+  
+
+  <div class="step-row" data-parent="0.153.0.call">
+    <div class="step-container" id="0.153.0.call.0.15">
+      <div class="step-ref passed">15</div>
+      <div class="step-indent"></div>
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>JClass.forName(&#39;org.postgresql.Driver&#39;)</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+      <div><div>
+  
+
+  
+
+  <div class="step-row" data-parent="0.153.0.call">
+    <div class="step-container" id="0.153.0.call.0.32">
+      <div class="step-ref passed">32</div>
+      <div class="step-indent"></div>
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def sql = &#39;SELECT status, updated_at FROM reservation WHERE id = ?::uuid ORDER BY updated_at DESC LIMIT 1&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+      <div><div>
+  
+
+  
+
+  <div class="step-row" data-parent="0.153.0.call">
+    <div class="step-container" id="0.153.0.call.0.33">
+      <div class="step-ref passed">33</div>
+      <div class="step-indent"></div>
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def conn = DriverManager.getConnection(dbTicketingUrl, dbTicketingUser, dbTicketingPass)</span>
+      </div>
+    </div>
+    <div class="time-cell passed">19</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+      <div><div>
+  
+
+  
+
+  <div class="step-row" data-parent="0.153.0.call">
+    <div class="step-container" id="0.153.0.call.0.34">
+      <div class="step-ref passed">34</div>
+      <div class="step-indent"></div>
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def pstmt = conn.prepareStatement(sql)</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+      <div><div>
+  
+
+  
+
+  <div class="step-row" data-parent="0.153.0.call">
+    <div class="step-container" id="0.153.0.call.0.35">
+      <div class="step-ref passed">35</div>
+      <div class="step-indent"></div>
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>pstmt.setObject(1, reservationId)</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+      <div><div>
+  
+
+  
+
+  <div class="step-row" data-parent="0.153.0.call">
+    <div class="step-container" id="0.153.0.call.0.36">
+      <div class="step-ref passed">36</div>
+      <div class="step-indent"></div>
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def rs = pstmt.executeQuery()</span>
+      </div>
+    </div>
+    <div class="time-cell passed">14</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+      <div><div>
+  
+
+  
+
+  <div class="step-row" data-parent="0.153.0.call">
+    <div class="step-container" id="0.153.0.call.0.38">
+      <div class="step-ref passed">38</div>
+      <div class="step-indent"></div>
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def found = rs.next()</span>
+      </div>
+    </div>
+    <div class="time-cell passed">2</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+      <div><div>
+  
+
+  
+
+  <div class="step-row" data-parent="0.153.0.call">
+    <div class="step-container" id="0.153.0.call.0.39">
+      <div class="step-ref passed">39</div>
+      <div class="step-indent"></div>
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>eval if (!found) karate.fail(&#39;Reservation not found in database for id=&#39; + reservationId)</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+      <div><div>
+  
+
+  
+
+  <div class="step-row" data-parent="0.153.0.call">
+    <div class="step-container" id="0.153.0.call.0.41">
+      <div class="step-ref passed">41</div>
+      <div class="step-indent"></div>
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def actualStatus = rs.getString(&#39;status&#39;)</span>
+      </div>
+    </div>
+    <div class="time-cell passed">1</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+      <div><div>
+  
+
+  
+
+  <div class="step-row" data-parent="0.153.0.call">
+    <div class="step-container" id="0.153.0.call.0.42">
+      <div class="step-ref passed">42</div>
+      <div class="step-indent"></div>
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def updatedAt = rs.getString(&#39;updated_at&#39;)</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+      <div><div>
+  
+
+  
+
+  <div class="step-row" data-parent="0.153.0.call">
+    <div class="step-container" id="0.153.0.call.0.44">
+      <div class="step-ref passed">44</div>
+      <div class="step-indent"></div>
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>rs.close()</span>
+      </div>
+    </div>
+    <div class="time-cell passed">1</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+      <div><div>
+  
+
+  
+
+  <div class="step-row" data-parent="0.153.0.call">
+    <div class="step-container" id="0.153.0.call.0.45">
+      <div class="step-ref passed">45</div>
+      <div class="step-indent"></div>
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>pstmt.close()</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+      <div><div>
+  
+
+  
+
+  <div class="step-row" data-parent="0.153.0.call">
+    <div class="step-container" id="0.153.0.call.0.46">
+      <div class="step-ref passed">46</div>
+      <div class="step-indent"></div>
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>conn.close()</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+      <div><div>
+  
+
+  
+
+  <div class="step-row" data-parent="0.153.0.call">
+    <div class="step-container" id="0.153.0.call.0.48">
+      <div class="step-ref passed">48</div>
+      <div class="step-indent"></div>
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>print &#39;SQL Result: reservationId=&#39; + reservationId + &#39;, status=&#39; + actualStatus + &#39;, updated_at=&#39; + updatedAt</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+  <div class="preformatted" data-parent="0.153.0.call.0.48">22:51:53.548 [print] SQL Result: reservationId=2c2cbf10-e9ef-46ec-bccd-cf1a1ad387c3, status=EXPIRED, updated_at=2026-04-08 03:51:35.561688 
+</div>   
+
+  
+
+</div>
+</div>
+      <div><div>
+  
+
+  
+
+  <div class="step-row" data-parent="0.153.0.call">
+    <div class="step-container" id="0.153.0.call.0.49">
+      <div class="step-ref passed">49</div>
+      <div class="step-indent"></div>
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>eval if (actualStatus != expectedStatus) karate.fail(&#39;Expected status &#39; + expectedStatus + &#39; but found &#39; + actualStatus)</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+      <div><div>
+  
+
+  
+
+  <div class="step-row" data-parent="0.153.0.call">
+    <div class="step-container" id="0.153.0.call.0.51">
+      <div class="step-ref passed">51</div>
+      <div class="step-indent"></div>
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def response = { actualStatus: actualStatus, updatedAt: updatedAt, passed: true }</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+    </div>    
+  </div>
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.154">
+      <div class="step-ref passed">154</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>print &#39;[SQL-1] Reservation status validation passed. Status:&#39;, reservationStatusResult.actualStatus</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+  <div class="preformatted" data-parent="0.154">22:51:53.550 [print] [SQL-1] Reservation status validation passed. Status: EXPIRED 
+</div>   
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  <div class="step-row">
+    <div class="step-container">
+      <div class="step-ref passed"></div>
+      
+      <div class="step-cell comment"># ========================================</div>
+    </div>
+    <div class="time-cell comment"></div>            
+  </div>
+
+  <div class="step-row">
+    <div class="step-container">
+      <div class="step-ref passed"></div>
+      
+      <div class="step-cell comment"># PATH B PHASE 5: SQL VALIDATION - Tier quota restoration</div>
+    </div>
+    <div class="time-cell comment"></div>            
+  </div>
+
+  <div class="step-row">
+    <div class="step-container">
+      <div class="step-ref passed"></div>
+      
+      <div class="step-cell comment"># ========================================</div>
+    </div>
+    <div class="time-cell comment"></div>            
+  </div>
+
+  <div class="step-row">
+    <div class="step-container" id="0.160">
+      <div class="step-ref passed">160</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>print &#39;[SQL-2] Querying events_db for tier quota...&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+  <div class="preformatted" data-parent="0.160">22:51:53.550 [print] [SQL-2] Querying events_db for tier quota... 
+</div>   
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.161">
+      <div class="step-ref passed">161</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def tierQuotaResult = call read(&#39;classpath:common/sql/db-helper.feature@checkTierQuota&#39;) { tierId: &#39;#(tierId)&#39;, expectedQuota: 40 }</span>
+      </div>
+    </div>
+    <div class="time-cell passed">27</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  <div>
+        
+    <div class="step-row">
+      <div class="step-container" id="0.161.0.call">
+        <div class="step-ref passed">&gt;&gt;</div>
+        <div class="step-indent"></div>
+        <div class="step-cell passed">common.sql.db-helper</div>
+      </div>
+      <div class="time-cell passed">23</div>
+    </div>
+    <div>
+      <div><div>
+  
+
+  
+
+  <div class="step-row" data-parent="0.161.0.call">
+    <div class="step-container" id="0.161.0.call.0.5">
+      <div class="step-ref passed">5</div>
+      <div class="step-indent"></div>
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def dbTicketingUrl = karate.properties[&#39;dbTicketingUrl&#39;] || &#39;jdbc:postgresql://localhost:5434/ticketing_db&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+      <div><div>
+  
+
+  
+
+  <div class="step-row" data-parent="0.161.0.call">
+    <div class="step-container" id="0.161.0.call.0.6">
+      <div class="step-ref passed">6</div>
+      <div class="step-indent"></div>
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def dbTicketingUser = karate.properties[&#39;dbTicketingUser&#39;] || &#39;postgres&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+      <div><div>
+  
+
+  
+
+  <div class="step-row" data-parent="0.161.0.call">
+    <div class="step-container" id="0.161.0.call.0.7">
+      <div class="step-ref passed">7</div>
+      <div class="step-indent"></div>
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def dbTicketingPass = karate.properties[&#39;dbTicketingPass&#39;] || &#39;postgres&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+      <div><div>
+  
+
+  
+
+  <div class="step-row" data-parent="0.161.0.call">
+    <div class="step-container" id="0.161.0.call.0.9">
+      <div class="step-ref passed">9</div>
+      <div class="step-indent"></div>
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def dbEventsUrl = karate.properties[&#39;dbEventsUrl&#39;] || &#39;jdbc:postgresql://localhost:5433/events_db&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+      <div><div>
+  
+
+  
+
+  <div class="step-row" data-parent="0.161.0.call">
+    <div class="step-container" id="0.161.0.call.0.10">
+      <div class="step-ref passed">10</div>
+      <div class="step-indent"></div>
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def dbEventsUser = karate.properties[&#39;dbEventsUser&#39;] || &#39;postgres&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+      <div><div>
+  
+
+  
+
+  <div class="step-row" data-parent="0.161.0.call">
+    <div class="step-container" id="0.161.0.call.0.11">
+      <div class="step-ref passed">11</div>
+      <div class="step-indent"></div>
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def dbEventsPass = karate.properties[&#39;dbEventsPass&#39;] || &#39;postgres&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+      <div><div>
+  
+
+  
+
+  <div class="step-row" data-parent="0.161.0.call">
+    <div class="step-container" id="0.161.0.call.0.13">
+      <div class="step-ref passed">13</div>
+      <div class="step-indent"></div>
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def JClass = Java.type(&#39;java.lang.Class&#39;)</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+      <div><div>
+  
+
+  
+
+  <div class="step-row" data-parent="0.161.0.call">
+    <div class="step-container" id="0.161.0.call.0.14">
+      <div class="step-ref passed">14</div>
+      <div class="step-indent"></div>
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def DriverManager = Java.type(&#39;java.sql.DriverManager&#39;)</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+      <div><div>
+  
+
+  
+
+  <div class="step-row" data-parent="0.161.0.call">
+    <div class="step-container" id="0.161.0.call.0.15">
+      <div class="step-ref passed">15</div>
+      <div class="step-indent"></div>
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>JClass.forName(&#39;org.postgresql.Driver&#39;)</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+      <div><div>
+  
+
+  
+
+  <div class="step-row" data-parent="0.161.0.call">
+    <div class="step-container" id="0.161.0.call.0.55">
+      <div class="step-ref passed">55</div>
+      <div class="step-indent"></div>
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def sql = &#39;SELECT quota, updated_at FROM tier WHERE id = ?::uuid&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+      <div><div>
+  
+
+  
+
+  <div class="step-row" data-parent="0.161.0.call">
+    <div class="step-container" id="0.161.0.call.0.56">
+      <div class="step-ref passed">56</div>
+      <div class="step-indent"></div>
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def conn = DriverManager.getConnection(dbEventsUrl, dbEventsUser, dbEventsPass)</span>
+      </div>
+    </div>
+    <div class="time-cell passed">16</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+      <div><div>
+  
+
+  
+
+  <div class="step-row" data-parent="0.161.0.call">
+    <div class="step-container" id="0.161.0.call.0.57">
+      <div class="step-ref passed">57</div>
+      <div class="step-indent"></div>
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def pstmt = conn.prepareStatement(sql)</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+      <div><div>
+  
+
+  
+
+  <div class="step-row" data-parent="0.161.0.call">
+    <div class="step-container" id="0.161.0.call.0.58">
+      <div class="step-ref passed">58</div>
+      <div class="step-indent"></div>
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>pstmt.setObject(1, tierId)</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+      <div><div>
+  
+
+  
+
+  <div class="step-row" data-parent="0.161.0.call">
+    <div class="step-container" id="0.161.0.call.0.59">
+      <div class="step-ref passed">59</div>
+      <div class="step-indent"></div>
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def rs = pstmt.executeQuery()</span>
+      </div>
+    </div>
+    <div class="time-cell passed">1</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+      <div><div>
+  
+
+  
+
+  <div class="step-row" data-parent="0.161.0.call">
+    <div class="step-container" id="0.161.0.call.0.61">
+      <div class="step-ref passed">61</div>
+      <div class="step-indent"></div>
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def found = rs.next()</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+      <div><div>
+  
+
+  
+
+  <div class="step-row" data-parent="0.161.0.call">
+    <div class="step-container" id="0.161.0.call.0.62">
+      <div class="step-ref passed">62</div>
+      <div class="step-indent"></div>
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>eval if (!found) karate.fail(&#39;Tier not found in database for id=&#39; + tierId)</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+      <div><div>
+  
+
+  
+
+  <div class="step-row" data-parent="0.161.0.call">
+    <div class="step-container" id="0.161.0.call.0.64">
+      <div class="step-ref passed">64</div>
+      <div class="step-indent"></div>
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def actualQuota = rs.getInt(&#39;quota&#39;)</span>
+      </div>
+    </div>
+    <div class="time-cell passed">2</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+      <div><div>
+  
+
+  
+
+  <div class="step-row" data-parent="0.161.0.call">
+    <div class="step-container" id="0.161.0.call.0.65">
+      <div class="step-ref passed">65</div>
+      <div class="step-indent"></div>
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def updatedAt = rs.getString(&#39;updated_at&#39;)</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+      <div><div>
+  
+
+  
+
+  <div class="step-row" data-parent="0.161.0.call">
+    <div class="step-container" id="0.161.0.call.0.67">
+      <div class="step-ref passed">67</div>
+      <div class="step-indent"></div>
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>rs.close()</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+      <div><div>
+  
+
+  
+
+  <div class="step-row" data-parent="0.161.0.call">
+    <div class="step-container" id="0.161.0.call.0.68">
+      <div class="step-ref passed">68</div>
+      <div class="step-indent"></div>
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>pstmt.close()</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+      <div><div>
+  
+
+  
+
+  <div class="step-row" data-parent="0.161.0.call">
+    <div class="step-container" id="0.161.0.call.0.69">
+      <div class="step-ref passed">69</div>
+      <div class="step-indent"></div>
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>conn.close()</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+      <div><div>
+  
+
+  
+
+  <div class="step-row" data-parent="0.161.0.call">
+    <div class="step-container" id="0.161.0.call.0.71">
+      <div class="step-ref passed">71</div>
+      <div class="step-indent"></div>
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>print &#39;SQL Result: tierId=&#39; + tierId + &#39;, quota=&#39; + actualQuota + &#39;, updated_at=&#39; + updatedAt</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+  <div class="preformatted" data-parent="0.161.0.call.0.71">22:51:53.577 [print] SQL Result: tierId=1f71b49f-d4db-45a7-a72c-3b82b4259630, quota=40, updated_at=2026-04-08 03:51:35.542644 
+</div>   
+
+  
+
+</div>
+</div>
+      <div><div>
+  
+
+  
+
+  <div class="step-row" data-parent="0.161.0.call">
+    <div class="step-container" id="0.161.0.call.0.72">
+      <div class="step-ref passed">72</div>
+      <div class="step-indent"></div>
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>eval if (actualQuota != expectedQuota) karate.fail(&#39;Expected quota &#39; + expectedQuota + &#39; but found &#39; + actualQuota)</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+      <div><div>
+  
+
+  
+
+  <div class="step-row" data-parent="0.161.0.call">
+    <div class="step-container" id="0.161.0.call.0.74">
+      <div class="step-ref passed">74</div>
+      <div class="step-indent"></div>
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def response = { actualQuota: actualQuota, updatedAt: updatedAt, passed: true }</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+    </div>    
+  </div>
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.162">
+      <div class="step-ref passed">162</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>print &#39;[SQL-2] Tier quota validation passed. Quota:&#39;, tierQuotaResult.actualQuota</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+  <div class="preformatted" data-parent="0.162">22:51:53.577 [print] [SQL-2] Tier quota validation passed. Quota: 40 
+</div>   
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  <div class="step-row">
+    <div class="step-container">
+      <div class="step-ref passed"></div>
+      
+      <div class="step-cell comment"># ========================================</div>
+    </div>
+    <div class="time-cell comment"></div>            
+  </div>
+
+  <div class="step-row">
+    <div class="step-container">
+      <div class="step-ref passed"></div>
+      
+      <div class="step-cell comment"># PATH B PHASE 6: HTTP verification - Buyer 2 creates reservation</div>
+    </div>
+    <div class="time-cell comment"></div>            
+  </div>
+
+  <div class="step-row">
+    <div class="step-container">
+      <div class="step-ref passed"></div>
+      
+      <div class="step-cell comment"># ========================================</div>
+    </div>
+    <div class="time-cell comment"></div>            
+  </div>
+
+  <div class="step-row">
+    <div class="step-container" id="0.168">
+      <div class="step-ref passed">168</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>print &#39;[PATH B-4] Attempting Buyer 2 reservation (final HTTP verification)...&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+  <div class="preformatted" data-parent="0.168">22:51:53.578 [print] [PATH B-4] Attempting Buyer 2 reservation (final HTTP verification)... 
+</div>   
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.170">
+      <div class="step-ref passed">170</div>
+      
+      <div class="step-cell passed">
+        <span>Given</span>&nbsp;<span>url baseUrlTicketing + &#39;/api/v1/reservations&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.171">
+      <div class="step-ref passed">171</div>
+      
+      <div class="step-cell passed">
+        <span>And</span>&nbsp;<span>header X-User-Id = buyer2Id</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.172">
+      <div class="step-ref passed">172</div>
+      
+      <div class="step-cell passed">
+        <span>And</span>&nbsp;<span>request</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  <div class="preformatted" data-parent="0.172">{
+  &quot;eventId&quot;: &quot;#(eventId)&quot;,
+  &quot;tierId&quot;: &quot;#(tierId)&quot;,
+  &quot;buyerEmail&quot;: &quot;#(buyer2Email)&quot;
+}</div>
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.180">
+      <div class="step-ref passed">180</div>
+      
+      <div class="step-cell passed">
+        <span>When</span>&nbsp;<span>method post</span>
+      </div>
+    </div>
+    <div class="time-cell passed">42</div>
+  </div>
+
+   
+  
+  
+
+  
+
+  <div class="preformatted" data-parent="0.180">22:51:53.579 request:
+7 &gt; POST http://localhost:8082/api/v1/reservations
+7 &gt; X-User-Id: 36f0abaa-0077-4c92-950b-c76150a90e39
+7 &gt; Content-Type: application/json; charset=UTF-8
+7 &gt; Content-Length: 150
+7 &gt; Host: localhost:8082
+7 &gt; Connection: Keep-Alive
+7 &gt; User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.17)
+7 &gt; Accept-Encoding: gzip,deflate
+{&quot;eventId&quot;:&quot;fd6335c5-9850-4ff0-b208-25c7ad3ae626&quot;,&quot;tierId&quot;:&quot;1f71b49f-d4db-45a7-a72c-3b82b4259630&quot;,&quot;buyerEmail&quot;:&quot;buyer2-1775620238155@karate-test.com&quot;}
+
+22:51:53.619 response time in milliseconds: 40
+7 &lt; 201
+7 &lt; Content-Type: application/json
+7 &lt; Transfer-Encoding: chunked
+7 &lt; Date: Wed, 08 Apr 2026 03:51:53 GMT
+7 &lt; Keep-Alive: timeout=60
+7 &lt; Connection: keep-alive
+{&quot;id&quot;:&quot;c8a83e98-4bab-4105-b0a2-09b618267e1b&quot;,&quot;eventId&quot;:&quot;fd6335c5-9850-4ff0-b208-25c7ad3ae626&quot;,&quot;tierId&quot;:&quot;1f71b49f-d4db-45a7-a72c-3b82b4259630&quot;,&quot;buyerId&quot;:&quot;36f0abaa-0077-4c92-950b-c76150a90e39&quot;,&quot;status&quot;:&quot;PENDING&quot;,&quot;createdAt&quot;:&quot;2026-04-08T03:51:53.611134302&quot;,&quot;updatedAt&quot;:&quot;2026-04-08T03:51:53.611134302&quot;,&quot;validUntilAt&quot;:&quot;2026-04-08T04:01:53.611134302&quot;}
+
+</div>   
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.181">
+      <div class="step-ref passed">181</div>
+      
+      <div class="step-cell passed">
+        <span>Then</span>&nbsp;<span>status 201</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.182">
+      <div class="step-ref passed">182</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def reservation2Id = response.id</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.183">
+      <div class="step-ref passed">183</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>match response.status == &#39;PENDING&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.184">
+      <div class="step-ref passed">184</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>match response.buyerId == buyer2Id</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.185">
+      <div class="step-ref passed">185</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>eval if (reservation2Id == reservation1Id) karate.fail(&#39;Buyer 2 must have different reservation ID than Buyer 1&#39;)</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.186">
+      <div class="step-ref passed">186</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>print &#39;[PATH B-4] Buyer 2 reservation created successfully (CONFIRMS RELEASE):&#39;, reservation2Id</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+  <div class="preformatted" data-parent="0.186">22:51:53.621 [print] [PATH B-4] Buyer 2 reservation created successfully (CONFIRMS RELEASE): c8a83e98-4bab-4105-b0a2-09b618267e1b 
+</div>   
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  <div class="step-row">
+    <div class="step-container">
+      <div class="step-ref passed"></div>
+      
+      <div class="step-cell comment"># ========================================</div>
+    </div>
+    <div class="time-cell comment"></div>            
+  </div>
+
+  <div class="step-row">
+    <div class="step-container">
+      <div class="step-ref passed"></div>
+      
+      <div class="step-cell comment"># FINAL SUMMARY</div>
+    </div>
+    <div class="time-cell comment"></div>            
+  </div>
+
+  <div class="step-row">
+    <div class="step-container">
+      <div class="step-ref passed"></div>
+      
+      <div class="step-cell comment"># ========================================</div>
+    </div>
+    <div class="time-cell comment"></div>            
+  </div>
+
+  <div class="step-row">
+    <div class="step-container" id="0.192">
+      <div class="step-ref passed">192</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>print &#39;&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+  <div class="preformatted" data-parent="0.192">22:51:53.621 [print]  
+</div>   
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.193">
+      <div class="step-ref passed">193</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>print &#39;==========================================&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+  <div class="preformatted" data-parent="0.193">22:51:53.621 [print] ========================================== 
+</div>   
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.194">
+      <div class="step-ref passed">194</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>print &#39;PATH B VALIDATION COMPLETE&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+  <div class="preformatted" data-parent="0.194">22:51:53.621 [print] PATH B VALIDATION COMPLETE 
+</div>   
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.195">
+      <div class="step-ref passed">195</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>print &#39;==========================================&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+  <div class="preformatted" data-parent="0.195">22:51:53.621 [print] ========================================== 
+</div>   
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.196">
+      <div class="step-ref passed">196</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>print &#39;Buyer 1: Reservation&#39;, reservation1Id</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+  <div class="preformatted" data-parent="0.196">22:51:53.622 [print] Buyer 1: Reservation 2c2cbf10-e9ef-46ec-bccd-cf1a1ad387c3 
+</div>   
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.197">
+      <div class="step-ref passed">197</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>print &#39;  - Created: PENDING&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+  <div class="preformatted" data-parent="0.197">22:51:53.622 [print]   - Created: PENDING 
+</div>   
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.198">
+      <div class="step-ref passed">198</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>print &#39;  - Payment: DECLINED (HTTP 400, PAYMENT_FAILED)&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+  <div class="preformatted" data-parent="0.198">22:51:53.622 [print]   - Payment: DECLINED (HTTP 400, PAYMENT_FAILED) 
+</div>   
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.199">
+      <div class="step-ref passed">199</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>print &#39;  - Status after release: EXPIRED (SQL validated)&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+  <div class="preformatted" data-parent="0.199">22:51:53.622 [print]   - Status after release: EXPIRED (SQL validated) 
+</div>   
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.200">
+      <div class="step-ref passed">200</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>print &#39;&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+  <div class="preformatted" data-parent="0.200">22:51:53.622 [print]  
+</div>   
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.201">
+      <div class="step-ref passed">201</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>print &#39;Tier #&#39; + tierId</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+  <div class="preformatted" data-parent="0.201">22:51:53.622 [print] Tier #1f71b49f-d4db-45a7-a72c-3b82b4259630 
+</div>   
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.202">
+      <div class="step-ref passed">202</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>print &#39;  - Original quota: 40&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+  <div class="preformatted" data-parent="0.202">22:51:53.622 [print]   - Original quota: 40 
+</div>   
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.203">
+      <div class="step-ref passed">203</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>print &#39;  - After release: 40 (SQL validated)&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+  <div class="preformatted" data-parent="0.203">22:51:53.623 [print]   - After release: 40 (SQL validated) 
+</div>   
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.204">
+      <div class="step-ref passed">204</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>print &#39;&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+  <div class="preformatted" data-parent="0.204">22:51:53.623 [print]  
+</div>   
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.205">
+      <div class="step-ref passed">205</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>print &#39;Buyer 2: Reservation&#39;, reservation2Id</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+  <div class="preformatted" data-parent="0.205">22:51:53.623 [print] Buyer 2: Reservation c8a83e98-4bab-4105-b0a2-09b618267e1b 
+</div>   
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.206">
+      <div class="step-ref passed">206</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>print &#39;  - Created: PENDING (proves inventory was released)&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+  <div class="preformatted" data-parent="0.206">22:51:53.623 [print]   - Created: PENDING (proves inventory was released) 
+</div>   
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.207">
+      <div class="step-ref passed">207</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>print &#39;&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+  <div class="preformatted" data-parent="0.207">22:51:53.623 [print]  
+</div>   
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.208">
+      <div class="step-ref passed">208</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>print &#39;CONCLUSION: Automatic release mechanism working correctly&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+  <div class="preformatted" data-parent="0.208">22:51:53.623 [print] CONCLUSION: Automatic release mechanism working correctly 
+</div>   
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.209">
+      <div class="step-ref passed">209</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>print &#39;==========================================&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+  <div class="preformatted" data-parent="0.209">22:51:53.623 [print] ========================================== 
+</div>   
+
+  
+
+</div>
+</div>
+        </div>
+        <div class="scenario">
+          <div class="scenario-heading" id="[2:211]">
+            <div class="heading-container">
+              <div class="scenario-tags">
+                
+              </div>
+              <div class="scenario-keyword">
+                Scenario: <span>[2:211]</span>
+                <span class="scenario-name">Scenario 2 - Early Bird Tier Expiration via Time Travel (TC-006 / TC-011)</span>
+                <span></span>
+              </div>
+            </div>
+            <div class="scenario-time passed">
+              <span>ms:</span>&nbsp;<span>81</span>
+            </div>
+          </div>
+          <div class="step-row">
+            <div class="step-container" id="[2:211]bg">
+              <div class="step-ref bg-step">&gt;&gt;</div>
+              <div class="step-cell passed">Background:</div>
+            </div>
+            <div class="time-cell passed"></div>
+          </div>
+          <div data-parent="[2:211]bg"><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.7">
+      <div class="step-ref bg-step">7</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def baseUrlEvents = karate.properties[&#39;baseUrlEvents&#39;] || &#39;http://localhost:8081&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+  <div class="preformatted" data-parent="0.7">22:51:53.625 karate.env system property was: null 
+</div>   
+
+  
+
+</div>
+</div>
+          <div data-parent="[2:211]bg"><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.8">
+      <div class="step-ref bg-step">8</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def baseUrlTicketing = karate.properties[&#39;baseUrlTicketing&#39;] || &#39;http://localhost:8082&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div data-parent="[2:211]bg"><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.9">
+      <div class="step-ref bg-step">9</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def UUID = Java.type(&#39;java.util.UUID&#39;)</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div data-parent="[2:211]bg"><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.10">
+      <div class="step-ref bg-step">10</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def buyer1Id = UUID.randomUUID() + &#39;&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div data-parent="[2:211]bg"><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.11">
+      <div class="step-ref bg-step">11</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def buyer2Id = UUID.randomUUID() + &#39;&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div data-parent="[2:211]bg"><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.12">
+      <div class="step-ref bg-step">12</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def buyer1Email = &#39;buyer1-&#39; + java.lang.System.currentTimeMillis() + &#39;@karate-test.com&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div data-parent="[2:211]bg"><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.13">
+      <div class="step-ref bg-step">13</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def buyer2Email = &#39;buyer2-&#39; + java.lang.System.currentTimeMillis() + &#39;@karate-test.com&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div data-parent="[2:211]bg"><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.14">
+      <div class="step-ref bg-step">14</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def eventTitle = &#39;Karate Release Event &#39; + java.lang.System.currentTimeMillis()</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div data-parent="[2:211]bg"><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.15">
+      <div class="step-ref bg-step">15</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def futureDate = &#39;2026-12-15T20:00:00&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div data-parent="[2:211]bg"><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.16">
+      <div class="step-ref bg-step">16</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def adminUserId = &#39;00000000-0000-0000-0000-000000000001&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  <div class="step-row">
+    <div class="step-container">
+      <div class="step-ref passed"></div>
+      
+      <div class="step-cell comment"># Setup: Create Room</div>
+    </div>
+    <div class="time-cell comment"></div>            
+  </div>
+
+  <div class="step-row">
+    <div class="step-container" id="0.214">
+      <div class="step-ref passed">214</div>
+      
+      <div class="step-cell passed">
+        <span>Given</span>&nbsp;<span>url baseUrlEvents + &#39;/api/v1/rooms&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.215">
+      <div class="step-ref passed">215</div>
+      
+      <div class="step-cell passed">
+        <span>And</span>&nbsp;<span>header X-Role = &#39;ADMIN&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.216">
+      <div class="step-ref passed">216</div>
+      
+      <div class="step-cell passed">
+        <span>And</span>&nbsp;<span>header X-User-Id = &#39;00000000-0000-0000-0000-000000000001&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.217">
+      <div class="step-ref passed">217</div>
+      
+      <div class="step-cell passed">
+        <span>And</span>&nbsp;<span>request</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  <div class="preformatted" data-parent="0.217">{
+  &quot;name&quot;: &quot;EB Expiration Room&quot;,
+  &quot;maxCapacity&quot;: 100
+}</div>
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.224">
+      <div class="step-ref passed">224</div>
+      
+      <div class="step-cell passed">
+        <span>When</span>&nbsp;<span>method post</span>
+      </div>
+    </div>
+    <div class="time-cell passed">10</div>
+  </div>
+
+   
+  
+  
+
+  
+
+  <div class="preformatted" data-parent="0.224">22:51:53.628 request:
+1 &gt; POST http://localhost:8081/api/v1/rooms
+1 &gt; X-Role: ADMIN
+1 &gt; X-User-Id: 00000000-0000-0000-0000-000000000001
+1 &gt; Content-Type: application/json; charset=UTF-8
+1 &gt; Content-Length: 47
+1 &gt; Host: localhost:8081
+1 &gt; Connection: Keep-Alive
+1 &gt; User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.17)
+1 &gt; Accept-Encoding: gzip,deflate
+{&quot;name&quot;:&quot;EB Expiration Room&quot;,&quot;maxCapacity&quot;:100}
+
+22:51:53.638 response time in milliseconds: 10
+1 &lt; 201
+1 &lt; Content-Type: application/json
+1 &lt; Transfer-Encoding: chunked
+1 &lt; Date: Wed, 08 Apr 2026 03:51:53 GMT
+1 &lt; Keep-Alive: timeout=60
+1 &lt; Connection: keep-alive
+{&quot;id&quot;:&quot;5765d445-ed24-495a-bee5-681b1af59855&quot;,&quot;name&quot;:&quot;EB Expiration Room&quot;,&quot;maxCapacity&quot;:100,&quot;created_at&quot;:&quot;2026-04-08T03:51:53.630992967&quot;,&quot;updated_at&quot;:&quot;2026-04-08T03:51:53.631010252&quot;}
+
+</div>   
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.225">
+      <div class="step-ref passed">225</div>
+      
+      <div class="step-cell passed">
+        <span>Then</span>&nbsp;<span>status 201</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.226">
+      <div class="step-ref passed">226</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def roomId = response.id ? response.id : response.roomId</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  <div class="step-row">
+    <div class="step-container">
+      <div class="step-ref passed"></div>
+      
+      <div class="step-cell comment"># Setup: Create Event</div>
+    </div>
+    <div class="time-cell comment"></div>            
+  </div>
+
+  <div class="step-row">
+    <div class="step-container" id="0.229">
+      <div class="step-ref passed">229</div>
+      
+      <div class="step-cell passed">
+        <span>Given</span>&nbsp;<span>url baseUrlEvents + &#39;/api/v1/events&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.230">
+      <div class="step-ref passed">230</div>
+      
+      <div class="step-cell passed">
+        <span>And</span>&nbsp;<span>header X-Role = &#39;ADMIN&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.231">
+      <div class="step-ref passed">231</div>
+      
+      <div class="step-cell passed">
+        <span>And</span>&nbsp;<span>header X-User-Id = &#39;00000000-0000-0000-0000-000000000001&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.232">
+      <div class="step-ref passed">232</div>
+      
+      <div class="step-cell passed">
+        <span>And</span>&nbsp;<span>request</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  <div class="preformatted" data-parent="0.232">{
+  &quot;roomId&quot;: &quot;#(roomId)&quot;,
+  &quot;title&quot;: &quot;#(eventTitle + &#39; EB&#39;)&quot;,
+  &quot;description&quot;: &quot;Test event for EB expiration&quot;,
+  &quot;date&quot;: &quot;#(futureDate)&quot;,
+  &quot;capacity&quot;: 50,
+  &quot;enableSeats&quot;: false
+}</div>
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.243">
+      <div class="step-ref passed">243</div>
+      
+      <div class="step-cell passed">
+        <span>When</span>&nbsp;<span>method post</span>
+      </div>
+    </div>
+    <div class="time-cell passed">15</div>
+  </div>
+
+   
+  
+  
+
+  
+
+  <div class="preformatted" data-parent="0.243">22:51:53.639 request:
+2 &gt; POST http://localhost:8081/api/v1/events
+2 &gt; X-Role: ADMIN
+2 &gt; X-User-Id: 00000000-0000-0000-0000-000000000001
+2 &gt; Content-Type: application/json; charset=UTF-8
+2 &gt; Content-Length: 205
+2 &gt; Host: localhost:8081
+2 &gt; Connection: Keep-Alive
+2 &gt; User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.17)
+2 &gt; Accept-Encoding: gzip,deflate
+{&quot;roomId&quot;:&quot;5765d445-ed24-495a-bee5-681b1af59855&quot;,&quot;title&quot;:&quot;Karate Release Event 1775620313627 EB&quot;,&quot;description&quot;:&quot;Test event for EB expiration&quot;,&quot;date&quot;:&quot;2026-12-15T20:00:00&quot;,&quot;capacity&quot;:50,&quot;enableSeats&quot;:false}
+
+22:51:53.653 response time in milliseconds: 14
+2 &lt; 201
+2 &lt; Content-Type: application/json
+2 &lt; Transfer-Encoding: chunked
+2 &lt; Date: Wed, 08 Apr 2026 03:51:53 GMT
+2 &lt; Keep-Alive: timeout=60
+2 &lt; Connection: keep-alive
+{&quot;id&quot;:&quot;478b50b1-b88f-4f83-8b06-91d0da99dca5&quot;,&quot;roomId&quot;:&quot;5765d445-ed24-495a-bee5-681b1af59855&quot;,&quot;title&quot;:&quot;Karate Release Event 1775620313627 EB&quot;,&quot;description&quot;:&quot;Test event for EB expiration&quot;,&quot;date&quot;:&quot;2026-12-15T20:00:00&quot;,&quot;capacity&quot;:50,&quot;status&quot;:&quot;DRAFT&quot;,&quot;createdAt&quot;:&quot;2026-04-08T03:51:53.645615523&quot;,&quot;updatedAt&quot;:&quot;2026-04-08T03:51:53.645626366&quot;,&quot;createdBy&quot;:&quot;00000000-0000-0000-0000-000000000001&quot;,&quot;imageUrl&quot;:null,&quot;subtitle&quot;:null,&quot;location&quot;:null,&quot;director&quot;:null,&quot;castMembers&quot;:null,&quot;duration&quot;:null,&quot;tag&quot;:null,&quot;isLimited&quot;:false,&quot;isFeatured&quot;:false,&quot;enableSeats&quot;:false,&quot;author&quot;:null}
+
+</div>   
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.244">
+      <div class="step-ref passed">244</div>
+      
+      <div class="step-cell passed">
+        <span>Then</span>&nbsp;<span>status 201</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.245">
+      <div class="step-ref passed">245</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def eventId = response.id ? response.id : response.eventId</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  <div class="step-row">
+    <div class="step-container">
+      <div class="step-ref passed"></div>
+      
+      <div class="step-cell comment"># Setup: Configure EB Tier</div>
+    </div>
+    <div class="time-cell comment"></div>            
+  </div>
+
+  <div class="step-row">
+    <div class="step-container" id="0.248">
+      <div class="step-ref passed">248</div>
+      
+      <div class="step-cell passed">
+        <span>Given</span>&nbsp;<span>url baseUrlEvents + &#39;/api/v1/events/&#39; + eventId + &#39;/tiers&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.249">
+      <div class="step-ref passed">249</div>
+      
+      <div class="step-cell passed">
+        <span>And</span>&nbsp;<span>header X-Role = &#39;ADMIN&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.250">
+      <div class="step-ref passed">250</div>
+      
+      <div class="step-cell passed">
+        <span>And</span>&nbsp;<span>header X-User-Id = &#39;00000000-0000-0000-0000-000000000001&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.251">
+      <div class="step-ref passed">251</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def validFrom = java.time.LocalDateTime.now(java.time.ZoneOffset.UTC).plusDays(1).toString()</span>
+      </div>
+    </div>
+    <div class="time-cell passed">4</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.252">
+      <div class="step-ref passed">252</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def validUntil = java.time.LocalDateTime.now(java.time.ZoneOffset.UTC).plusDays(5).toString()</span>
+      </div>
+    </div>
+    <div class="time-cell passed">1</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.253">
+      <div class="step-ref passed">253</div>
+      
+      <div class="step-cell passed">
+        <span>And</span>&nbsp;<span>request</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  <div class="preformatted" data-parent="0.253">[
+  {
+    &quot;tierType&quot;: &quot;EARLY_BIRD&quot;,
+    &quot;price&quot;: 100,
+    &quot;quota&quot;: 40,
+    &quot;validFrom&quot;: &quot;#(validFrom)&quot;,
+    &quot;validUntil&quot;: &quot;#(validUntil)&quot;
+  }
+]</div>
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.265">
+      <div class="step-ref passed">265</div>
+      
+      <div class="step-cell passed">
+        <span>When</span>&nbsp;<span>method post</span>
+      </div>
+    </div>
+    <div class="time-cell passed">13</div>
+  </div>
+
+   
+  
+  
+
+  
+
+  <div class="preformatted" data-parent="0.265">22:51:53.660 request:
+3 &gt; POST http://localhost:8081/api/v1/events/478b50b1-b88f-4f83-8b06-91d0da99dca5/tiers
+3 &gt; X-Role: ADMIN
+3 &gt; X-User-Id: 00000000-0000-0000-0000-000000000001
+3 &gt; Content-Type: application/json; charset=UTF-8
+3 &gt; Content-Length: 139
+3 &gt; Host: localhost:8081
+3 &gt; Connection: Keep-Alive
+3 &gt; User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.17)
+3 &gt; Accept-Encoding: gzip,deflate
+[{&quot;tierType&quot;:&quot;EARLY_BIRD&quot;,&quot;price&quot;:100,&quot;quota&quot;:40,&quot;validFrom&quot;:&quot;2026-04-09T03:51:53.657846044&quot;,&quot;validUntil&quot;:&quot;2026-04-13T03:51:53.659419041&quot;}]
+
+22:51:53.672 response time in milliseconds: 12
+3 &lt; 201
+3 &lt; Content-Type: application/json
+3 &lt; Transfer-Encoding: chunked
+3 &lt; Date: Wed, 08 Apr 2026 03:51:53 GMT
+3 &lt; Keep-Alive: timeout=60
+3 &lt; Connection: keep-alive
+{&quot;eventId&quot;:&quot;478b50b1-b88f-4f83-8b06-91d0da99dca5&quot;,&quot;tiers&quot;:[{&quot;id&quot;:&quot;cb0ef955-e667-496e-9746-635617d01b79&quot;,&quot;tierType&quot;:&quot;EARLY_BIRD&quot;,&quot;price&quot;:100,&quot;quota&quot;:40,&quot;validFrom&quot;:&quot;2026-04-09T03:51:53.657846044&quot;,&quot;validUntil&quot;:&quot;2026-04-13T03:51:53.659419041&quot;,&quot;createdAt&quot;:&quot;2026-04-08T03:51:53.666459915&quot;,&quot;updatedAt&quot;:&quot;2026-04-08T03:51:53.66646654&quot;}]}
+
+</div>   
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.266">
+      <div class="step-ref passed">266</div>
+      
+      <div class="step-cell passed">
+        <span>Then</span>&nbsp;<span>status 201</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.267">
+      <div class="step-ref passed">267</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def tierBlock = response.tiers ? response.tiers[0] : response[0]</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.268">
+      <div class="step-ref passed">268</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def tierId = tierBlock.id ? tierBlock.id : tierBlock.tierId</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  <div class="step-row">
+    <div class="step-container">
+      <div class="step-ref passed"></div>
+      
+      <div class="step-cell comment"># Setup: Publish Event</div>
+    </div>
+    <div class="time-cell comment"></div>            
+  </div>
+
+  <div class="step-row">
+    <div class="step-container" id="0.271">
+      <div class="step-ref passed">271</div>
+      
+      <div class="step-cell passed">
+        <span>Given</span>&nbsp;<span>url baseUrlEvents + &#39;/api/v1/events/&#39; + eventId + &#39;/publish&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.272">
+      <div class="step-ref passed">272</div>
+      
+      <div class="step-cell passed">
+        <span>And</span>&nbsp;<span>header X-Role = &#39;ADMIN&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.273">
+      <div class="step-ref passed">273</div>
+      
+      <div class="step-cell passed">
+        <span>And</span>&nbsp;<span>header X-User-Id = &#39;00000000-0000-0000-0000-000000000001&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.274">
+      <div class="step-ref passed">274</div>
+      
+      <div class="step-cell passed">
+        <span>When</span>&nbsp;<span>method patch</span>
+      </div>
+    </div>
+    <div class="time-cell passed">13</div>
+  </div>
+
+   
+  
+  
+
+  
+
+  <div class="preformatted" data-parent="0.274">22:51:53.674 request:
+4 &gt; PATCH http://localhost:8081/api/v1/events/478b50b1-b88f-4f83-8b06-91d0da99dca5/publish
+4 &gt; X-Role: ADMIN
+4 &gt; X-User-Id: 00000000-0000-0000-0000-000000000001
+4 &gt; Host: localhost:8081
+4 &gt; Connection: Keep-Alive
+4 &gt; User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.17)
+4 &gt; Accept-Encoding: gzip,deflate
+
+
+22:51:53.686 response time in milliseconds: 12
+4 &lt; 200
+4 &lt; Content-Type: application/json
+4 &lt; Transfer-Encoding: chunked
+4 &lt; Date: Wed, 08 Apr 2026 03:51:53 GMT
+4 &lt; Keep-Alive: timeout=60
+4 &lt; Connection: keep-alive
+{&quot;id&quot;:&quot;478b50b1-b88f-4f83-8b06-91d0da99dca5&quot;,&quot;roomId&quot;:&quot;5765d445-ed24-495a-bee5-681b1af59855&quot;,&quot;title&quot;:&quot;Karate Release Event 1775620313627 EB&quot;,&quot;description&quot;:&quot;Test event for EB expiration&quot;,&quot;date&quot;:&quot;2026-12-15T20:00:00&quot;,&quot;capacity&quot;:50,&quot;status&quot;:&quot;PUBLISHED&quot;,&quot;createdAt&quot;:&quot;2026-04-08T03:51:53.645616&quot;,&quot;updatedAt&quot;:&quot;2026-04-08T03:51:53.679123379&quot;,&quot;createdBy&quot;:&quot;00000000-0000-0000-0000-000000000001&quot;,&quot;imageUrl&quot;:null,&quot;subtitle&quot;:null,&quot;location&quot;:null,&quot;director&quot;:null,&quot;castMembers&quot;:null,&quot;duration&quot;:null,&quot;tag&quot;:null,&quot;isLimited&quot;:false,&quot;isFeatured&quot;:false,&quot;enableSeats&quot;:false,&quot;author&quot;:null}
+
+</div>   
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.275">
+      <div class="step-ref passed">275</div>
+      
+      <div class="step-cell passed">
+        <span>Then</span>&nbsp;<span>status 200</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  <div class="step-row">
+    <div class="step-container">
+      <div class="step-ref passed"></div>
+      
+      <div class="step-cell comment"># Act: Force Tier Expiration via Testability Time Travel (advance clock by 6 days = 8640 minutes)</div>
+    </div>
+    <div class="time-cell comment"></div>            
+  </div>
+
+  <div class="step-row">
+    <div class="step-container" id="0.278">
+      <div class="step-ref passed">278</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>print &#39;Forcing EB Tier Expiration smoothly using Testability Time Travel...&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">1</div>
+  </div>
+
+   
+  
+  
+
+  
+
+  <div class="preformatted" data-parent="0.278">22:51:53.687 [print] Forcing EB Tier Expiration smoothly using Testability Time Travel... 
+</div>   
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.279">
+      <div class="step-ref passed">279</div>
+      
+      <div class="step-cell passed">
+        <span>Given</span>&nbsp;<span>url baseUrlEvents + &#39;/api/v1/testability/clock/advance&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.280">
+      <div class="step-ref passed">280</div>
+      
+      <div class="step-cell passed">
+        <span>And</span>&nbsp;<span>param minutes = 8640</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.281">
+      <div class="step-ref passed">281</div>
+      
+      <div class="step-cell passed">
+        <span>When</span>&nbsp;<span>method post</span>
+      </div>
+    </div>
+    <div class="time-cell passed">6</div>
+  </div>
+
+   
+  
+  
+
+  
+
+  <div class="preformatted" data-parent="0.281">22:51:53.688 request:
+5 &gt; POST http://localhost:8081/api/v1/testability/clock/advance?minutes=8640
+5 &gt; Host: localhost:8081
+5 &gt; Connection: Keep-Alive
+5 &gt; User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.17)
+5 &gt; Accept-Encoding: gzip,deflate
+
+
+22:51:53.693 response time in milliseconds: 4
+5 &lt; 200
+5 &lt; Content-Type: application/json
+5 &lt; Transfer-Encoding: chunked
+5 &lt; Date: Wed, 08 Apr 2026 03:51:53 GMT
+5 &lt; Keep-Alive: timeout=60
+5 &lt; Connection: keep-alive
+{&quot;current_time&quot;:&quot;2026-04-14T03:51:53.691621778&quot;,&quot;status&quot;:&quot;advanced&quot;}
+
+</div>   
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.282">
+      <div class="step-ref passed">282</div>
+      
+      <div class="step-cell passed">
+        <span>Then</span>&nbsp;<span>status 200</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  <div class="step-row">
+    <div class="step-container">
+      <div class="step-ref passed"></div>
+      
+      <div class="step-cell comment"># Check: Verify isAvailable is false</div>
+    </div>
+    <div class="time-cell comment"></div>            
+  </div>
+
+  <div class="step-row">
+    <div class="step-container" id="0.285">
+      <div class="step-ref passed">285</div>
+      
+      <div class="step-cell passed">
+        <span>Given</span>&nbsp;<span>url baseUrlEvents + &#39;/api/v1/events/&#39; + eventId</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.286">
+      <div class="step-ref passed">286</div>
+      
+      <div class="step-cell passed">
+        <span>When</span>&nbsp;<span>method get</span>
+      </div>
+    </div>
+    <div class="time-cell passed">8</div>
+  </div>
+
+   
+  
+  
+
+  
+
+  <div class="preformatted" data-parent="0.286">22:51:53.694 request:
+6 &gt; GET http://localhost:8081/api/v1/events/478b50b1-b88f-4f83-8b06-91d0da99dca5
+6 &gt; Host: localhost:8081
+6 &gt; Connection: Keep-Alive
+6 &gt; User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.17)
+6 &gt; Accept-Encoding: gzip,deflate
+
+
+22:51:53.701 response time in milliseconds: 7
+6 &lt; 200
+6 &lt; Content-Type: application/json
+6 &lt; Transfer-Encoding: chunked
+6 &lt; Date: Wed, 08 Apr 2026 03:51:53 GMT
+6 &lt; Keep-Alive: timeout=60
+6 &lt; Connection: keep-alive
+{&quot;id&quot;:&quot;478b50b1-b88f-4f83-8b06-91d0da99dca5&quot;,&quot;title&quot;:&quot;Karate Release Event 1775620313627 EB&quot;,&quot;description&quot;:&quot;Test event for EB expiration&quot;,&quot;date&quot;:&quot;2026-12-15T20:00:00&quot;,&quot;capacity&quot;:50,&quot;room&quot;:{&quot;id&quot;:&quot;5765d445-ed24-495a-bee5-681b1af59855&quot;,&quot;name&quot;:&quot;EB Expiration Room&quot;,&quot;maxCapacity&quot;:100,&quot;created_at&quot;:&quot;2026-04-08T03:51:53.630993&quot;,&quot;updated_at&quot;:&quot;2026-04-08T03:51:53.63101&quot;},&quot;availableTiers&quot;:[{&quot;id&quot;:&quot;cb0ef955-e667-496e-9746-635617d01b79&quot;,&quot;tierType&quot;:&quot;EARLY_BIRD&quot;,&quot;price&quot;:100.00,&quot;quota&quot;:40,&quot;validFrom&quot;:&quot;2026-04-09T03:51:53.657846&quot;,&quot;validUntil&quot;:&quot;2026-04-13T03:51:53.659419&quot;,&quot;isAvailable&quot;:false,&quot;reason&quot;:&quot;EXPIRED&quot;}],&quot;created_at&quot;:&quot;2026-04-08T03:51:53.645616&quot;,&quot;imageUrl&quot;:null,&quot;subtitle&quot;:null,&quot;location&quot;:null,&quot;director&quot;:null,&quot;castMembers&quot;:null,&quot;duration&quot;:null,&quot;tag&quot;:null,&quot;isLimited&quot;:false,&quot;isFeatured&quot;:false,&quot;enableSeats&quot;:false,&quot;author&quot;:null}
+
+</div>   
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.287">
+      <div class="step-ref passed">287</div>
+      
+      <div class="step-cell passed">
+        <span>Then</span>&nbsp;<span>status 200</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.288">
+      <div class="step-ref passed">288</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def ebTier = response.availableTiers[0]</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.289">
+      <div class="step-ref passed">289</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>match ebTier.isAvailable == false</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.290">
+      <div class="step-ref passed">290</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>match ebTier.reason == &#39;EXPIRED&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  <div class="step-row">
+    <div class="step-container">
+      <div class="step-ref passed"></div>
+      
+      <div class="step-cell comment"># Cleanup: Reset SystemClock</div>
+    </div>
+    <div class="time-cell comment"></div>            
+  </div>
+
+  <div class="step-row">
+    <div class="step-container" id="0.293">
+      <div class="step-ref passed">293</div>
+      
+      <div class="step-cell passed">
+        <span>Given</span>&nbsp;<span>url baseUrlEvents + &#39;/api/v1/testability/clock/reset&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.294">
+      <div class="step-ref passed">294</div>
+      
+      <div class="step-cell passed">
+        <span>When</span>&nbsp;<span>method post</span>
+      </div>
+    </div>
+    <div class="time-cell passed">4</div>
+  </div>
+
+   
+  
+  
+
+  
+
+  <div class="preformatted" data-parent="0.294">22:51:53.703 request:
+7 &gt; POST http://localhost:8081/api/v1/testability/clock/reset
+7 &gt; Host: localhost:8081
+7 &gt; Connection: Keep-Alive
+7 &gt; User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.17)
+7 &gt; Accept-Encoding: gzip,deflate
+
+
+22:51:53.706 response time in milliseconds: 3
+7 &lt; 200
+7 &lt; Content-Type: application/json
+7 &lt; Transfer-Encoding: chunked
+7 &lt; Date: Wed, 08 Apr 2026 03:51:53 GMT
+7 &lt; Keep-Alive: timeout=60
+7 &lt; Connection: keep-alive
+{&quot;current_time&quot;:&quot;2026-04-08T03:51:53.705396573&quot;,&quot;status&quot;:&quot;reset&quot;}
+
+</div>   
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.295">
+      <div class="step-ref passed">295</div>
+      
+      <div class="step-cell passed">
+        <span>Then</span>&nbsp;<span>status 200</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.297">
+      <div class="step-ref passed">297</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>print &#39;TC-006 and TC-011: Early Bird Tier Expiration verified correctly without DB hacks&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">1</div>
+  </div>
+
+   
+  
+  
+
+  
+
+  <div class="preformatted" data-parent="0.297">22:51:53.707 [print] TC-006 and TC-011: Early Bird Tier Expiration verified correctly without DB hacks 
+</div>   
+
+  
+
+</div>
+</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+

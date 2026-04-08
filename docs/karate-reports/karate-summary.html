@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <link rel="stylesheet" href="res/bootstrap.min.css" type="text/css"/>
+    <link rel="stylesheet" href="res/karate-report.css" type="text/css"/>
+    <link rel="shortcut icon" href="favicon.ico"/>
+    <script type="text/javascript" src="res/jquery.min.js"></script>
+    <script type="text/javascript" src="res/jquery.tablesorter.min.js"></script>
+    <script type="text/javascript" src="res/bootstrap.min.js"></script>
+    <script type="text/javascript" src="res/karate-report.js"></script>    
+    <title>Karate Summary Report</title>
+  </head>
+  <body>
+    <div id="root-container">
+      <div id="leftnav">
+        
+        <div>
+  <div class="nav-logo">
+    <a href="https://karatelabs.io">
+      <img src="karate-labs-logo-ring.svg" alt="Karate Labs"/>
+    </a>
+    <div class="nav-count">
+      <div id="nav-pass" class="bg-success">10</div>
+      <div id="nav-fail" class="bg-danger">0</div>
+    </div>
+  </div>
+  <div id="nav-env">
+    <div></div>
+  </div>
+  <div id="nav-type">
+    <div>Features</div>
+  </div>
+  <div id="nav-date">
+    <div>2026-04-07 10:55:58 p. m.</div>
+  </div>
+</div>
+
+      </div>
+      <div id="content">
+        <div class="page-heading alert alert-primary">
+          <a href="karate-tags.html">Tags</a><span class="feature-label">|</span>
+          <a href="karate-timeline.html">Timeline</a>
+        </div>
+        <table class="features-table table table-sm">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>Title</th>
+              <th class="num">Passed</th>
+              <th class="num">Failed</th>
+              <th class="num">Scenarios</th>
+              <th class="num">Time (ms)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="passed">
+              <td>
+                <a href="api.event-and-tier-happy-path.event-and-tier-happy-path.html">api/event-and-tier-happy-path/event-and-tier-happy-path.feature</a>
+              </td>
+              <td title="As a Ticketing MVP automation
+  I want to validate the happy path for creating events and tiers
+  So that I can verify the basic configuration capabilities of the system">Ticketing MVP - Event and Tier Creation Happy Path</td>
+              <td class="num">2</td>
+              <td class="num">0</td>
+              <td class="num">2</td>
+              <td class="num">559</td>
+            </tr>
+            <tr class="passed">
+              <td>
+                <a href="api.event-availability-visibility.event-availability-visibility.html">api/event-availability-visibility/event-availability-visibility.feature</a>
+              </td>
+              <td title="As a buyer
+  I want to view event availability and tier status
+  So that I can see which tiers are available for purchase">Ticketing MVP - Event Availability Visibility</td>
+              <td class="num">4</td>
+              <td class="num">0</td>
+              <td class="num">4</td>
+              <td class="num">1064</td>
+            </tr>
+            <tr class="passed">
+              <td>
+                <a href="api.event-validation-negative.event-validation-negative.html">api/event-validation-negative/event-validation-negative.feature</a>
+              </td>
+              <td title="As a system admin
+  I want validation errors when creating events with invalid data
+  So that data integrity is maintained">Ticketing MVP - Event Validation Negative Paths</td>
+              <td class="num">3</td>
+              <td class="num">0</td>
+              <td class="num">3</td>
+              <td class="num">77</td>
+            </tr>
+            <tr class="passed">
+              <td>
+                <a href="api.expiration-release-flow.expiration-release-flow-with-sql.html">api/expiration-release-flow/expiration-release-flow-with-sql.feature</a>
+              </td>
+              <td title="As a Ticketing MVP automation
+  I want to execute the complete flow with rejected payment, automatic release, and SQL validation
+  So that I can conclusively verify that blocked inventory is released and available for new buyers">Ticketing MVP - Expiration and Automatic Release Flow (Path B with SQL Validation)</td>
+              <td class="num">2</td>
+              <td class="num">0</td>
+              <td class="num">2</td>
+              <td class="num">75550</td>
+            </tr>
+            <tr class="passed">
+              <td>
+                <a href="api.notifications-flow.notifications-flow.html">api/notifications-flow/notifications-flow.feature</a>
+              </td>
+              <td title="As a Ticketing MVP automation
+  I want to validate that notifications are sent after key events
+  So that I can verify the notification system is working correctly">Ticketing MVP - Notifications Flow</td>
+              <td class="num">4</td>
+              <td class="num">0</td>
+              <td class="num">4</td>
+              <td class="num">84496</td>
+            </tr>
+            <tr class="passed">
+              <td>
+                <a href="api.purchase-approved-flow.purchase-approved-flow.html">api/purchase-approved-flow/purchase-approved-flow.feature</a>
+              </td>
+              <td title="As a Ticketing MVP automation
+  I want to execute the complete happy path of approved purchase
+  So that I can verify the core transactional value of the system">Ticketing MVP - Approved Purchase Flow</td>
+              <td class="num">1</td>
+              <td class="num">0</td>
+              <td class="num">1</td>
+              <td class="num">117</td>
+            </tr>
+            <tr class="passed">
+              <td>
+                <a href="api.rejected-payment-flow.rejected-payment-flow.html">api/rejected-payment-flow/rejected-payment-flow.feature</a>
+              </td>
+              <td title="As a Ticketing MVP automation
+  I want to execute the rejected payment path
+  So that I can verify the system correctly rejects declined payments without confirming a purchase">Ticketing MVP - Rejected Payment Flow</td>
+              <td class="num">1</td>
+              <td class="num">0</td>
+              <td class="num">1</td>
+              <td class="num">101</td>
+            </tr>
+            <tr class="passed">
+              <td>
+                <a href="api.reservation-advanced-lifecycle.reservation-advanced-lifecycle.html">api/reservation-advanced-lifecycle/reservation-advanced-lifecycle.feature</a>
+              </td>
+              <td title="As a QA engineer
+  I want to validate advanced reservation lifecycle scenarios
+  So that expiration, concurrency, and business rules are properly enforced">Ticketing MVP - Reservation Advanced Lifecycle</td>
+              <td class="num">6</td>
+              <td class="num">0</td>
+              <td class="num">6</td>
+              <td class="num">93329</td>
+            </tr>
+            <tr class="passed">
+              <td>
+                <a href="api.ticket-visibility-and-access-control.ticket-visibility-and-access-control.html">api/ticket-visibility-and-access-control/ticket-visibility-and-access-control.feature</a>
+              </td>
+              <td title="As a Ticketing MVP automation
+  I want to validate ticket visibility, consistency, and access control
+  So that I can verify tickets are secure and data is correct">Ticketing MVP - Ticket Visibility and Access Control</td>
+              <td class="num">4</td>
+              <td class="num">0</td>
+              <td class="num">4</td>
+              <td class="num">65421</td>
+            </tr>
+            <tr class="passed">
+              <td>
+                <a href="api.tier-validation-negative-and-earlybird.tier-validation-negative-and-earlybird.html">api/tier-validation-negative-and-earlybird/tier-validation-negative-and-earlybird.feature</a>
+              </td>
+              <td title="As a system admin
+  I want validation errors when creating tiers with invalid config
+  So that tier integrity is maintained">Ticketing MVP - Tier Validation Negative and Early Bird</td>
+              <td class="num">3</td>
+              <td class="num">0</td>
+              <td class="num">3</td>
+              <td class="num">112</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>
+

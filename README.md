@@ -1,70 +1,66 @@
-# 🎯 Ticketing MVP — Karate Automation Framework (ASDD Pipeline)
+<div align="center">
+  
+# 🚀 TICKETING_MVP_FUNCTIONAL_TEST
 
-## 📍 Punto de Entrada
+### Taller Semana 7: Expectativa vs. Realidad - Ejecución Ágil, MVP y Estrategia de Pruebas
 
-Bienvenido. Este proyecto contiene una suite completa de automatización de pruebas para el **Ticketing MVP**, implementada con **Karate 1.5.0** siguiendo el flujo **ASDD** (Agent Spec Software Development).
+**Rol / Líder QA:** Christopher Ismael Pallo Arias  
+**Proyecto:** Construcción del Ticketing MVP real y su Certificación por Micro-Sprints (Fase Funcional - Karate)  
+**Objetivo:** Vivir "el choque con la realidad" y certificar como QA el MVP funcional construido por DEV. Asegurar mediante BDD y aserciones estrictas que la lógica de negocio, reglas de dominio e integraciones de bases de datos operen sin fisuras.
 
-**¿No sabes por dónde empezar?** → Abre [`INDICE-DOCUMENTACION.md`](INDICE-DOCUMENTACION.md) (2 min)
+<br />
 
----
+### 🛠️ Technology Stack
 
-## 🎯 Quick Summary
+**Functional API Testing Framework**
+<br />
+<img src="https://img.shields.io/badge/Karate-1.5.0-black?style=for-the-badge&logo=karate" alt="Karate DSL" />
+<img src="https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white" alt="Java" />
+<img src="https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL" />
+<br />
+<a href="https://skillicons.dev">
+  <img src="https://skillicons.dev/icons?i=java,postgres,github" alt="Automation Stack" />
+</a>
 
-### 📦 Qué Se Entregó
-
-✅ **3 Specs Completas** (APROBADAS):
-- SPEC-001: Approved Purchase Flow (happy path)
-- SPEC-002: Rejected Payment Flow (negative path)  
-- SPEC-003: Expiration & Release Flow (async path with SQL validation)
-
-✅ **3 Test Features** (Operacionales):
-- `purchase-approved-flow.feature` (114 lines)
-- `rejected-payment-flow.feature` (156 lines)
-- `expiration-release-flow-with-sql.feature` (165 lines)
-
-✅ **Assets Reutilizables** (12 Files):
-- 6 JSON Payloads (room, event, tiers, reservation, payment)
-- 7 JSON Schemas (with fuzzy + strict validators)
-
-✅ **SQL Helpers** (Reusable):
-- `db-helper.feature` (168 lines, 2 parametrized JDBC scenarios)
-- Validates reservation status and tier quota via PostgreSQL
-
-✅ **Documentación Exhaustiva**:
-- 4 guías principales (este README + 3 más)
-- 3 archivos de implementación paso a paso
-- 3 specifications aprobadas
+</div>
 
 ---
 
-## 🚀 Empezar en 5 Minutos
+## 📌 Panel de Entrega y Resultados Formales
 
-### 1. Leer este README (Ya lo estás haciendo ✅)
+> ⚠️ **ATENCIÓN EVALUADOR:** Todos los insumos obligatorios exigidos sobre la validación funcional, flujos transaccionales y matrices de prueba están consolidados y listos para su auditoría:
+> 
+> 🔗 **[👉 HAZ CLIC AQUÍ PARA VER EL REPORTE OFICIAL DE KARATE EN LÍNEA](https://christopherpalloarias.github.io/TICKETING_SEM7_KARATE/)**
+> *(Dashboard interactivo de Karate UI Report desplegado vía GitHub Pages)*
 
-### 2. Abre el índice de documentación
-```bash
-cat INDICE-DOCUMENTACION.md
-```
+- 📄 **Test Plan Oficial:** [`TEST_PLAN.md`](./TEST_PLAN.md) *(Estrategia general documentada).*
+- 📋 **Matriz de Test Cases:** [`TEST_CASES.md`](./TEST_CASES.md) *(Mapeo de requerimientos).*
+- 📊 **Evidencia de Ejecución:** Revisar el dashboard en línea o la carpeta [`target/karate-reports/`](./target/karate-reports/).
+- 🚀 **Features Implementados:** Consultar la carpeta [`src/test/java/api/`](./src/test/java/api/)
 
-### 3. Elige tu camino según tus necesidades
+---
 
-**Si tienes 5 minutos:**
-→ Lee [`ENTREGA-PATH-B-SQL-VALIDATION.md`](ENTREGA-PATH-B-SQL-VALIDATION.md)
-- Qué se entregó
-- Cambios de config necesarios
-- Cómo ejecutar (4 pasos)
+## 📋 Tabla de Contenidos
+1. [Contexto del Proyecto: El Choque con la Realidad](#-contexto-del-proyecto-el-choque-con-la-realidad)
+2. [A Vista de Pájaro (Cobertura)](#-a-vista-de-pájaro)
+3. [Instrucciones de Clonado y Setup](#-instrucciones-de-clonado-y-setup)
+4. [Ejecución de las Pruebas](#-ejecución-de-las-pruebas)
+5. [Estructura de Archivos y Escenarios (Specs)](#-estructura-de-archivos-y-escenarios)
+6. [Sobre la Orquestación ASDD](#-sobre-la-orquestación-asdd)
 
-**Si tienes 15 minutos:**
-→ Lee [`src/test/java/api/expiration-release-flow/IMPLEMENTATION-GUIDE.md`](src/test/java/api/expiration-release-flow/IMPLEMENTATION-GUIDE.md)
-- Paso a paso detallado
-- Código exacto para copiar/pegar
-- Troubleshooting para errores comunes
+---
 
-**Si tienes 30 minutos:**
-→ Lee [`PIPELINE-ASDD-STATUS.md`](PIPELINE-ASDD-STATUS.md) + [`BITACORA-IMPLEMENTACION.md`](BITACORA-IMPLEMENTACION.md)
-- Status de los 3 specs
-- Timeline de implementación
-- Todas las decisiones técnicas
+## 🎯 Contexto del Proyecto: El Choque con la Realidad
+
+Este repositorio corresponde a la certificación funcional (**Karate DSL**) dentro de la **Fase 3: Estrategia de Calidad** exigida para el Taller 7. Tras diseñar la utopía en la Semana 6, nuestro objetivo de equipo fue construir y testear las piezas críticas seleccionadas del Backlog para entregar un **MVP funcional y valioso**.
+
+Mientras DEV implementaba y lidiaba con la curva real de los Story Points mediante *micro-sprints* iterativos de 2 días, desde el rol de QA se redactó e impuso la arquitectura formal de calidad (`TEST_PLAN.md` y `TEST_CASES.md`).
+
+Para asegurar que nuestro MVP cumpla estructuralmente con los flujos de negocio e integridad de base de datos prometidos, la Estrategia de Calidad implementó Validaciones Multi-Capa con Karate sobre:
+
+1. **Flujo Feliz:** Generación de Entradas (Compra aprobada).
+2. **Flujo Negativo:** Rechazo de pagos (HTTP 400).
+3. **Flujo Asíncrono Complejo:** Expiración de reservas sin pagar, liberación de inventario y validación parametrizada vía base de datos (PostgreSQL + JDBC).
 
 ---
 
@@ -89,312 +85,68 @@ cat INDICE-DOCUMENTACION.md
     ✅ 3 Features (Operational)
     ✅ 12 Payloads/Schemas (Reusable)
     ✅ 1 SQL Helper (JDBC-based)
-    ✅ 5 Documentation Files
     ✅ Ready for CI/CD
 ```
 
 ---
 
-## 🧪 Quick Test Execution
+## ⚡ Instrucciones de Clonado y Setup
 
-### Prerequisitos
-- PostgreSQL running on ports 5434 & 5433 (for SPEC-003 only)
-- ms-events running on port 8081
-- ms-ticketing running on port 8082
-- Maven 3.6+
+> ⚠️ **Crítico:** Las pruebas funcionales exigen que la infraestructura objetivo (el clúster de microservicios) esté aprovisionada mediante `docker-compose` desde el repositorio principal de código de DEV.
 
-### Compile & Test
+### 1. Prerrequisitos
+- El clúster backend (`TICKETING_SEM7`) ejecutándose en vivo.
+- API Gateway activo en el puerto `8080`, `ms-events` en `8081` y `ms-ticketing` en `8082`.
+- PostgreSQL expuesto en puertos `5434` (ticketing_db) y `5433` (events_db) para el `SPEC-003`.
+- **Maven 3.6+** y Java JDK 17+ instalados.
+
+### 2. Preparar el Entorno Karate
+
 ```bash
-# Install  dependencies
-mvn clean install
+git clone https://github.com/ChristopherPalloArias/TICKETING_SEM7_KARATE.git
+cd TICKETING_SEM7_KARATE
 
-# Run individual tests
+# Instalar dependencias puras (sin compilar el target aún)
+mvn clean install -DskipTests
+```
+
+---
+
+## 🧪 Ejecución de las Pruebas
+
+Para ejecutar las pruebas apuntando a los recursos locales y con paso de variables de acceso de base de datos (vital para el helper JDBC en SPEC-003):
+
+```bash
+# Correr todo el Suite Master
+mvn test
+
+# Correr flujo específico (Ejemplo: Flujo Aprobado)
 mvn test -Dtest=PurchaseApprovedFlowTest \
   -DbaseUrlEvents=http://localhost:8081 \
   -DbaseUrlTicketing=http://localhost:8082
 
-mvn test -Dtest=RejectedPaymentFlowTest \
-  -DbaseUrlEvents=http://localhost:8081 \
-  -DbaseUrlTicketing=http://localhost:8082
-
+# Correr flujo asíncrono avanzado con validación SQL
 mvn test -Dtest=ExpirationReleaseFlowTest \
   -DbaseUrlEvents=http://localhost:8081 \
   -DbaseUrlTicketing=http://localhost:8082
 ```
 
-**Nota**: Para SPEC-003 (Path B con SQL), se requieren cambios adicionales en karate-config.js y pom.xml. Ver [IMPLEMENTATION-GUIDE.md](src/test/java/api/expiration-release-flow/IMPLEMENTATION-GUIDE.md) Sección 2.
+> **Aviso de Compilación Temporal:** Tras correr el comando `mvn test`, Maven generará automáticamente el grandioso reporte html de Karate bajo la ruta `/target/karate-reports/karate-summary.html`.
 
 ---
 
-## 📁 Estructura de Archivos
+## 📁 Estructura de Archivos y Escenarios
 
-```
-.github/specs/
-├── ticketing-karate-purchase-approved-flow.spec.md ✅ APPROVED v1.2
-├── ticketing-karate-rejected-payment-flow.spec.md ✅ APPROVED v1.1
-└── ticketing-karate-expiration-release-flow.spec.md ✅ APPROVED v1.1
+El framework emula un ecosistema Enterprise robusto mediante inyección de Payloads compartidos y Asserts estrictos de Schemas:
 
-src/test/java/
-├── api/
-│   ├── purchase-approved-flow/
-│   │   ├── purchase-approved-flow.feature ✅
-│   │   └── README.md
-│   ├── rejected-payment-flow/
-│   │   ├── rejected-payment-flow.feature ✅
-│   │   └── README.md
-│   └── expiration-release-flow/
-│       ├── expiration-release-flow-with-sql.feature ✅ NEW
-│       ├── IMPLEMENTATION-GUIDE.md ✅ NEW
-│       ├── DELIVERY-SUMMARY.md ✅ NEW
-│       └── README.md
-│
-├── common/
-│   ├── payloads/
-│   │   ├── room-create-request.json
-│   │   ├── event-create-request.json
-│   │   ├── tiers-create-request.json
-│   │   ├── reservation-create-request.json
-│   │   ├── payment-request.json
-│   │   └── payment-declined-request.json ✅ NEW
-│   │
-│   ├── schemas/
-│   │   ├── room-response.json
-│   │   ├── event-response.json
-│   │   ├── tiers-response.json
-│   │   ├── event-published-response.json
-│   │   ├── reservation-response.json
-│   │   ├── payment-response.json
-│   │   └── payment-declined-response.json ✅ NEW
-│   │
-│   └── sql/
-│       └── db-helper.feature ✅ NEW
-│
-└── runners/
-    ├── PurchaseApprovedFlowTest.java ✅
-    ├── RejectedPaymentFlowTest.java ✅
-    └── ExpirationReleaseFlowTest.java ✅ UPDATED
-
-ROOT:
-├── INDICE-DOCUMENTACION.md (punto de entrada + mapa)
-├── ENTREGA-PATH-B-SQL-VALIDATION.md (resumen ejecutivo)
-├── PIPELINE-ASDD-STATUS.md (status de specs)
-├── BITACORA-IMPLEMENTACION.md (timeline + artifacts)
-└── README.md (este archivo)
-```
+* **`src/test/java/api/purchase-approved-flow/`**: Valida respuesta segura `HTTP 201`, contratos JSON idénticos e integración exitosa con Payment Gateway.
+* **`src/test/java/api/rejected-payment-flow/`**: Fuerza un payload adverso (DECLINED state) validando que el microservicio de Ticketing intercepte el error devolviendo `HTTP 400`.
+* **`src/test/java/api/expiration-release-flow/`**: El flujo estrella. Inicia una reserva temporal, inyecta falla de pago, espera asíncronamente el proceso de background (Scheduler) y valida directamente sobre la Base de Datos PostgreSQL que el `Status` cambie a `EXPIRED` y que los asientos `quota` se hayan restaurado al pool público usando queries JDBC limpias.
+* **`src/test/java/common/`**: Hospeda centralizadamente todos los Payloads (Json) de solicitud, contratos Schema (Json) de respuesta y los utilitarios `db-helper.feature` SQL.
 
 ---
 
-## 🤔 ¿Qué Necesito Hacer?
+## 🤖 Sobre la Orquestación ASDD
 
-### ✅ Si solo quiero ENTENDER la arquitectura
-→ Lee [`INDICE-DOCUMENTACION.md`](INDICE-DOCUMENTACION.md) (5 min)
-
-### ✅ Si quiero EJECUTAR los tests
-→ Sigue [`IMPLEMENTATION-GUIDE.md`](src/test/java/api/expiration-release-flow/IMPLEMENTATION-GUIDE.md) Sección 2
-- Paso 1: Edit `karate-config.js` (agregar DB config)
-- Paso 2: Edit `pom.xml` (agregar PostgreSQL dependency)
-- Paso 3: Run `mvn clean install` + tests
-
-### ✅ Si quiero VER TODAS las decisiones
-→ Lee [`BITACORA-IMPLEMENTACION.md`](BITACORA-IMPLEMENTACION.md) (15 min)
-- 6 fases cronológicas
-- Artifacts resultantes
-- Key decisions en cada fase
-
-### ✅ Si quiero ENTENDER las diferencias entre specs
-→ Lee [`PIPELINE-ASDD-STATUS.md`](PIPELINE-ASDD-STATUS.md) (5 min)
-- Matriz de cobertura (3 specs)
-- Flujos comparados
-- Reusability pattern
-
----
-
-## 📋 Los 3 Specs Explicados
-
-### 1️⃣ **SPEC-001: Approved Purchase Flow**
-
-**Flujo**:
-```
-Room → Event DRAFT → Tier (quota:40) → Publish → 
-Reservation PENDING → Payment APPROVED → 
-Ticket CONFIRMED ✅
-```
-
-**Estado**: ✅ APPROVED v1.2 (424 lines)  
-**Feature**: `purchase-approved-flow.feature` (114 lines, happy path)  
-**Archivos**: 5 payloads + 6 schemas  
-**Validación**: HTTP contracts (201, 200), schema matching  
-
----
-
-### 2️⃣ **SPEC-002: Rejected Payment Flow**
-
-**Flujo**:
-```
-[Setup idéntico a SPEC-001] → 
-Payment DECLINED → 
-HTTP 400, PAYMENT_FAILED ✅
-```
-
-**Estado**: ✅ APPROVED v1.1 (310 lines)  
-**Feature**: `rejected-payment-flow.feature` (156 lines, negative path)  
-**Archivos**: +1 payload + 1 schema (reusable from setup)  
-**Validación**: HTTP 400 contract, flexible assertions  
-
-**Diferencia clave**: Cambia el payload de payment (status: DECLINED), observa respuesta 400
-
----
-
-### 3️⃣ **SPEC-003: Expiration & Release (Path B)**
-
-**Flujo**:
-```
-[Setup] → Buyer 1 Reservation PENDING → 
-Payment DECLINED → [Wait 90s] →
-SQL: status = EXPIRED → SQL: quota = 40 → 
-Buyer 2 Reservation PENDING ✅
-```
-
-**Estado**: ✅ APPROVED v1.1 (368 lines, Path B implemented)  
-**Feature**: `expiration-release-flow-with-sql.feature` (165 lines, async path)  
-**SQL Helper**: `db-helper.feature` (168 lines, 2 scenarios)  
-**Validación**: 4 layers (HTTP + 2 SQL + HTTP functional)  
-
-**Innovación**: Multi-layer validation using JDBC parametrized queries
-
-**Path A deferred** (requires discovery of validUntilAt timeout)
-
----
-
-## 🎯 Key Concepts
-
-### Setup Reutilizable
-Todos los 3 specs reutilizan el mismo patrón de setup:
-```
-Room → Event → Tier → Publish
-```
-Esto demuestra composición eficiente y evita duplicación.
-
-### Contract Discovery
-En lugar de asumir shapes JSON, se observan respuestas reales:
-- SPEC-001: `{reservationId, status: CONFIRMED, ticketId, ...}`
-- SPEC-002: `{error, reservationId, status: PAYMENT_FAILED, timestamp}` (HTTP 400)
-
-### Multi-Layer Validation (SPEC-003)
-Path B valida a 4 niveles independientes:
-1. **Layer 1 (HTTP)**: Respuesta 400 con estructura correcta
-2. **Layer 2 (SQL State)**: Transición PENDING → EXPIRED
-3. **Layer 3 (SQL Inventory)**: Cuota restaurada completamente
-4. **Layer 4 (HTTP Functional)**: Buyer 2 puede reservar
-
-### Async Timing
-- Reservation TTL: 10 minutos
-- Scheduler interval: 60 segundos
-- Conservative wait: 90 segundos (seguro y tunable)
-
-### JDBC Parametrizado
-Todas las queries SQL usan parametrized statements para prevenir SQL injection:
-```sql
-SELECT status FROM reservations WHERE id = $1::uuid
-```
-
----
-
-## 📊 Cobertura de Pruebas
-
-| Aspecto | SPEC-001 | SPEC-002 | SPEC-003 |
-|---------|:---:|:---:|:---:|
-| Happy Path | ✅ | ✅ | ✅ |
-| Negative Path (400) | ❌ | ✅ | ✅ |
-| Async Processing | ❌ | ❌ | ✅ |
-| Database Validation | ❌ | ❌ | ✅ |
-| State Transitions | ❌ | ❌ | ✅ |
-| Inventory Management | ❌ | ❌ | ✅ |
-| Multi-Layer Check | ❌ | ❌ | ✅ |
-
----
-
-## 🔗 Referencias Rápidas
-
-| Necesito... | Ir a... | Tiempo |
-|---|---|:---:|
-| Entender rápido | [ENTREGA-PATH-B-SQL-VALIDATION.md](ENTREGA-PATH-B-SQL-VALIDATION.md) | 5 min |
-| Ejecutar tests | [IMPLEMENTATION-GUIDE.md](src/test/java/api/expiration-release-flow/IMPLEMENTATION-GUIDE.md) | 15 min |
-| Ver status de specs | [PIPELINE-ASDD-STATUS.md](PIPELINE-ASDD-STATUS.md) | 5 min |
-| Historia completa | [BITACORA-IMPLEMENTACION.md](BITACORA-IMPLEMENTACION.md) | 15 min |
-| Punto de entrada | [INDICE-DOCUMENTACION.md](INDICE-DOCUMENTACION.md) | 2 min |
-
----
-
-## ✅ Checklist Pre-Ejecución (SPEC-003 Only)
-
-- [ ] PostgreSQL running on localhost:5434 (ticketing_db)
-- [ ] PostgreSQL running on localhost:5433 (events_db)
-- [ ] Tablas `reservations` y `tiers` existen con columns correctas
-- [ ] karate-config.js modificado con DB config (ver IMPLEMENTATION-GUIDE.md)
-- [ ] pom.xml modificado con PostgreSQL dependency (ver IMPLEMENTATION-GUIDE.md)
-- [ ] `mvn clean install` exitoso
-- [ ] ms-events accesible en http://localhost:8081
-- [ ] ms-ticketing accesible en http://localhost:8082
-
----
-
-## 🚀 Roadmap Futuro
-
-1. **Inmediato**: Aplicar cambios de config (2 files)
-2. **Corto plazo**: Ejecutar tests y ajustar wait duration si necesario
-3. **Mediano plazo**: Implementar Path A (expiration timeout sin payment)
-4. **Largo plazo**: Expandir a otros flows (refunds, discounts, cancellations)
-
----
-
-## 📞 Soporte Rápido
-
-**P: ¿Dónde empiezo?**
-A: Abre [`INDICE-DOCUMENTACION.md`](INDICE-DOCUMENTACION.md)
-
-**P: ¿Cómo ejecuto los tests?**
-A: Sigue [`IMPLEMENTATION-GUIDE.md`](src/test/java/api/expiration-release-flow/IMPLEMENTATION-GUIDE.md) Sección 4
-
-**P: ¿Cuáles son los cambios de config?**
-A: Ver [`ENTREGA-PATH-B-SQL-VALIDATION.md`](ENTREGA-PATH-B-SQL-VALIDATION.md) Sección "Cambios de Configuración"
-
-**P: ¿Qué diferencia hay entre SPEC-001, SPEC-002 y SPEC-003?**
-A: Ver esta sección "Los 3 Specs Explicados" o [`PIPELINE-ASDD-STATUS.md`](PIPELINE-ASDD-STATUS.md)
-
-**P: ¿Puedo ejecutar solo SPEC-001 o SPEC-002?**
-A: Sí, son independientes. No requieren SQL ni cambios de config.
-
----
-
-## ✨ TL;DR
-
-**Se entregó**:
-- 3 Specs APROBADOS (happy + negative + async paths)
-- 3 Features Karate operacionales
-- 12 Assets JSON reutilizables
-- 1 SQL Helper con 2 scenarios JDBC
-- 5 Documentos de guía
-
-**Status**: ✅ **PRODUCTION READY** (después de 2 cambios simples de config)
-
-**¿Listo?** → Abre [`INDICE-DOCUMENTACION.md`](INDICE-DOCUMENTACION.md) (2 min)
-
----
-
-## 📄 Información de Proyecto
-
-- **Framework**: Karate 1.5.0 + JUnit 5
-- **Language**: Gherkin (features), JavaScript (config), Java (runners)
-- **Database**: PostgreSQL 42.7.1 (optional, SPEC-003 only)
-- **Pipeline**: ASDD (Spec → QA → Implement → Doc)
-- **Status**: ✅ COMPLETE (Phase 6 of 6)
-
----
-
-**Generado**: Post-Implementation (Phase 6 with SQL)  
-**Versión**: 1.0  
-**Última actualización**: 2024-12-XX  
-**Status**: ✅ PRODUCTION READY
-
-¿Necesitas ayuda? Abre [`INDICE-DOCUMENTACION.md`](INDICE-DOCUMENTACION.md)
+Gran parte del diseño arquitectónico de estas validaciones fue guiado por la metodología estructurada **Agent Spec Software Development (ASDD)**.
+Para más detalle documental sobre las bitácoras o el pipeline de aprobación de estos Specs en Karate, revisa los archivos internos como [`BITACORA-IMPLEMENTACION.md`](./BITACORA-IMPLEMENTACION.md) o [`INDICE-DOCUMENTACION.md`](./INDICE-DOCUMENTACION.md).
