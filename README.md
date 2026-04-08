@@ -33,8 +33,8 @@
 > 
 > 🔗 **[👉 HAZ CLIC AQUÍ PARA VER EL INFORME OFICIAL DE LOS RESULTADOS (KARATE)](https://christopherpalloarias.github.io/TICKETING_SEM7_KARATE/)**
 
-- 📄 **Test Plan Oficial:** Revisar el archivo raíz correspondiente *(Estrategia general documentada).*
-- 📋 **Matriz de Test Cases:** Revisar el archivo raíz correspondiente *(Mapeo de métricas y prioridades).*
+- 📄 **Test Plan Oficial:** [`TEST_PLAN.md`](https://github.com/ChristopherPalloArias/PRD_BACKLOG/blob/main/TEST_PLAN.md) *(Estrategia general documentada y riesgos).*
+- 📋 **Matriz de Test Cases:** [`TEST_CASES.md`](https://github.com/ChristopherPalloArias/PRD_BACKLOG/blob/main/TEST_CASES.md) *(Mapeo explícito de métricas, CA y casos evaluados).*
 - 📊 **Evidencia de Ejecución:** El enlace web contiene el Dashboard o revisa la carpeta local `docs/karate-reports/`.
 - 🚀 **Scripts de Escenarios:** Consultar la carpeta [`src/test/java/api/`](./src/test/java/api/)
 
@@ -54,7 +54,7 @@
 
 Este repositorio corresponde a la certificación funcional (**Karate DSL**) dentro de la **Fase 3: Estrategia de Calidad** exigida para el Taller 7. Tras diseñar la utopía en la Semana 6, nuestro objetivo de equipo fue construir y testear las piezas críticas seleccionadas del Backlog para entregar un **MVP funcional y valioso**.
 
-Mientras DEV implementaba y lidiaba con la curva real de los Story Points mediante *micro-sprints* iterativos de 2 días, desde el rol de QA se redactó e impuso la arquitectura formal de calidad (`TEST_PLAN.md` y `TEST_CASES.md`).
+Mientras DEV implementaba y lidiaba con la curva real de los Story Points mediante *micro-sprints* iterativos de 2 días, desde el rol de QA se redactó e impuso la arquitectura formal de calidad alojada centralmente en el repositorio de Producto (`PRD_BACKLOG`): [`TEST_PLAN.md`](https://github.com/ChristopherPalloArias/PRD_BACKLOG/blob/main/TEST_PLAN.md) y [`TEST_CASES.md`](https://github.com/ChristopherPalloArias/PRD_BACKLOG/blob/main/TEST_CASES.md). Toda la cobertura técnica que observarás en esta suite nace y obedece rígidamente a los escenarios definidos en dichas matrices.
 
 Para asegurar que nuestro MVP cumpla estructuralmente con los flujos de negocio e integridad de base de datos prometidos, la Estrategia de Calidad implementó Validaciones Multi-Capa con Karate abarcando **totalidad del scope MVP**: 7 Historias de Usuario resueltas en 29 Casos de Prueba Críticos.
 
@@ -160,4 +160,4 @@ mvn test -Dtest=ExpirationReleaseFlowTest \
 
 ## 🤖 Sobre la Orquestación ASDD
 
-Para más detalle sobre las directrices de Calidad Preventiva impulsadas por Especificaciones controladas por Agente AI que enmarcan la evolución del proyecto, consulta las bitácoras internas documentales en [`.github/`](.github/) y los guiones `README_ASDD.md` dispersos en la arquitectura.
+Para más detalle sobre las directrices de Calidad Preventiva impulsadas por Especificaciones controladas por Agente AI que enmarcan la evolución del proyecto, consulta las bitácoras internas documentales en [`.github/README_ASDD.md`](.github/README_ASDD.md) y los guiones `README_ASDD.md` dispersos en la arquitectura.
