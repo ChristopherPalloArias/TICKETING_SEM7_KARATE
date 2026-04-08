@@ -31,7 +31,7 @@
 
 > ⚠️ **ATENCIÓN EVALUADOR:** Todos los insumos obligatorios exigidos sobre la validación funcional, flujos transaccionales y matrices de prueba están consolidados y listos para su auditoría:
 > 
-> 🔗 **[👉 HAZ CLIC AQUÍ PARA VER EL INFORME OFICIAL DE LOS RESULTADOS (KARATE)](https://christopherpalloarias.github.io/TICKETING_SEM7_KARATE/)**
+> 🔗 **[👉 HAZ CLIC AQUÍ PARA VER EL INFORME OFICIAL DE RESULTADOS DE KARATE](https://christopherpalloarias.github.io/TICKETING_SEM7_KARATE/)** ⬅️
 
 - 📄 **Test Plan Oficial:** [`TEST_PLAN.md`](https://github.com/ChristopherPalloArias/PRD_BACKLOG/blob/main/TEST_PLAN.md) *(Estrategia general documentada y riesgos).*
 - 📋 **Matriz de Test Cases:** [`TEST_CASES.md`](https://github.com/ChristopherPalloArias/PRD_BACKLOG/blob/main/TEST_CASES.md) *(Mapeo explícito de métricas, CA y casos evaluados).*
